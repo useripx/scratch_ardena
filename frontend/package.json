@@ -1,0 +1,37 @@
+{
+  "name": "ardena-playground-frontend",
+  "version": "1.0.0",
+  "description": "Frontend Web Application for Ardena Playground (Scratch 3.0 AI-assisted Game Creator)",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest --runInBand",
+    "test:coverage": "jest --runInBand --coverage"
+  },
+  "keywords": [
+    "scratch",
+    "react",
+    "ai-copilot",
+    "ardena",
+    "blockly"
+  ],
+  "author": "Yogi Ario",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.14.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.5",
+    "typescript": "^5.4.5"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "roots": [
+      "<rootDir>/tests"
+    ],
+    "testMatch": [
+      "**/*.test.ts"
+    ]
+  }
+}
