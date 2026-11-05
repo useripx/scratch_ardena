@@ -236,7 +236,7 @@ describe('Frontend Scratch Editor & AI Copilot — Sub-Fase FE-03', () => {
       const generateBtn = screen.getByText(/Generate Game Scratch/i);
       fireEvent.click(generateBtn);
 
-      // Menunggu selesai generate
+      // Menunggu selesai generate dan ReviewGateModal muncul
       await waitFor(() => {
         expect(apiService.generateGame).toHaveBeenCalledWith(
           expect.objectContaining({
@@ -247,7 +247,13 @@ describe('Frontend Scratch Editor & AI Copilot — Sub-Fase FE-03', () => {
         );
       });
 
-      // Banner playtest muncul dengan judul game hasil AI
+      // Zero Overwrite Gate: Review modal terbuka, klik Terapkan ke Editor
+      await waitFor(() => {
+        expect(screen.getByText(/Terapkan ke Editor/i)).toBeTruthy();
+      });
+      fireEvent.click(screen.getByText(/Terapkan ke Editor/i));
+
+      // Banner playtest muncul setelah dikonfirmasi
       await waitFor(() => {
         expect(
           screen.getByText(/Petualangan Luar Angkasa AI Siap Diuji/i)

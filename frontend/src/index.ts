@@ -23,5 +23,10 @@ export * from './components/editor/GeneratingOverlay';
 export * from './components/editor/ReadyPlaytestBanner';
 export * from './components/editor/EditorWorkspace';
 
+// Review Gate & Error Modals (UI 09, UI 11, UI 19)
+export * from './components/modals/ReviewGateModal';
+export * from './components/modals/ErrorRecoveryDialog';
+export * from './components/modals/RateLimitCountdownModal';
+
 // Application Router
 export * from './router/ViewRouter';
