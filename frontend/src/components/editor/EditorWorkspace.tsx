@@ -3,12 +3,14 @@ import { EditorTopNav } from './EditorTopNav';
 import { AICopilotPanel } from './AICopilotPanel';
 import { GeneratingOverlay } from './GeneratingOverlay';
 import { ReadyPlaytestBanner } from './ReadyPlaytestBanner';
+import { ReviewGateModal } from '../modals/ReviewGateModal';
+import { ErrorRecoveryDialog } from '../modals/ErrorRecoveryDialog';
+import { RateLimitCountdownModal } from '../modals/RateLimitCountdownModal';
 import { apiService } from '../../services/api.service';
 import {
   ArdenaGameSpec,
   DiffCounters,
   SupportedTemplateKey,
-  calculateDiffCounters,
 } from '../../types/game.types';
 
 export interface EditorWorkspaceProps {
@@ -28,9 +30,17 @@ export const EditorWorkspace: React.FC<EditorWorkspaceProps> = ({
   const [isCopilotOpen, setIsCopilotOpen] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  // Ready State & Diff Counters
+  // Error States
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [errorCode, setErrorCode] = useState<string | undefined>(undefined);
+  const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
+  const [isRateLimitModalOpen, setIsRateLimitModalOpen] = useState(false);
+  const [rateLimitSeconds, setRateLimitSeconds] = useState(15);
+
+  // Review Gate States (UI 09)
+  const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
+  const [lastPromptText, setLastPromptText] = useState('');
   const [isPlaytestBannerVisible, setIsPlaytestBannerVisible] = useState(false);
   const [currentDiffCounters, setCurrentDiffCounters] = useState<DiffCounters | undefined>(undefined);
   const [currentGameSpec, setCurrentGameSpec] = useState<ArdenaGameSpec | null>(null);
@@ -42,7 +52,9 @@ export const EditorWorkspace: React.FC<EditorWorkspaceProps> = ({
   const handleGenerate = async (prompt: string, template?: SupportedTemplateKey) => {
     setIsGenerating(true);
     setErrorMessage(null);
+    setErrorCode(undefined);
     setIsPlaytestBannerVisible(false);
+    setLastPromptText(prompt);
 
     try {
       const result = await apiService.generateGame({
@@ -57,15 +69,40 @@ export const EditorWorkspace: React.FC<EditorWorkspaceProps> = ({
 
       setCurrentGameSpec(gameSpec);
       setCurrentDiffCounters(diff);
-      setIsPlaytestBannerVisible(true);
-      onGameGenerated?.(gameSpec, diff);
+
+      // Open Zero Overwrite Review Gate Modal (UI 09) for confirmation
+      setIsReviewModalOpen(true);
     } catch (err: any) {
-      setErrorMessage(
-        err?.message || 'Gagal menghasilkan game. Periksa koneksi backend Anda.'
-      );
+      const msg = err?.message || 'Gagal menghasilkan game. Periksa koneksi backend Anda.';
+      setErrorMessage(msg);
+      setErrorCode(err?.code);
+
+      if (err?.retryAfterSeconds) {
+        setRateLimitSeconds(err.retryAfterSeconds);
+        setIsRateLimitModalOpen(true);
+      } else {
+        setIsErrorModalOpen(true);
+      }
     } finally {
       setIsGenerating(false);
     }
+  };
+
+  // User confirms in ReviewGateModal -> Apply changes to editor canvas
+  const handleApplyReview = () => {
+    setIsReviewModalOpen(false);
+    if (currentGameSpec) {
+      setProjectName(currentGameSpec.title);
+      setIsPlaytestBannerVisible(true);
+      if (currentDiffCounters) {
+        onGameGenerated?.(currentGameSpec, currentDiffCounters);
+      }
+    }
+  };
+
+  const handleRegenerateFromReview = () => {
+    setIsReviewModalOpen(false);
+    setIsCopilotOpen(true);
   };
 
   const handleTogglePlay = () => {
@@ -256,6 +293,7 @@ export const EditorWorkspace: React.FC<EditorWorkspaceProps> = ({
                 gameTitle={currentGameSpec?.title || projectName}
                 diffCounters={currentDiffCounters}
                 onPlaytest={handleTogglePlay}
+                onReviewDetails={() => setIsReviewModalOpen(true)}
                 onDismiss={() => setIsPlaytestBannerVisible(false)}
               />
 
@@ -337,6 +375,44 @@ export const EditorWorkspace: React.FC<EditorWorkspaceProps> = ({
         isOpen={isGenerating}
         onAbort={() => setIsGenerating(false)}
         minStageDurationMs={400}
+      />
+
+      {/* Zero Overwrite Review Gate Modal (UI 09) */}
+      <ReviewGateModal
+        isOpen={isReviewModalOpen}
+        gameSpec={currentGameSpec}
+        diffCounters={currentDiffCounters || null}
+        promptText={lastPromptText}
+        onApply={handleApplyReview}
+        onRegenerate={handleRegenerateFromReview}
+        onClose={() => setIsReviewModalOpen(false)}
+      />
+
+      {/* Error Recovery Dialog (UI 11) */}
+      <ErrorRecoveryDialog
+        isOpen={isErrorModalOpen}
+        errorCode={errorCode}
+        errorMessage={errorMessage || undefined}
+        onRetry={() => {
+          setIsErrorModalOpen(false);
+          if (lastPromptText) handleGenerate(lastPromptText);
+        }}
+        onEditPrompt={() => {
+          setIsErrorModalOpen(false);
+          setIsCopilotOpen(true);
+        }}
+        onClose={() => setIsErrorModalOpen(false)}
+      />
+
+      {/* Rate Limit / Fair Usage Countdown Modal (UI 19) */}
+      <RateLimitCountdownModal
+        isOpen={isRateLimitModalOpen}
+        initialSeconds={rateLimitSeconds}
+        onRetry={() => {
+          setIsRateLimitModalOpen(false);
+          if (lastPromptText) handleGenerate(lastPromptText);
+        }}
+        onClose={() => setIsRateLimitModalOpen(false)}
       />
     </div>
   );
