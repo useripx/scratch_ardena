@@ -191,13 +191,32 @@ Seluruh sub-tahapan backend (**BE-00 s/d BE-07**) telah **100% SELESAI, TERVERIF
 ---
 
 ### Sub-Fase FE-02 — Fondasi Komponen UI Ardena (Landing Page, Onboarding, Template Picker)
-* **Prasyarat:** FE-01 selesai dan disetujui.
-* **Status:** **PENDING (GERBANG BERIKUTNYA)**
+* **Prasyarat:** FE-01 selesai dan disetujui (Disetujui 05/11/2026).
+* **Status:** **DONE (100% PASS — 14 Kasus Uji Lulus, 78.54% Coverage)**
 * **Checklist Tugas FE-02:**
-  - [ ] Implementasi `<WelcomeLandingView />` (UI 01).
-  - [ ] Implementasi `<OnboardingModal />` (UI 02).
-  - [ ] Implementasi `<ProjectHomeView />` (UI 03).
-  - [ ] Implementasi `<StartModeSelector />` & `<TemplateCatalogView />` (UI 04, 05).
+  - [x] Implementasi token desain Google Stitch Material 3 di `frontend/src/styles/design-tokens.css`.
+  - [x] Implementasi komponen umum `<Navbar />`, `<Footer />`, dan `<Modal />`.
+  - [x] Implementasi `<WelcomeLandingView />` (UI 01) lengkap dengan tri-pane studio visual mockup.
+  - [x] Implementasi `<OnboardingModal />` (UI 02) panduan 3 langkah & persistensi `localStorage`.
+  - [x] Implementasi `<ProjectHomeView />` (UI 03) dashboard studio, aksi cepat, dan empty state.
+  - [x] Implementasi `<StartModeSelector />` (UI 04) dengan 3 opsi: Prompt AI, Template, Editor Kosong.
+  - [x] Implementasi `<TemplateCatalogView />` (UI 05) dengan pemanggilan dinamis `apiService.getCapabilities()`.
+  - [x] Implementasi `<ViewRouter />` state-driven view navigation switcher.
+  - [x] Implementasi automated component & integration tests di `frontend/tests/components.test.tsx`.
+  - [x] Verifikasi 100% PASS (14/14 tests lulus melintasi 2 suites) dan TypeScript build `0 ERROR`.
+
+---
+
+### Sub-Fase FE-03 — Integrasi Editor Workspace & AI Copilot Panel (UI 06, UI 08, UI 10)
+* **Prasyarat:** FE-02 selesai dan disetujui (Disetujui 05/11/2026).
+* **Status:** **PENDING (GERBANG BERIKUTNYA)**
+* **Checklist Tugas FE-03:**
+  - [ ] Implementasi wrapper `<EditorWorkspace />` (UI 06) menggabungkan kanvas Scratch dengan dock panel kanan.
+  - [ ] Implementasi dock panel `<AICopilotPanel />` dengan 3 mode: "Buat", "Ubah", "Jelaskan".
+  - [ ] Implementasi `<GeneratingOverlay />` (UI 08) indikator proses 4 tahap: 1. Ide ➔ 2. JSON ➔ 3. Balok ➔ 4. SFX.
+  - [ ] Implementasi `<ReadyPlaytestBanner />` (UI 10) notifikasi blok siap diuji.
+  - [ ] Integrasi pemanggilan `apiService.generateGame()` dari Copilot Panel.
+  - [ ] Kompilasi TypeScript sukses (`0 ERROR`) dan automated test suite 100% PASS.
 
 
 

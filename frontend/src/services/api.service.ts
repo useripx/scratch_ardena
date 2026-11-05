@@ -36,7 +36,15 @@ export class ApiService {
 
     this.baseUrl = (options?.baseUrl || defaultUrl).replace(/\/+$/, '');
     this.timeoutMs = options?.timeoutMs ?? 45000;
-    this.fetchFn = options?.fetchFn || fetch;
+    const resolvedFetch =
+      options?.fetchFn ||
+      (typeof fetch !== 'undefined'
+        ? fetch
+        : typeof globalThis !== 'undefined' && (globalThis as any).fetch
+        ? (globalThis as any).fetch
+        : (() => Promise.reject(new Error('Fetch API is not available'))) as any);
+
+    this.fetchFn = resolvedFetch;
   }
 
   /**
