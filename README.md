@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="Docs/assets/logo.png" alt="Ardena Playground Logo" width="220" style="border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.2);" />
+  <img src="assets/logo.png" alt="Ardena Playground Logo" width="220" style="border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.2);" />
   
   # 🎮 Ardena Playground
   
@@ -78,74 +78,123 @@ flowchart LR
 
 ---
 
-## 🛠️ Panduan Menjalankan Layanan (Quickstart)
+## 🛠️ Panduan Instalasi & Menjalankan Proyek dari Nol (Step-by-Step From Zero)
 
-### 1. Prasyarat Sistem
-* **Node.js:** Versi LTS (v20.x atau lebih baru).
-* **NPM:** Versi 10.x atau lebih baru.
-* **Laragon / PHP / MySQL:** ❌ **Tidak Dibutuhkan**.
+### 1. Prasyarat Sistem & Perangkat Lunak
+Sebelum memulai instalasi, pastikan komputer/laptop Anda telah terpasang:
+- **Git:** Versi 2.30+ ([Unduh Git](https://git-scm.com/))
+- **Node.js:** Versi LTS minimal **v20.x atau lebih baru** ([Unduh Node.js LTS](https://nodejs.org/))
+- **NPM:** Bawaan Node.js (v10.x atau lebih baru)
+- **Browser Modern:** Google Chrome, Microsoft Edge, Mozilla Firefox, atau Brave.
+- 🛑 **CATATAN PENTING (BEBAS DATABASE SERVER):** Proyek ini **TIDAK MEMBUTUHKAN** instalasi Laragon, XAMPP, MySQL, MariaDB, PostgreSQL, PHP, maupun Docker! Seluruh penyimpanan data game disimpan di sisi peramban pengguna (*browser client storage via IndexedDB*) sesuai prinsip arsitektur **ADR-005**.
 
 ---
 
-### 2. Menjalankan Backend API Service (Port 3001)
-```powershell
-# Masuk ke direktori backend
+### 2. Langkah 1 — Kloning Repositori Git
+Buka terminal (PowerShell di Windows, Terminal di macOS/Linux), lalu jalankan perintah:
+
+```bash
+# Clone repositori ke komputer lokal
+git clone https://github.com/useripx/scratch_ardena.git
+
+# Masuk ke direktori repositori
+cd scratch_ardena
+```
+
+---
+
+### 3. Langkah 2 — Instalasi & Menjalankan Backend AI Service (Port 3001)
+
+Layanan backend menangani validasi prompt, komunikasi ke 6 penyedia AI, dan verifikasi struktur JSON game Scratch.
+
+```bash
+# 1. Masuk ke direktori backend
 cd backend
 
-# Instalasi paket
+# 2. Instalasi seluruh dependensi Node.js
 npm install
 
-# Kompilasi TypeScript
+# 3. Salin berkas konfigurasi environment
+# Di Windows PowerShell:
+Copy-Item .env.example .env
+# Di Linux/macOS:
+# cp .env.example .env
+
+# 4. Kompilasi TypeScript ke JavaScript (dist/)
 npm run build
 
-# Menjalankan server development (Hot Reload)
+# 5. Jalankan backend dalam mode Development (Hot-Reload)
 npm run dev
-# Atau mode produksi:
-npm start
+# Server akan aktif di http://localhost:3001
 ```
+
+> 💡 **Verifikasi Backend:** Buka browser atau jalankan perintah `curl http://localhost:3001/api/v1/health`. Jika mengembalikan respons `{"status":"ok","timestamp":"...","uptime":...}`, maka backend telah siap 100%!
 
 ---
 
-### 3. Menjalankan Frontend Workspace
-```powershell
-# Masuk ke direktori frontend
+### 4. Langkah 3 — Instalasi & Menjalankan Frontend Workspace
+
+Buka jendela terminal baru, arahkan ke folder repositori utama, lalu masuk ke direktori frontend:
+
+```bash
+# 1. Masuk ke direktori frontend
 cd frontend
 
-# Instalasi paket
+# 2. Instalasi seluruh dependensi antarmuka
 npm install
 
-# Kompilasi TypeScript
+# 3. Kompilasi TypeScript
 npm run build
 ```
 
 ---
 
-### 4. Eksekusi Pengujian Otomatis (100% Automated Testing Gate)
-Seluruh pengujian otomatis dijalankan dengan **Zero API Quota Consumption** menggunakan mock deterministik in-memory:
+### 5. Langkah 4 — Menjalankan Pengujian Otomatis (100% Automated Testing Gate)
 
-```powershell
-# Menguji Backend Service (65 Tests / 9 Suites)
+Sesuai **Pilar 6 (100% Automated Testing Gate)**, seluruh kode dalam repositori ini wajib lulus pengujian tanpa error. Pengujian unit menggunakan sistem *in-memory mock*, sehingga **tidak memakan kuota token AI asli**:
+
+```bash
+# Pengujian Unit & Integrasi Backend (65 Kasus Uji / 9 Test Suites)
 cd backend
 npm test
 
-# Menjalankan Backend Code Coverage (93.49% Statement Coverage)
+# Melihat Laporan Cakupan Kode Backend (93.49% Statement Coverage)
 npm run test:coverage
 
-# Menguji Frontend API Client Service (6 Tests)
+# Pengujian API Client Service Frontend (6 Kasus Uji)
 cd ../frontend
 npm test
 ```
 
 ---
 
+### 6. Langkah 5 — Konfigurasi Kunci API AI (Opsional — Multi-Provider Fallback)
+
+Secara bawaan, aplikasi siap diuji menggunakan mock deterministik. Namun, jika Anda ingin mencoba generasi game dengan kecerdasan buatan asli secara gratis (*Zero Cost / Kere Hore*), Anda dapat menambahkan kunci API gratis ke berkas `backend/.env`:
+
+```env
+# Port & Environment
+PORT=3001
+NODE_ENV=development
+
+# Kunci API Vendor (Dapatkan Gratis dari Situs Resmi Masing-Masing)
+GEMINI_API_KEY=AIzaSy...              # https://aistudio.google.com/
+GROQ_API_KEY=gsk_...                 # https://console.groq.com/
+SAMBANOVA_API_KEY=...                # https://cloud.sambanova.ai/
+NVIDIA_API_KEY=nvapi-...             # https://build.nvidia.com/
+COHERE_API_KEY=...                   # https://dashboard.cohere.com/
+OPENROUTER_API_KEY=sk-or-v1-...      # https://openrouter.ai/
+```
+
+Sistem failover otomatis (*Hexa-Cluster AI Cascading*) akan memprioritaskan cluster Gemini ➔ Groq ➔ SambaNova ➔ NVIDIA ➔ Cohere ➔ OpenRouter tanpa risiko tabrakan kuota (*No racing calls*).
+
+---
+
 ## 🏛️ Struktur Repositori
 
 ```text
-ardenaplayground/
-├── aturan/                     # Master Framework Tata Kelola & Aturan AI Agent
-│   ├── universal-rule.md       # Master Governance Framework (8 Pilar Standar Kerja)
-│   ├── AGENTS.md               # Aturan kerja spesifik AI Agent Ardena Playground
-│   └── GEMINI.md               # Indeks ringkas AI Coding Assistant
+scratch_ardena/
+├── assets/                     # Aset visual publik (Logo resmi Ardena Playground)
 ├── backend/                    # Layanan Modular Monolith Backend API (Node.js/Express/TS)
 │   ├── src/                    # Source code API (app, config, controllers, providers, usecases)
 │   ├── tests/                  # Automated test suite (unit, integration, fixtures)
@@ -155,16 +204,8 @@ ardenaplayground/
 │   ├── src/types/              # TypeScript types selaras dengan ArdenaGameSpec v1.0
 │   ├── tests/                  # Automated unit test frontend
 │   └── package.json            # Konfigurasi dependensi frontend
-├── changelog/                  # Catatan perubahan flat bertimestamp (changelog*.md)
-├── Docs/                       # Dokumentasi arsitektur, API contract, SOP, dan ADR
-│   ├── assets/                 # Aset logo dan diagram visual
-│   ├── backend/                # Handover guide, Test Report (100% PASS), Operations Guide
-│   ├── frontend/               # Arsitektur antarmuka & rencana implementasi frontend
-│   ├── chat/                   # Arsip riwayat dialog sesi pengembangan
-│   ├── Decision_Log.md         # Architecture Decision Records (ADR-001 s/d ADR-010)
-│   └── Task_Status.md          # Pelacak progres tahapan proyek
-├── template/                   # Mockup UI/UX Stitch 19 Layar (READ-ONLY)
-└── README.md                   # Dokumentasi utama repositori
+├── .gitignore                  # Filter ketat pencegahan kebocoran token & artefak build
+└── README.md                   # Dokumentasi panduan utama repositori
 ```
 
 ---
@@ -175,8 +216,8 @@ Proyek ini dikembangkan di bawah kepemimpinan dan pengawasan penuh **Yogi Ario (
 
 > ***No Plan, No Code. No Approval, No Code. No Evidence, No Completion.***
 
-* **Branch `main`:** Mahkota rilis produksi (Hanya dikontrol dan di-merge oleh Yogi Ario).
-* **Branch `develop`:** Integrasi pengembangan aktif harian.
+* **Branch `main`:** Mahkota rilis produksi murni (bersih dari berkas perencanaan mentah, hanya memuat source code siap pakai).
+* **Branch `develop`:** Integrasi pengembangan aktif harian (mencakup dokumentasi `Docs/`, `aturan/`, dan `changelog/`).
 * **Branch `feature/*`:** Pengembangan bertahap untuk setiap milestone dan sub-fase teknis.
 
 ---
