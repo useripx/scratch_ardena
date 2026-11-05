@@ -209,13 +209,28 @@ Seluruh sub-tahapan backend (**BE-00 s/d BE-07**) telah **100% SELESAI, TERVERIF
 
 ### Sub-Fase FE-03 — Integrasi Editor Workspace & AI Copilot Panel (UI 06, UI 08, UI 10)
 * **Prasyarat:** FE-02 selesai dan disetujui (Disetujui 05/11/2026).
-* **Status:** **PENDING (GERBANG BERIKUTNYA)**
+* **Status:** **DONE (100% PASS — 20 Kasus Uji Lulus, 75.62% Coverage)**
 * **Checklist Tugas FE-03:**
-  - [ ] Implementasi wrapper `<EditorWorkspace />` (UI 06) menggabungkan kanvas Scratch dengan dock panel kanan.
-  - [ ] Implementasi dock panel `<AICopilotPanel />` dengan 3 mode: "Buat", "Ubah", "Jelaskan".
-  - [ ] Implementasi `<GeneratingOverlay />` (UI 08) indikator proses 4 tahap: 1. Ide ➔ 2. JSON ➔ 3. Balok ➔ 4. SFX.
-  - [ ] Implementasi `<ReadyPlaytestBanner />` (UI 10) notifikasi blok siap diuji.
-  - [ ] Integrasi pemanggilan `apiService.generateGame()` dari Copilot Panel.
+  - [x] Implementasi wrapper `<EditorWorkspace />` (UI 06) menggabungkan panggung Scratch, palet balok, dan dock panel kanan.
+  - [x] Implementasi topbar navigasi editor `<EditorTopNav />` (Rename proyek, Play/Stop, status IndexedDB, toggle AI).
+  - [x] Implementasi dock panel kanan `<AICopilotPanel />` dengan 3 mode (Buat, Ubah, Jelaskan), inspirasi chips, dan template selector.
+  - [x] Implementasi `<GeneratingOverlay />` (UI 08) indikator proses 4 tahap (Ide ➔ Skema ➔ Balok ➔ Suara) dengan transisi min 400ms.
+  - [x] Implementasi `<ReadyPlaytestBanner />` (UI 10) floating banner diff counters (`+Sprite`, `+Balok`, `0 Overwrite`) dan tombol playtest.
+  - [x] Integrasi pemanggilan `apiService.generateGame()` langsung dari Copilot Panel.
+  - [x] Implementasi automated test suite di `frontend/tests/editor.test.tsx` (**20/20 tests lulus melintasi 3 test suites**).
+  - [x] Kompilasi TypeScript sukses (`0 ERROR`).
+
+---
+
+### Sub-Fase FE-04 — Review Hasil AI & Zero Overwrite Review Gate (UI 09, UI 11, UI 19)
+* **Prasyarat:** FE-03 selesai dan disetujui (Disetujui 05/11/2026).
+* **Status:** **PENDING (GERBANG BERIKUTNYA)**
+* **Checklist Tugas FE-04:**
+  - [ ] Implementasi modal bento box `<ReviewGateModal />` (UI 09) menampilkan diff counters detail (+Sprite, +Variabel, +SFX, +Balok, 0 Overwrite).
+  - [ ] Implementasi penampil daftar perubahan terstruktur (daftar nama sprite yang akan ditambahkan vs dipertahankan).
+  - [ ] Implementasi aksi review: "Terapkan ke Editor" vs "Buat Ulang (Regenerate)" vs "Batal / Kembali".
+  - [ ] Implementasi dialog pemulihan error `<ErrorRecoveryDialog />` (UI 11) untuk kode error `INVALID_REQUEST_BODY`, `UNSUPPORTED_TEMPLATE`, `PAYLOAD_TOO_LARGE`.
+  - [ ] Implementasi modal countdown kredit / rate limit `<RateLimitCountdownModal />` (UI 19) saat membaca header `Retry-After: 15`.
   - [ ] Kompilasi TypeScript sukses (`0 ERROR`) dan automated test suite 100% PASS.
 
 

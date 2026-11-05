@@ -6,7 +6,9 @@ import { OnboardingModal } from '../components/onboarding/OnboardingModal';
 import { ProjectHomeView } from '../components/home/ProjectHomeView';
 import { StartModeSelector, StartMode } from '../components/starter/StartModeSelector';
 import { TemplateCatalogView } from '../components/templates/TemplateCatalogView';
+import { EditorWorkspace } from '../components/editor/EditorWorkspace';
 import { apiService } from '../services/api.service';
+import { SupportedTemplateKey } from '../types/game.types';
 
 export type AppView = 'landing' | 'home' | 'templates' | 'editor';
 
@@ -23,6 +25,8 @@ export const ViewRouter: React.FC<ViewRouterProps> = ({
   const [isOnboardingOpen, setIsOnboardingOpen] = useState(false);
   const [isStartModeOpen, setIsStartModeOpen] = useState(false);
   const [isBackendHealthy, setIsBackendHealthy] = useState(true);
+  const [activeTemplateId, setActiveTemplateId] = useState<SupportedTemplateKey | undefined>(undefined);
+  const [activeProjectName, setActiveProjectName] = useState('Proyek Game Baru');
 
   // Health check on mount
   useEffect(() => {
@@ -68,22 +72,39 @@ export const ViewRouter: React.FC<ViewRouterProps> = ({
     setIsStartModeOpen(false);
     if (mode === 'template') {
       setCurrentView('templates');
+    } else if (mode === 'ai-prompt') {
+      setActiveProjectName('Game Ide AI');
+      setActiveTemplateId(undefined);
+      if (onEnterEditor) onEnterEditor(mode);
+      else setCurrentView('editor');
     } else {
-      if (onEnterEditor) {
-        onEnterEditor(mode);
-      } else {
-        setCurrentView('editor');
-      }
+      setActiveProjectName('Game Scratch Kosong');
+      setActiveTemplateId(undefined);
+      if (onEnterEditor) onEnterEditor(mode);
+      else setCurrentView('editor');
     }
   };
 
   const handleSelectTemplate = (templateId: string) => {
+    setActiveTemplateId(templateId as SupportedTemplateKey);
+    setActiveProjectName(`Game Template (${templateId})`);
     if (onEnterEditor) {
       onEnterEditor('template', templateId);
     } else {
       setCurrentView('editor');
     }
   };
+
+  // If in editor view, render full-screen workspace with EditorTopNav
+  if (currentView === 'editor') {
+    return (
+      <EditorWorkspace
+        initialProjectName={activeProjectName}
+        initialTemplateId={activeTemplateId}
+        onBackToHome={() => setCurrentView('home')}
+      />
+    );
+  }
 
   return (
     <div className="min-h-screen flex flex-col bg-[#f7f9fb] text-[#191c1e]">
@@ -110,6 +131,7 @@ export const ViewRouter: React.FC<ViewRouterProps> = ({
             onOpenTemplates={() => setCurrentView('templates')}
             onOpenBlankEditor={() => handleSelectStartMode('blank')}
             onOpenProject={(projId) => {
+              setActiveProjectName(`Proyek #${projId}`);
               if (onEnterEditor) onEnterEditor('blank', projId);
               else setCurrentView('editor');
             }}
@@ -121,27 +143,6 @@ export const ViewRouter: React.FC<ViewRouterProps> = ({
             onSelectTemplate={handleSelectTemplate}
             onBackToHome={() => setCurrentView('home')}
           />
-        )}
-
-        {currentView === 'editor' && (
-          <div className="w-full min-h-screen pt-24 px-4 flex flex-col items-center justify-center text-center">
-            <div className="w-20 h-20 rounded-2xl bg-blue-100 text-4xl flex items-center justify-center mb-4 text-[#006194]">
-              🧩
-            </div>
-            <h2 className="text-2xl font-black text-gray-900 mb-2">
-              Editor Scratch Workspace (FE-03 Target)
-            </h2>
-            <p className="text-sm text-gray-600 max-w-md mb-6 leading-relaxed">
-              Modul Scratch GUI v3.x dengan panel AI Copilot akan diintegrasikan pada sub-fase FE-03 & FE-04.
-            </p>
-            <button
-              type="button"
-              onClick={() => setCurrentView('home')}
-              className="px-6 py-2.5 rounded-xl bg-[#006194] text-white text-sm font-bold shadow-md hover:bg-[#007bb9]"
-            >
-              Kembali ke Dashboard Studio
-            </button>
-          </div>
         )}
       </main>
 
