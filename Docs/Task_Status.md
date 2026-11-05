@@ -27,8 +27,8 @@ pie title Status Penyelesaian Tahapan Utama Proyek
 |---|---|---|---|---|---|
 | **Tahap 01** | Repository Audit & Feasibility | Tech Lead | **DONE** | Disetujui | URL repo utama `useripx/scratch_ardena` & upstream ditetapkan. |
 | **Tahap 02** | Desain UI/UX dengan Google Stitch | UI/UX Designer | **DONE** | Disetujui | 19 layar tuntas & tersimpan di `template/ardenaplayground/`. |
-| **Tahap 03** | Persiapan Repository dan Baseline | Tech Lead / BE | **IN PROGRESS** | Pending Check | Evaluasi baseline repo, Git setup, & penyiapan folder dokumentasi `Docs/`. |
-| **Tahap 04** | Implementasi Kode Frontend | FE Engineer | **READY FOR PLANNING** | Siap | Baseline API stabil, siap untuk adopsi Scratch GUI & Stitch components. |
+| **Tahap 03** | Persiapan Repository dan Baseline | Tech Lead / BE | **DONE** | Disetujui | Git init, .gitignore anti-secret leakage, remote origin, branch main & develop, initial commit tuntas. |
+| **Tahap 04** | Implementasi Kode Frontend | FE Engineer | **IN PROGRESS** | Sub-gate aktif | Perencanaan adopsi Scratch GUI & Stitch components (FE-01). |
 | **Tahap 05** | Backend AI Service (BE-00 s/d BE-07) | Senior BE | **DONE** | Disetujui | 100% PASS (65/65 Tests, 93.49% Coverage, Paket Dokumen BE-07 Tuntas). |
 | **Tahap 06** | AI Game Generator & Block Mapping | Mapper Dev | **PENDING** | Belum | Bergantung pada skema AI output dari BE-05. |
 | **Tahap 07** | Integrasi Editor, Local Storage & Export | Fullstack | **PENDING** | Belum | Bergantung pada Tahap 04, 05, dan 06. |
@@ -172,5 +172,32 @@ pie title Status Penyelesaian Tahapan Utama Proyek
 
 ## 🎯 Status Akhir Backend AI Service (Tahap 05)
 Seluruh sub-tahapan backend (**BE-00 s/d BE-07**) telah **100% SELESAI, TERVERIFIKASI, DAN TERDOKUMENTASI LENGKAP**. Backend siap melayani integrasi antarmuka frontend Scratch GUI (Tahap 04) dan Block Mapping Engine (Tahap 06).
+
+---
+
+## 🎨 Pelacak Rinci Sub-Tahapan Frontend (FE-01 s/d FE-06)
+
+### Sub-Fase FE-01 — Audit Toolchain Scratch GUI & Strategi Integrasi Antarmuka
+* **Prasyarat:** Tahap 03 & Tahap 05 selesai dan disetujui (Disetujui 05/11/2026).
+* **Status:** **DONE (100% PASS — 6 Kasus Uji Lulus, 88.23% Coverage)**
+* **Checklist Tugas FE-01:**
+  - [x] Penyusunan dokumen `Docs/frontend/Frontend_Architecture.md` (Mapping 19 layar Stitch ke React components & dual-state flow).
+  - [x] Inisialisasi struktur workspace `frontend/` (`package.json`, `tsconfig.json`).
+  - [x] Implementasi type definition `frontend/src/types/game.types.ts` selaras dengan `ArdenaGameSpec` v1.0.
+  - [x] Implementasi HTTP API Client `frontend/src/services/api.service.ts` dengan penanganan header `Retry-After: 15` dan abort signal.
+  - [x] Implementasi automated unit test `frontend/tests/api.service.test.ts` (**100% PASS — 6/6 tests**).
+  - [x] Pembaruan `README.md` utama dengan logo resmi, badge repositori GitHub (Stars, Forks, Repo Size), dan badge teknologi lengkap.
+
+---
+
+### Sub-Fase FE-02 — Fondasi Komponen UI Ardena (Landing Page, Onboarding, Template Picker)
+* **Prasyarat:** FE-01 selesai dan disetujui.
+* **Status:** **PENDING (GERBANG BERIKUTNYA)**
+* **Checklist Tugas FE-02:**
+  - [ ] Implementasi `<WelcomeLandingView />` (UI 01).
+  - [ ] Implementasi `<OnboardingModal />` (UI 02).
+  - [ ] Implementasi `<ProjectHomeView />` (UI 03).
+  - [ ] Implementasi `<StartModeSelector />` & `<TemplateCatalogView />` (UI 04, 05).
+
 
 
