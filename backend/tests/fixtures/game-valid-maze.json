@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "1.0",
+  "game": {
+    "title": "Tikus Penjelajah Labirin",
+    "genre": "maze-adventure",
+    "description": "Bimbing tikus melewati dinding labirin untuk mencapai keju."
+  },
+  "delta": {
+    "newSpritesCount": 2,
+    "globalVariablesCount": 0,
+    "sfxCount": 1,
+    "logicBlocksCount": 16,
+    "overwrittenBlocksCount": 0
+  },
+  "objects": [
+    {
+      "id": "sprite_mouse",
+      "name": "Tikus",
+      "role": "player",
+      "initialPosition": { "x": -200, "y": 140 },
+      "costumes": ["mouse_idle"]
+    },
+    {
+      "id": "sprite_cheese",
+      "name": "Keju Emas",
+      "role": "goal",
+      "initialPosition": { "x": 200, "y": -140 },
+      "costumes": ["cheese_big"]
+    }
+  ],
+  "variables": [],
+  "rules": [
+    {
+      "event": "collision_detected",
+      "actor": "sprite_mouse",
+      "target": "sprite_cheese",
+      "action": "win_game",
+      "sfx": "win.wav"
+    }
+  ],
+  "controls": [
+    {
+      "key": "arrow_up",
+      "action": "move_y",
+      "value": 10
+    },
+    {
+      "key": "arrow_down",
+      "action": "move_y",
+      "value": -10
+    },
+    {
+      "key": "arrow_left",
+      "action": "move_x",
+      "value": -10
+    },
+    {
+      "key": "arrow_right",
+      "action": "move_x",
+      "value": 10
+    }
+  ]
+}

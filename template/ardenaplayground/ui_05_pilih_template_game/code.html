@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+
+<html lang="id"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"error":"#ba1a1a","outline":"#707881","on-error-container":"#93000a","secondary-container":"#d2e0fe","on-primary":"#ffffff","primary-fixed-dim":"#93ccff","surface-tint":"#006398","surface":"#f7f9fb","tertiary":"#825100","surface-container":"#eceef0","on-tertiary-fixed":"#2a1700","background":"#f7f9fb","error-container":"#ffdad6","on-surface-variant":"#3f4850","on-secondary-fixed-variant":"#39475f","on-tertiary-container":"#fffbff","inverse-primary":"#93ccff","primary":"#006194","on-primary-container":"#fdfcff","on-primary-fixed":"#001d31","inverse-surface":"#2d3133","tertiary-fixed-dim":"#ffb95f","secondary":"#515f78","on-surface":"#191c1e","on-primary-fixed-variant":"#004b73","secondary-fixed":"#d6e3ff","surface-variant":"#e0e3e5","secondary-fixed-dim":"#b9c7e4","on-secondary-fixed":"#0d1c32","on-secondary-container":"#55637d","on-error":"#ffffff","tertiary-fixed":"#ffddb8","surface-container-lowest":"#ffffff","tertiary-container":"#a36700","surface-container-high":"#e6e8ea","surface-container-highest":"#e0e3e5","surface-bright":"#f7f9fb","surface-container-low":"#f2f4f6","inverse-on-surface":"#eff1f3","outline-variant":"#bfc7d2","on-tertiary":"#ffffff","on-secondary":"#ffffff","on-tertiary-fixed-variant":"#653e00","on-background":"#191c1e","surface-dim":"#d8dadc","primary-fixed":"#cce5ff","primary-container":"#007bb9"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"space-xs":"0.25rem","gutter-desktop":"1.5rem","space-md":"1rem","space-xl":"2rem","margin-desktop":"2rem","space-sm":"0.5rem","space-lg":"1.5rem","gutter":"1rem","margin":"1rem"},fontFamily:{"display-lg":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"title-md":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"label-sm":["Inter"],"headline-xl":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"headline-sm":["Plus Jakarta Sans"],"label-md":["Inter"],"code-sm":["Inter"],"display-lg-mobile":["Plus Jakarta Sans"]},fontSize:{"display-lg":["48px",{"lineHeight":"56px","fontWeight":"800"}],"headline-xl-mobile":["28px",{"lineHeight":"36px","fontWeight":"700"}],"title-md":["16px",{"lineHeight":"24px","fontWeight":"600"}],"headline-lg":["28px",{"lineHeight":"36px","fontWeight":"700"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"label-sm":["11px",{"lineHeight":"14px","fontWeight":"500"}],"headline-xl":["36px",{"lineHeight":"44px","fontWeight":"700"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"headline-sm":["20px",{"lineHeight":"28px","fontWeight":"600"}],"label-md":["12px",{"lineHeight":"16px","fontWeight":"600"}],"code-sm":["12px",{"lineHeight":"18px","fontWeight":"500"}],"display-lg-mobile":["34px",{"lineHeight":"42px","fontWeight":"800"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col justify-between py-space-lg px-space-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col gap-space-lg"><div class="flex items-center gap-space-sm px-space-sm"><img alt="Logo.jpeg" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WQ9SpB4bdgCuRUvRRQZZQBp3VqGHGmbcXafYX_vYmysfJnTqpv_uarqj-cRjioQhPeZ6PFZXLWOFWSL7bT6RQWrBMfFQPUMSOf0pog_HMFKNfwNzAjcSh5rZpBx3S1pczal-nBawNMKyR2eYPuxf3bu89aUYLDjSETWoByFBytfRJIB5SrruLGy_2SNZ_xQOKVgtP-KDIMxykBQiVQfkbH3zEgSqWRBV6xj2dWEZLv90TFYsR6NJAanKvf"/><div class="flex flex-col"><span class="font-title-md text-title-md text-on-surface leading-tight">Ardena</span><span class="font-label-sm text-label-sm text-primary uppercase tracking-wider font-bold">Playground</span></div></div><div class="px-space-xs"><a class="w-full flex items-center justify-center gap-space-sm py-space-sm px-space-md bg-primary hover:bg-primary-container text-on-primary rounded-xl font-title-md text-title-md shadow-[0_4px_16px_rgba(0,97,148,0.25)] transition-all transform hover:-translate-y-0.5" data-path="buat-baru" href="#"><span class="material-symbols-outlined text-[20px]">add_circle</span><span>Buat Baru</span></a></div><nav class="flex flex-col gap-space-xs px-space-xs" data-active-classes="bg-secondary-container text-on-secondary-container font-semibold rounded-xl"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-body-md text-body-md" data-path="beranda" href="#"><span class="material-symbols-outlined text-[20px]">dashboard</span><span>Beranda</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-body-md text-body-md" data-path="proyek-saya" href="#"><span class="material-symbols-outlined text-[20px]">folder_open</span><span>Proyek Saya</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-body-md text-body-md" data-path="template-game" href="#"><span class="material-symbols-outlined text-[20px]">sports_esports</span><span>Template Game</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-body-md text-body-md" data-path="panduan-dan-bantuan" href="#"><span class="material-symbols-outlined text-[20px]">menu_book</span><span>Panduan &amp; Bantuan</span></a></nav></div><div class="flex flex-col gap-space-sm px-space-xs pt-space-md bg-surface-container-lowest/60 rounded-xl p-space-sm"><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span><span class="font-label-md text-label-md text-on-surface font-semibold">IndexedDB</span><span class="font-label-sm text-label-sm text-on-surface-variant">• Bebas Cloud</span></div><div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm"><span>Status Lokal</span><span class="font-code-sm text-code-sm font-semibold text-secondary">v1.4</span></div></div></aside><div class="pl-72 flex flex-col min-h-screen"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-xl"><div class="flex items-center gap-space-lg flex-1 max-w-xl"><div class="flex items-center gap-space-sm"><img alt="Logo.jpeg" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WQ9SpB4bdgCuRUvRRQZZQBp3VqGHGmbcXafYX_vYmysfJnTqpv_uarqj-cRjioQhPeZ6PFZXLWOFWSL7bT6RQWrBMfFQPUMSOf0pog_HMFKNfwNzAjcSh5rZpBx3S1pczal-nBawNMKyR2eYPuxf3bu89aUYLDjSETWoByFBytfRJIB5SrruLGy_2SNZ_xQOKVgtP-KDIMxykBQiVQfkbH3zEgSqWRBV6xj2dWEZLv90TFYsR6NJAanKvf"/><span class="font-title-md text-title-md text-on-surface font-bold tracking-tight">Ardena Playground</span></div><div class="relative flex-1 hidden md:block"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span><input class="w-full bg-surface-container-lowest text-on-surface placeholder:text-outline pl-10 pr-space-md py-1.5 rounded-xl font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" placeholder="Cari proyek, template, sprite..." type="text"/></div></div><div class="flex items-center gap-space-md"><div class="hidden sm:flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm"><span class="material-symbols-outlined text-[16px] text-primary">database</span><span>Penyimpanan Lokal: Aktif (IndexedDB)</span></div><a class="hidden lg:flex items-center gap-space-xs text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" data-path="panduan-dan-bantuan" href="#"><span class="material-symbols-outlined text-[18px]">help_outline</span><span>Dokumentasi</span></a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="w-full pt-16 bg-surface flex-1 px-margin-desktop py-space-xl"><div class="flex flex-col w-full gap-space-xl">
+<!-- Top Navigation & Breadcrumbs -->
+<div class="flex flex-col gap-space-sm">
+<nav class="flex items-center gap-space-xs font-label-md text-label-md text-on-surface-variant">
+<a class="hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]">home</span>
+<span>Beranda</span>
+</a>
+<span class="text-outline-variant font-bold">/</span>
+<a class="hover:text-primary transition-colors" href="#">Mulai Proyek Baru</a>
+<span class="text-outline-variant font-bold">/</span>
+<span class="text-primary font-bold">Pilih Template Game</span>
+</nav>
+<!-- Header Section with Rich Micro-badge -->
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md pt-space-xs">
+<div class="flex flex-col gap-space-xs max-w-3xl">
+<div class="inline-flex items-center gap-space-xs px-space-sm py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm w-fit shadow-sm">
+<span class="material-symbols-outlined text-[14px] text-primary">verified</span>
+<span>100% Native Scratch 3.0 VM Ready</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight font-extrabold">
+          Pilih Pondasi Template Game Kamu
+        </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+          Pilih salah satu dari 3 pondasi game interaktif yang telah diuji dengan Scratch VM resmi. Setiap template sudah memiliki aturan dasar, sprite, dan kontrol yang siap kamu modifikasi sesukamu!
+        </p>
+</div>
+<!-- Quick Stats Counter -->
+<div class="flex items-center gap-space-md bg-surface-container-lowest p-space-sm px-space-md rounded-xl shadow-sm border border-transparent">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Katalog Aktif</span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold">3 Template MVP</span>
+</div>
+<div class="w-px h-8 bg-surface-variant"></div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Lisensi Scratch</span>
+<span class="font-label-md text-label-md text-tertiary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">code</span> .SB3 Compatible
+          </span>
+</div>
+</div>
+</div>
+</div>
+<!-- Search, Filter & Control Bar -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-md">
+<div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-space-md">
+<!-- Search Field -->
+<div class="relative flex-1 max-w-lg">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline text-[20px]">search</span>
+<input class="w-full bg-surface-container-low text-on-surface placeholder:text-outline pl-11 pr-space-md py-2.5 rounded-xl font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary transition-all shadow-inner" id="templateSearch" placeholder="Cari template, genre, atau mekanik game..." type="text"/>
+</div>
+<!-- Filters & Grid View Mode -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<!-- Difficulty Dropdown Filter -->
+<div class="flex items-center gap-space-xs bg-surface-container-low px-space-sm py-1.5 rounded-xl">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">tune</span>
+<select class="bg-transparent font-label-md text-label-md text-on-surface focus:outline-none cursor-pointer pr-space-xs" id="difficultyFilter">
+<option value="all">Semua Level</option>
+<option value="pemula">Tingkat: Pemula</option>
+<option value="menengah">Tingkat: Menengah</option>
+</select>
+</div>
+<!-- View Display Mode Indicator -->
+<div class="flex items-center bg-surface-container-low p-1 rounded-xl">
+<button class="p-1.5 rounded-lg bg-surface-container-lowest text-primary shadow-sm" title="Tampilan Grid Aktif">
+<span class="material-symbols-outlined text-[18px] block">grid_view</span>
+</button>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:text-on-surface" title="Tampilan Ringkas">
+<span class="material-symbols-outlined text-[18px] block">view_list</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Category Tabs -->
+<div class="flex items-center gap-space-xs overflow-x-auto pb-1 border-t border-surface-container-low pt-space-xs">
+<button class="category-pill active flex items-center gap-space-xs px-space-md py-1.5 rounded-xl font-label-md text-label-md bg-primary text-on-primary font-bold shadow-sm transition-all" data-category="all">
+<span>Semua Template</span>
+<span class="px-1.5 py-0.2 rounded-full bg-on-primary/20 text-on-primary font-code-sm text-code-sm">3</span>
+</button>
+<button class="category-pill flex items-center gap-space-xs px-space-md py-1.5 rounded-xl font-label-md text-label-md bg-surface-container text-on-surface-variant hover:bg-surface-variant hover:text-on-surface transition-all" data-category="arcade">
+<span class="material-symbols-outlined text-[16px]">sports_esports</span>
+<span>Arcade &amp; Catching</span>
+<span class="px-1.5 py-0.2 rounded-full bg-surface-container-high text-on-surface font-code-sm text-code-sm">1</span>
+</button>
+<button class="category-pill flex items-center gap-space-xs px-space-md py-1.5 rounded-xl font-label-md text-label-md bg-surface-container text-on-surface-variant hover:bg-surface-variant hover:text-on-surface transition-all" data-category="puzzle">
+<span class="material-symbols-outlined text-[16px]">extension</span>
+<span>Labirin &amp; Puzzle</span>
+<span class="px-1.5 py-0.2 rounded-full bg-surface-container-high text-on-surface font-code-sm text-code-sm">1</span>
+</button>
+<button class="category-pill flex items-center gap-space-xs px-space-md py-1.5 rounded-xl font-label-md text-label-md bg-surface-container text-on-surface-variant hover:bg-surface-variant hover:text-on-surface transition-all" data-category="shooter">
+<span class="material-symbols-outlined text-[16px]">rocket_launch</span>
+<span>Aksi &amp; Shooter</span>
+<span class="px-1.5 py-0.2 rounded-full bg-surface-container-high text-on-surface font-code-sm text-code-sm">1</span>
+</button>
+</div>
+</div>
+<!-- Primary 3 MVP Template Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-space-lg items-stretch" id="templatesContainer">
+<!-- TEMPLATE CARD 1: CATCHING GAME -->
+<article class="template-card flex flex-col bg-surface-container-lowest rounded-xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1.5 overflow-hidden group" data-category="arcade" data-difficulty="pemula">
+<!-- Thumbnail & Live Stage Preview Badge -->
+<div class="relative w-full h-56 bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Scratch catching game stage visual preview with vibrant lush apple tree branches, cartoon shiny red apples falling down dynamically, blue basket at the bottom with coordinate crosshairs, cute score counter HUD on top right, clean pastel vector art style suitable for educational game design" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPm4Kz8YqWjtlVy3xXDy-78pOLdjarjoHI_r51V1QxYBgxVz_AcABqbthKczBk1rJSdIvUNto7LyH9DrAAseVK5jbGBe8OyDCCA20uVXY9kYyZfkNC9HgSifNouED4-qWUMgl1QlnAh5gXfxpk8HzLq9BJTGYtN8OIgUdbHLtQXUkkQ90nSAQEkBhT3s3GlE7iMUakUorUHJ3zbEPWwY5NjPwz488hDT6rYw60mhMw"/>
+<!-- Stage Overlay Gradient -->
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-black/30 pointer-events-none"></div>
+<!-- Badges on Preview -->
+<div class="absolute top-space-sm left-space-sm flex items-center gap-space-xs">
+<span class="px-space-sm py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold shadow-sm flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+            Pemula
+          </span>
+<span class="px-space-sm py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-on-surface font-label-sm text-label-sm font-semibold shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-tertiary">timer</span>
+            5 Menit Jadi
+          </span>
+</div>
+<!-- Active Sprite Count Pill -->
+<div class="absolute bottom-space-sm right-space-sm bg-inverse-surface/85 backdrop-blur-md text-inverse-on-surface px-space-sm py-0.5 rounded-lg font-code-sm text-code-sm flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[14px]">token</span>
+<span>3 Sprites Aktif</span>
+</div>
+</div>
+<!-- Card Core Information -->
+<div class="p-space-lg flex flex-col flex-1 justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-primary">Arcade Engine</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant font-medium">VM v3.4.1</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-extrabold group-hover:text-primary transition-colors">
+            Catching Game Engine (Tangkap Apel Ajaib)
+          </h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed line-clamp-3">
+            Pemain menggerakkan keranjang atau karakter ke kiri dan kanan untuk menangkap objek yang berjatuhan dari langit. Setiap objek yang tertangkap menambah skor!
+          </p>
+</div>
+<!-- Learning Logic Blocks & Mechanics Tagged Chips -->
+<div class="flex flex-col gap-space-xs bg-surface-container-low p-space-sm rounded-xl">
+<span class="font-label-sm text-label-sm font-bold text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">psychology</span>
+            Mekanik Blok yang Dipelajari:
+          </span>
+<ul class="flex flex-col gap-1 font-code-sm text-code-sm text-on-surface-variant">
+<li class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0"></span>
+<span>Kontrol Gerakan X (Mouse / Tombol Panah)</span>
+</li>
+<li class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0"></span>
+<span>Deteksi Tabrakan <code class="bg-surface-container-highest px-1 rounded text-primary font-bold">jika menyentuh...</code></span>
+</li>
+<li class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0"></span>
+<span>Variabel Skor <code class="bg-surface-container-highest px-1 rounded text-tertiary font-bold">ubah [skor] sebesar 1</code></span>
+</li>
+<li class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0"></span>
+<span>Efek suara &amp; reset acak posisi jatuh</span>
+</li>
+</ul>
+</div>
+<!-- Technical Specs Strip -->
+<div class="grid grid-cols-2 gap-space-xs py-space-xs border-y border-surface-container">
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-outline">layers</span>
+<span>12 Blok Logika</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-outline">volume_up</span>
+<span>SFX 'Pop' &amp; 'Chomp'</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-outline">palette</span>
+<span>1 Latar Kebun Buah</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-outline">bolt</span>
+<span>Input Responsif</span>
+</div>
+</div>
+<!-- Action CTAs -->
+<div class="flex items-center gap-space-xs pt-space-xs">
+<button class="flex-1 py-2.5 px-space-sm bg-surface-container hover:bg-surface-variant text-on-surface font-title-md text-title-md rounded-xl transition-colors flex items-center justify-center gap-1 text-center" onclick="openTemplatePreview('Catching Game Engine (Tangkap Apel Ajaib)', 'Tangkap objek buah lezat yang jatuh dari langit dengan keranjang kendali mouse/keyboard.', '5 Menit', 'Pemula', '3 Sprites • 12 Blok')">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+<span>Preview Stage</span>
+</button>
+<a class="flex-[1.4] py-2.5 px-space-md bg-primary hover:bg-primary-container text-on-primary font-title-md text-title-md rounded-xl transition-all shadow-[0_4px_16px_rgba(0,97,148,0.25)] flex items-center justify-center gap-1 text-center transform active:scale-95" href="#">
+<span>Gunakan Template</span>
+<span class="material-symbols-outlined text-[18px]">rocket_launch</span>
+</a>
+</div>
+</div>
+</article>
+<!-- TEMPLATE CARD 2: MAZE ADVENTURE -->
+<article class="template-card flex flex-col bg-surface-container-lowest rounded-xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1.5 overflow-hidden group" data-category="puzzle" data-difficulty="pemula">
+<!-- Thumbnail & Stage Preview -->
+<div class="relative w-full h-56 bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="2D top-down maze labyrinth puzzle game stage, high-contrast neon blue walls, cute heroic cartoon mouse at the entrance spawn point, golden cheese wedge at the finish line, danger spike obstacles, clear grid boundaries designed for Scratch visual block collision coding" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5cDaZ2eXXUMp7NzvrWgpn7lp1kXwX3404Se8lYOkKv65aiKXaMQ0t8wiZul3vMKCmQoMSDt-6Hc9F3jE8VSWEyWxAHAy7ALjycmeiGDh3DO-O02G5tWwc3YSPIfJOsbMvHNxxsdhl7I0FIocPRGxsOVEGGkyv5hdLvSQw_oGDR2dLGdjoAjq7EJDoKFyW2r_3H7VHgFQ59TnUDh69rOyOl5oKEBBXEQTAe6R-0ttM"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-black/30 pointer-events-none"></div>
+<!-- Badges on Preview -->
+<div class="absolute top-space-sm left-space-sm flex items-center gap-space-xs">
+<span class="px-space-sm py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold shadow-sm flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+            Pemula
+          </span>
+<span class="px-space-sm py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-on-surface font-label-sm text-label-sm font-semibold shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-tertiary">timer</span>
+            8 Menit Jadi
+          </span>
+</div>
+<div class="absolute bottom-space-sm right-space-sm bg-inverse-surface/85 backdrop-blur-md text-inverse-on-surface px-space-sm py-0.5 rounded-lg font-code-sm text-code-sm flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[14px]">token</span>
+<span>2 Sprites + 2 Backdrop</span>
+</div>
+</div>
+<!-- Card Core Information -->
+<div class="p-space-lg flex flex-col flex-1 justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-secondary">Labirin &amp; Puzzle</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant font-medium">VM v3.4.1</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-extrabold group-hover:text-primary transition-colors">
+            Maze Adventure Starter (Labirin Keju Misterius)
+          </h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed line-clamp-3">
+            Pandu karakter melewati labirin berliku menggunakan 4 tombol arah keyboard. Hindari menabrak dinding labirin dan capai garis akhir sebelum waktu habis!
+          </p>
+</div>
+<!-- Learning Logic Blocks & Mechanics Tagged Chips -->
+<div class="flex flex-col gap-space-xs bg-surface-container-low p-space-sm rounded-xl">
+<span class="font-label-sm text-label-sm font-bold text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">psychology</span>
+            Mekanik Blok yang Dipelajari:
+          </span>
+<ul class="flex flex-col gap-1 font-code-sm text-code-sm text-on-surface-variant">
+<li class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+<span>Kontrol 4 Arah (Panah Atas, Bawah, Kiri, Kanan)</span>
+</li>
+<li class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+<span>Deteksi Tabrakan Dinding <code class="bg-surface-container-highest px-1 rounded text-primary font-bold">jika menyentuh warna [#00F]</code></span>
+</li>
+<li class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+<span>Sistem Finish Line &amp; Pengatur Waktu Mundur</span>
+</li>
+<li class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+<span>Pesan Siaran <code class="bg-surface-container-highest px-1 rounded text-tertiary font-bold">broadcast [Menang!]</code></span>
+</li>
+</ul>
+</div>
+<!-- Technical Specs Strip -->
+<div class="grid grid-cols-2 gap-space-xs py-space-xs border-y border-surface-container">
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-outline">layers</span>
+<span>16 Blok Logika</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-outline">volume_up</span>
+<span>SFX 'Victory Fanfare'</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-outline">wallpaper</span>
+<span>Start &amp; Game Over Screen</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-outline">navigation</span>
+<span>Sistem Orientasi Derajat</span>
+</div>
+</div>
+<!-- Action CTAs -->
+<div class="flex items-center gap-space-xs pt-space-xs">
+<button class="flex-1 py-2.5 px-space-sm bg-surface-container hover:bg-surface-variant text-on-surface font-title-md text-title-md rounded-xl transition-colors flex items-center justify-center gap-1 text-center" onclick="openTemplatePreview('Maze Adventure Starter (Labirin Keju)', 'Navigasi karakter melewati labirin penuh rintangan tanpa menabrak dinding warna.', '8 Menit', 'Pemula', '2 Sprites • 16 Blok • 2 Backdrops')">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+<span>Preview Stage</span>
+</button>
+<a class="flex-[1.4] py-2.5 px-space-md bg-primary hover:bg-primary-container text-on-primary font-title-md text-title-md rounded-xl transition-all shadow-[0_4px_16px_rgba(0,97,148,0.25)] flex items-center justify-center gap-1 text-center transform active:scale-95" href="#">
+<span>Gunakan Template</span>
+<span class="material-symbols-outlined text-[18px]">rocket_launch</span>
+</a>
+</div>
+</div>
+</article>
+<!-- TEMPLATE CARD 3: SPACE SHOOTER -->
+<article class="template-card flex flex-col bg-surface-container-lowest rounded-xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1.5 overflow-hidden group" data-category="shooter" data-difficulty="menengah">
+<!-- Thumbnail & Stage Preview -->
+<div class="relative w-full h-56 bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Retro modern 2D space shooter arcade game stage, deep dark cosmic galaxy with glowing starfield nebula, futuristic cyan spaceship shooting vertical laser beams, floating geometric space asteroids exploding into particles, digital HUD with lives and score counter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcEdmiMySHM_PlJWizoEhZVSb5YFZeHfDfQP96vjm2oISmdbnF27I5fP1ht6UUms7HfD62in8WDmBX2EnmKrkdIKHhYKHV_VuBwpWHzOAFxoU-UE3O9FuHNk9w0wkNdTTNeWmGereuoDieo54MbYN2GpvDde6ZjqNIXX6itmQ0eKvCOCBvJ35iLnEDcShoejYg7CWzTWIKe_blyLkPkMzDbVWwyzanXei5rnyQQ-4i"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-black/30 pointer-events-none"></div>
+<!-- Badges on Preview -->
+<div class="absolute top-space-sm left-space-sm flex items-center gap-space-xs">
+<span class="px-space-sm py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-bold shadow-sm flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+            Menengah
+          </span>
+<span class="px-space-sm py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-on-surface font-label-sm text-label-sm font-semibold shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-tertiary">timer</span>
+            12 Menit Jadi
+          </span>
+</div>
+<div class="absolute bottom-space-sm right-space-sm bg-inverse-surface/85 backdrop-blur-md text-inverse-on-surface px-space-sm py-0.5 rounded-lg font-code-sm text-code-sm flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[14px]">burst_mode</span>
+<span>Cloning Generator On</span>
+</div>
+</div>
+<!-- Card Core Information -->
+<div class="p-space-lg flex flex-col flex-1 justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-tertiary">Aksi &amp; Shooter</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant font-medium">VM v3.4.1</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-extrabold group-hover:text-primary transition-colors">
+            Space Shooter Core (Pertempuran Asteroid Galaksi)
+          </h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed line-clamp-3">
+            Kendalikan pesawat tempur luar angkasa untuk menembak target meteor dan musuh. Pelajari cara menggunakan cloning sprite Scratch untuk menghasilkan rintangan berulang secara dinamis!
+          </p>
+</div>
+<!-- Learning Logic Blocks & Mechanics Tagged Chips -->
+<div class="flex flex-col gap-space-xs bg-surface-container-low p-space-sm rounded-xl">
+<span class="font-label-sm text-label-sm font-bold text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">psychology</span>
+            Mekanik Blok yang Dipelajari:
+          </span>
+<ul class="flex flex-col gap-1 font-code-sm text-code-sm text-on-surface-variant">
+<li class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary flex-shrink-0"></span>
+<span>Gerakan Pesawat Sumbu X &amp; Tembak Spasi</span>
+</li>
+<li class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary flex-shrink-0"></span>
+<span>Kloning Sprite <code class="bg-surface-container-highest px-1 rounded text-primary font-bold">buat klon dari [Laser]</code></span>
+</li>
+<li class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary flex-shrink-0"></span>
+<span>Mekanik Musuh Berulang &amp; Sistem Nyawa/HP</span>
+</li>
+<li class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary flex-shrink-0"></span>
+<span>Kondisi Game Over &amp; Ledakan Partikel</span>
+</li>
+</ul>
+</div>
+<!-- Technical Specs Strip -->
+<div class="grid grid-cols-2 gap-space-xs py-space-xs border-y border-surface-container">
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-outline">layers</span>
+<span>32 Blok Logika</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-outline">volume_up</span>
+<span>SFX Laser &amp; Explosion</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-outline">all_inclusive</span>
+<span>Dynamic Sprite Clones</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-outline">favorite</span>
+<span>3 Nyawa / Health Bar</span>
+</div>
+</div>
+<!-- Action CTAs -->
+<div class="flex items-center gap-space-xs pt-space-xs">
+<button class="flex-1 py-2.5 px-space-sm bg-surface-container hover:bg-surface-variant text-on-surface font-title-md text-title-md rounded-xl transition-colors flex items-center justify-center gap-1 text-center" onclick="openTemplatePreview('Space Shooter Core (Pertempuran Asteroid)', 'Tembak meteor berjatuhan menggunakan laser dengan sistem kloning sprite Scratch canggih.', '12 Menit', 'Menengah', '4 Sprites • 32 Blok • Dynamic Clones')">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+<span>Preview Stage</span>
+</button>
+<a class="flex-[1.4] py-2.5 px-space-md bg-primary hover:bg-primary-container text-on-primary font-title-md text-title-md rounded-xl transition-all shadow-[0_4px_16px_rgba(0,97,148,0.25)] flex items-center justify-center gap-1 text-center transform active:scale-95" href="#">
+<span>Gunakan Template</span>
+<span class="material-symbols-outlined text-[18px]">rocket_launch</span>
+</a>
+</div>
+</div>
+</article>
+</div>
+<!-- Bottom Helper Banners & Compatibility Section -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg pt-space-sm">
+<!-- AI Custom Engine Banner (CTA for unique idea) -->
+<div class="lg:col-span-7 bg-gradient-to-br from-surface-container-lowest via-surface-container to-secondary-container/40 p-space-lg rounded-xl shadow-sm flex flex-col md:flex-row items-center justify-between gap-space-lg relative overflow-hidden">
+<div class="flex flex-col gap-space-xs z-10">
+<div class="inline-flex items-center gap-1 text-primary font-label-md text-label-md font-bold">
+<span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+<span>Ide Kreatif Tanpa Batas</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-extrabold">
+          Mau bikin game dengan ide unikmu sendiri?
+        </h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+          Ceritakan konsep gamemu dalam bahasa Indonesia, dan biarkan AI Copilot kami merancang skrip blok, sprite, dan aturan logikanya secara otomatis!
+        </p>
+<div class="pt-space-xs">
+<a class="inline-flex items-center gap-space-xs px-space-lg py-2.5 rounded-xl bg-inverse-surface hover:bg-black text-inverse-on-surface font-title-md text-title-md shadow-md transition-all transform hover:-translate-y-0.5" href="#">
+<span class="material-symbols-outlined text-[20px] text-primary-fixed-dim">smart_toy</span>
+<span>Tulis dengan AI Copilot ✨</span>
+</a>
+</div>
+</div>
+<!-- Decorative Scratch Code Blocks Visual Mock -->
+<div class="w-full md:w-56 bg-surface-container-lowest p-space-sm rounded-xl shadow-md flex flex-col gap-2 z-10 font-code-sm text-code-sm">
+<div class="bg-primary text-on-primary px-space-sm py-1.5 rounded-lg font-bold flex items-center gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-[14px]">play_arrow</span>
+<span>ketika bendera diklik</span>
+</div>
+<div class="bg-tertiary-container text-on-tertiary px-space-sm py-1.5 rounded-lg ml-2 font-medium flex items-center gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-[14px]">autorenew</span>
+<span>selamanya</span>
+</div>
+<div class="bg-secondary text-on-secondary px-space-sm py-1.5 rounded-lg ml-4 font-medium flex items-center gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-[14px]">auto_awesome</span>
+<span>AI Copilot: generate_mechanic()</span>
+</div>
+</div>
+<!-- Subtle Decorative Radial Aura -->
+<div class="absolute -right-10 -bottom-10 w-60 h-60 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+</div>
+<!-- Scratch 3.0 MIT Compatibility & Local Storage Verification Box -->
+<div class="lg:col-span-5 bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs text-primary">
+<span class="material-symbols-outlined text-[24px]">verified_user</span>
+<span class="font-title-md text-title-md font-bold text-on-surface">Standar Scratch 3.0 Terverifikasi</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+          Semua template 100% kompatibel dengan Scratch Foundation MIT, berjalan lancar di Scratch VM bawaan browser, dan dapat diekspor langsung ke file <span class="font-code-sm text-code-sm font-bold text-primary bg-secondary-fixed px-1.5 py-0.5 rounded">.sb3</span> kapan saja tanpa terkunci!
+        </p>
+</div>
+<!-- Feature Badges Flow -->
+<div class="flex flex-wrap items-center gap-space-xs pt-space-xs">
+<span class="inline-flex items-center gap-1 px-space-sm py-1 rounded-lg bg-surface-container font-label-sm text-label-sm text-on-surface font-semibold">
+<span class="material-symbols-outlined text-[14px] text-primary">cloud_off</span>
+          Offline / IndexedDB
+        </span>
+<span class="inline-flex items-center gap-1 px-space-sm py-1 rounded-lg bg-surface-container font-label-sm text-label-sm text-on-surface font-semibold">
+<span class="material-symbols-outlined text-[14px] text-tertiary">file_download</span>
+          Ekspor .sb3 Bebas
+        </span>
+<span class="inline-flex items-center gap-1 px-space-sm py-1 rounded-lg bg-surface-container font-label-sm text-label-sm text-on-surface font-semibold">
+<span class="material-symbols-outlined text-[14px] text-primary">speed</span>
+          60 FPS Runtime
+        </span>
+</div>
+</div>
+</div>
+<!-- Interactive Modal: Preview Stage Modal Dialog -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/60 backdrop-blur-sm hidden items-center justify-center p-space-md transition-opacity duration-200" id="previewModal">
+<div class="bg-surface-container-lowest rounded-xl max-w-2xl w-full shadow-2xl overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-150">
+<!-- Modal Header -->
+<div class="px-space-lg py-space-md bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">play_circle</span>
+<span class="font-title-md text-title-md font-bold text-on-surface" id="modalTitle">Preview Stage Engine</span>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface p-1 rounded-lg hover:bg-surface-container transition-colors" onclick="closeTemplatePreview()">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Modal Simulated Stage Screen -->
+<div class="p-space-lg flex flex-col gap-space-md">
+<div class="w-full h-64 bg-inverse-surface rounded-xl relative overflow-hidden flex flex-col items-center justify-center text-center p-space-md">
+<!-- Stage Background Grid Pattern -->
+<div class="absolute inset-0 opacity-15" style="background-image: radial-gradient(circle, #ffffff 1px, transparent 1px); background-size: 20px 20px;"></div>
+<div class="z-10 flex flex-col items-center gap-space-sm text-inverse-on-surface">
+<span class="material-symbols-outlined text-[48px] text-primary-fixed-dim animate-bounce">sports_esports</span>
+<span class="font-title-md text-title-md font-bold">Simulasi Panggung Scratch VM</span>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md text-inverse-on-surface/80" id="modalDescription">
+              Template ini siap dijalankan secara instan di canvas editor interaktif.
+            </p>
+<div class="flex items-center gap-2 mt-2">
+<span class="px-2.5 py-0.5 rounded-full bg-primary text-on-primary font-code-sm text-code-sm font-semibold" id="modalDifficulty">Pemula</span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-highest text-inverse-surface font-code-sm text-code-sm font-semibold" id="modalDuration">5 Menit</span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container-highest text-inverse-surface font-code-sm text-code-sm" id="modalSpecs">Specs</span>
+</div>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Panggung ini menginisiasi logic loop, variabel lokal game, input keyboard/mouse, serta sound effects default yang dapat langsung dikustomisasi atau ditambahkan sprite baru.
+        </p>
+</div>
+<!-- Modal Footer -->
+<div class="px-space-lg py-space-md bg-surface-container-low flex items-center justify-end gap-space-sm">
+<button class="px-space-md py-2 rounded-xl bg-surface-container hover:bg-surface-variant font-label-md text-label-md text-on-surface transition-colors" onclick="closeTemplatePreview()">
+          Tutup Preview
+        </button>
+<a class="px-space-lg py-2 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-title-md text-title-md shadow-md flex items-center gap-1.5 transition-all" href="#">
+<span>Buka di Workspace</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Simple Filter and Search Micro-Interactions
+  const searchInput = document.getElementById('templateSearch');
+  const difficultyFilter = document.getElementById('difficultyFilter');
+  const categoryPills = document.querySelectorAll('.category-pill');
+  const templateCards = document.querySelectorAll('.template-card');
+
+  let currentCategory = 'all';
+
+  function filterCards() {
+    const query = searchInput.value.toLowerCase().trim();
+    const diff = difficultyFilter.value;
+
+    templateCards.forEach(card => {
+      const title = card.querySelector('h2').innerText.toLowerCase();
+      const desc = card.querySelector('p').innerText.toLowerCase();
+      const category = card.getAttribute('data-category');
+      const difficulty = card.getAttribute('data-difficulty');
+
+      const matchesSearch = title.includes(query) || desc.includes(query);
+      const matchesCategory = currentCategory === 'all' || category === currentCategory;
+      const matchesDiff = diff === 'all' || difficulty === diff;
+
+      if (matchesSearch && matchesCategory && matchesDiff) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  if (searchInput) searchInput.addEventListener('input', filterCards);
+  if (difficultyFilter) difficultyFilter.addEventListener('change', filterCards);
+
+  categoryPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      categoryPills.forEach(p => {
+        p.classList.remove('bg-primary', 'text-on-primary', 'font-bold');
+        p.classList.add('bg-surface-container', 'text-on-surface-variant');
+      });
+      pill.classList.remove('bg-surface-container', 'text-on-surface-variant');
+      pill.classList.add('bg-primary', 'text-on-primary', 'font-bold');
+      
+      currentCategory = pill.getAttribute('data-category');
+      filterCards();
+    });
+  });
+
+  // Modal Functionality
+  function openTemplatePreview(title, description, duration, difficulty, specs) {
+    const modal = document.getElementById('previewModal');
+    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('modalDescription').textContent = description;
+    document.getElementById('modalDuration').textContent = duration;
+    document.getElementById('modalDifficulty').textContent = difficulty;
+    document.getElementById('modalSpecs').textContent = specs;
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+  }
+
+  function closeTemplatePreview() {
+    const modal = document.getElementById('previewModal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+  }
+
+  // Dismiss modal upon backdrop click
+  document.getElementById('previewModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+      closeTemplatePreview();
+    }
+  });
+</script></main></div></body></html>

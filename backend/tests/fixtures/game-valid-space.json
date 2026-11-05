@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "1.0",
+  "game": {
+    "title": "Pertahanan Galaksi Alpha",
+    "genre": "space-shooter",
+    "description": "Tembak asteroid dengan laser dan bertahanlah hidup."
+  },
+  "delta": {
+    "newSpritesCount": 3,
+    "globalVariablesCount": 2,
+    "sfxCount": 2,
+    "logicBlocksCount": 24,
+    "overwrittenBlocksCount": 0
+  },
+  "objects": [
+    {
+      "id": "sprite_ship",
+      "name": "Pesawat Tempur",
+      "role": "player",
+      "initialPosition": { "x": 0, "y": -140 },
+      "costumes": ["ship_blue"]
+    },
+    {
+      "id": "sprite_laser",
+      "name": "Laser Proyektil",
+      "role": "projectile",
+      "initialPosition": { "x": 0, "y": -140 },
+      "costumes": ["laser_beam"]
+    },
+    {
+      "id": "sprite_asteroid",
+      "name": "Asteroid Raksasa",
+      "role": "obstacle",
+      "initialPosition": { "x": 0, "y": 160 },
+      "costumes": ["asteroid_grey"]
+    }
+  ],
+  "variables": [
+    {
+      "name": "skor",
+      "type": "global",
+      "initialValue": 0
+    },
+    {
+      "name": "nyawa",
+      "type": "global",
+      "initialValue": 3
+    }
+  ],
+  "rules": [
+    {
+      "event": "key_pressed",
+      "actor": "sprite_ship",
+      "action": "move_continuous"
+    },
+    {
+      "event": "collision_detected",
+      "actor": "sprite_laser",
+      "target": "sprite_asteroid",
+      "action": "play_sound_and_increase_score",
+      "sfx": "explosion.wav",
+      "variableChange": {
+        "name": "skor",
+        "amount": 10
+      }
+    }
+  ],
+  "controls": [
+    {
+      "key": "arrow_left",
+      "action": "move_x",
+      "value": -12
+    },
+    {
+      "key": "arrow_right",
+      "action": "move_x",
+      "value": 12
+    },
+    {
+      "key": "space",
+      "action": "shoot_laser",
+      "value": 1
+    }
+  ]
+}

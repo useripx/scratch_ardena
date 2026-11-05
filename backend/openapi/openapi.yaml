@@ -1,0 +1,326 @@
+openapi: 3.0.3
+info:
+  title: Ardena Playground Backend API
+  description: Layanan backend API modular monolith untuk Ardena Playground (AI-assisted Scratch Game Generator).
+  version: 1.0.0
+  contact:
+    name: Yogi Ario
+servers:
+  - url: http://localhost:3001/api/v1
+    description: Server Pengembangan Lokal (Development)
+
+paths:
+  /health:
+    get:
+      summary: Health Check Status
+      description: Memeriksa kesiapan layanan backend dan informasi uptime server (tanpa pemanggilan AI).
+      operationId: getHealth
+      responses:
+        '200':
+          description: Layanan backend sehat dan siap melayani request.
+          headers:
+            X-Request-ID:
+              schema:
+                type: string
+                format: uuid
+              description: Pengidentifikasi unik siklus request.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - status
+                  - timestamp
+                  - version
+                  - uptimeSeconds
+                properties:
+                  status:
+                    type: string
+                    example: healthy
+                  timestamp:
+                    type: string
+                    format: date-time
+                  version:
+                    type: string
+                    example: 1.0.0
+                  uptimeSeconds:
+                    type: integer
+                    example: 142
+
+  /meta/capabilities:
+    get:
+      summary: Metadata Kapabilitas Generator Game
+      description: Mengembalikan daftar template aktif, batas prompt, dan kemampuan Scratch MVP yang didukung.
+      operationId: getCapabilities
+      responses:
+        '200':
+          description: Daftar kapabilitas generator berhasil diambil.
+          headers:
+            X-Request-ID:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - success
+                  - data
+                  - meta
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    required:
+                      - supportedSchemaVersions
+                      - maxPromptLength
+                      - hardPromptLimit
+                      - templates
+                    properties:
+                      supportedSchemaVersions:
+                        type: array
+                        items:
+                          type: string
+                        example: ["1.0"]
+                      maxPromptLength:
+                        type: integer
+                        example: 500
+                      hardPromptLimit:
+                        type: integer
+                        example: 1000
+                      supportedLanguages:
+                        type: array
+                        items:
+                          type: string
+                        example: ["id", "en"]
+                      templates:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: catching-game
+                            title:
+                              type: string
+                            category:
+                              type: string
+                            difficulty:
+                              type: string
+                            estimatedMinutes:
+                              type: integer
+                            activeSpritesCount:
+                              type: integer
+                            description:
+                              type: string
+                  meta:
+                    type: object
+                    properties:
+                      requestId:
+                        type: string
+
+  /games/generate:
+    post:
+      summary: Generate Konfigurasi Game Terstruktur
+      description: Memvalidasi instruksi bahasa alami pengguna dan menghasilkan rancangan game berbasis Scratch 3.0.
+      operationId: generateGame
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - prompt
+                - template
+                - schemaVersion
+              properties:
+                prompt:
+                  type: string
+                  minLength: 5
+                  maxLength: 1000
+                  description: Instruksi atau skenario game dalam bahasa alami.
+                  example: Buat game menangkap koin yang jatuh dari langit dengan keranjang kendali panah kiri dan kanan.
+                template:
+                  type: string
+                  enum:
+                    - catching-game
+                    - maze-game
+                    - space-shooter
+                    - custom
+                  description: Pilihan pondasi game awal yang didukung.
+                  example: catching-game
+                language:
+                  type: string
+                  enum:
+                    - id
+                    - en
+                  default: id
+                  example: id
+                schemaVersion:
+                  type: string
+                  enum:
+                    - "1.0"
+                  example: "1.0"
+      responses:
+        '200':
+          description: Konfigurasi game terstruktur berhasil dihasilkan dan tervalidasi.
+          headers:
+            X-Request-ID:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerateGameSuccessResponse'
+        '400':
+          description: Permintaan tidak valid (gagal validasi schema input atau field hilang).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '413':
+          description: Ukuran payload request melebihi batas 1 MB.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '415':
+          description: Tipe media tidak didukung (harus application/json).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Batas kecepatan request tercapai (Rate limit).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Layanan AI eksternal tidak tersedia.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    GenerateGameSuccessResponse:
+      type: object
+      required:
+        - success
+        - data
+        - meta
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: object
+          required:
+            - schemaVersion
+            - game
+            - delta
+            - objects
+            - variables
+            - rules
+            - controls
+          properties:
+            schemaVersion:
+              type: string
+              example: "1.0"
+            game:
+              type: object
+              properties:
+                title:
+                  type: string
+                genre:
+                  type: string
+                description:
+                  type: string
+            delta:
+              type: object
+              properties:
+                newSpritesCount:
+                  type: integer
+                globalVariablesCount:
+                  type: integer
+                sfxCount:
+                  type: integer
+                logicBlocksCount:
+                  type: integer
+                overwrittenBlocksCount:
+                  type: integer
+                  example: 0
+            objects:
+              type: array
+              items:
+                type: object
+            variables:
+              type: array
+              items:
+                type: object
+            rules:
+              type: array
+              items:
+                type: object
+            controls:
+              type: array
+              items:
+                type: object
+        meta:
+          type: object
+          properties:
+            requestId:
+              type: string
+            provider:
+              type: string
+            fallbackUsed:
+              type: boolean
+            latencyMs:
+              type: integer
+
+    ErrorResponse:
+      type: object
+      required:
+        - success
+        - error
+        - meta
+      properties:
+        success:
+          type: boolean
+          example: false
+        error:
+          type: object
+          required:
+            - code
+            - message
+            - retryable
+          properties:
+            code:
+              type: string
+              example: INVALID_REQUEST_BODY
+            message:
+              type: string
+              example: Permintaan tidak valid.
+            retryable:
+              type: boolean
+              example: false
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                  message:
+                    type: string
+        meta:
+          type: object
+          properties:
+            requestId:
+              type: string
+

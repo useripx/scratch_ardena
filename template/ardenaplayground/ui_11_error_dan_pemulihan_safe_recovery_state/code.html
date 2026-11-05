@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+
+<html lang="id"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface-tint":"#006398","secondary-container":"#d2e0fe","on-primary-fixed-variant":"#004b73","on-primary-fixed":"#001d31","primary-fixed":"#cce5ff","secondary-fixed-dim":"#b9c7e4","on-secondary-fixed-variant":"#39475f","tertiary-container":"#a36700","surface-container-lowest":"#ffffff","on-secondary":"#ffffff","surface-container":"#eceef0","on-tertiary-fixed-variant":"#653e00","surface-bright":"#f7f9fb","on-primary-container":"#fdfcff","on-tertiary":"#ffffff","inverse-primary":"#93ccff","tertiary-fixed":"#ffddb8","inverse-on-surface":"#eff1f3","primary-container":"#007bb9","primary":"#006194","on-tertiary-fixed":"#2a1700","on-surface-variant":"#3f4850","error":"#ba1a1a","on-error-container":"#93000a","on-error":"#ffffff","surface-variant":"#e0e3e5","background":"#f7f9fb","outline":"#707881","on-surface":"#191c1e","tertiary-fixed-dim":"#ffb95f","surface-dim":"#d8dadc","on-primary":"#ffffff","surface":"#f7f9fb","on-secondary-container":"#55637d","outline-variant":"#bfc7d2","surface-container-high":"#e6e8ea","secondary-fixed":"#d6e3ff","on-tertiary-container":"#fffbff","inverse-surface":"#2d3133","error-container":"#ffdad6","on-background":"#191c1e","surface-container-highest":"#e0e3e5","primary-fixed-dim":"#93ccff","surface-container-low":"#f2f4f6","on-secondary-fixed":"#0d1c32","tertiary":"#825100","secondary":"#515f78"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"margin-desktop":"2rem","gutter":"1rem","space-md":"1rem","space-xl":"2rem","space-xs":"0.25rem","space-lg":"1.5rem","margin":"1rem","space-sm":"0.5rem","gutter-desktop":"1.5rem"},fontFamily:{"code-sm":["Inter"],"display-lg":["Plus Jakarta Sans"],"display-lg-mobile":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"label-md":["Inter"],"label-sm":["Inter"],"body-lg":["Plus Jakarta Sans"],"title-md":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"],"headline-sm":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"]},fontSize:{"code-sm":["12px",{"lineHeight":"18px","fontWeight":"500"}],"display-lg":["48px",{"lineHeight":"56px","fontWeight":"800"}],"display-lg-mobile":["34px",{"lineHeight":"42px","fontWeight":"800"}],"headline-xl-mobile":["28px",{"lineHeight":"36px","fontWeight":"700"}],"label-md":["12px",{"lineHeight":"16px","fontWeight":"600"}],"label-sm":["11px",{"lineHeight":"14px","fontWeight":"500"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"title-md":["16px",{"lineHeight":"24px","fontWeight":"600"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"headline-xl":["36px",{"lineHeight":"44px","fontWeight":"700"}],"headline-sm":["20px",{"lineHeight":"28px","fontWeight":"600"}],"headline-lg":["28px",{"lineHeight":"36px","fontWeight":"700"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface"><header class="fixed top-0 left-0 w-full z-50 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-14 w-full px-gutter-desktop flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm select-none"><span class="material-symbols-outlined text-primary text-[24px]">token</span><span class="font-headline-sm text-headline-sm text-primary tracking-tight font-extrabold">ARDENA</span><span class="px-space-xs py-0.5 rounded-full bg-secondary-container font-label-sm text-label-sm text-on-secondary-container font-semibold">Playground</span></div><div class="flex items-center gap-space-xs"><span class="font-title-md text-title-md text-on-surface">Petualangan Kucing Antariksa</span><span class="material-symbols-outlined text-on-surface-variant text-[16px]">lock_open</span></div><nav class="hidden md:flex items-center gap-space-xs" data-active-classes="bg-surface-container text-on-surface font-semibold rounded-lg"><a class="px-space-sm py-1 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors font-label-md text-label-md" data-path="file-menu" href="#">Berkas</a><a class="px-space-sm py-1 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors font-label-md text-label-md" data-path="edit-menu" href="#">Edit</a><a class="px-space-sm py-1 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors font-label-md text-label-md" data-path="view-menu" href="#">Tampilan</a><a class="px-space-sm py-1 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors font-label-md text-label-md" data-path="tutorials" href="#">Tutorial</a></nav></div><div class="flex items-center gap-space-md"><div class="hidden sm:flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-surface-container-low"><span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span><span class="font-label-sm text-label-sm text-on-surface-variant">Tersimpan (IndexedDB)</span></div><button class="flex items-center gap-space-xs px-space-md py-1.5 rounded-xl bg-inverse-surface text-inverse-on-surface hover:bg-on-surface transition-all shadow-[0_2px_8px_rgba(0,97,148,0.15)]" type="button"><span class="material-symbols-outlined text-inverse-primary text-[18px]">auto_awesome</span><span class="font-label-md text-label-md font-semibold">AI Copilot</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-14 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<!-- PERSISTENT SAFETY BANNER (Pinned above canvas overlay) -->
+<div class="w-full bg-primary text-on-primary shadow-sm z-30 px-gutter-desktop py-2.5 flex items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm min-w-0">
+<span class="material-symbols-outlined text-secondary-fixed text-[20px] flex-shrink-0 animate-pulse">verified_user</span>
+<p class="font-body-md text-body-md truncate">
+<strong class="font-title-md">🛡️ Kanvas Proyek Terlindungi:</strong> Terjadi kendala saat AI memproses permintaan, namun proyek asli Scratch kamu 100% aman dan tidak ada blok yang diubah.
+      </p>
+</div>
+<div class="flex items-center gap-space-sm flex-shrink-0">
+<span class="font-label-sm text-label-sm bg-on-primary-fixed text-primary-fixed px-2 py-0.5 rounded-full flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+        IndexedDB Aman
+      </span>
+<button class="p-1 rounded-lg hover:bg-white/10 transition-colors text-on-primary flex items-center justify-center" onclick="dismissSafetyNotice()">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</div>
+<!-- WORKSPACE STAGE WITH MODAL OVERLAY -->
+<div class="relative w-full overflow-hidden bg-surface-container-low min-h-[calc(100vh-5.75rem)]">
+<!-- GHOSTED SCRATCH BACKGROUND WORKSPACE (Shows project intact underneath) -->
+<div class="w-full h-full p-margin-desktop grid grid-cols-12 gap-gutter-desktop filter blur-[2px] opacity-45 pointer-events-none select-none">
+<!-- Toolbox Column Preview -->
+<div class="col-span-3 bg-surface-container-lowest rounded-xl p-space-md space-y-space-md shadow-sm">
+<div class="flex items-center justify-between pb-space-sm bg-surface-container-low px-space-sm py-1.5 rounded-lg">
+<span class="font-title-md text-title-md text-on-surface">Kategori Blok</span>
+<span class="material-symbols-outlined text-[18px] text-primary">widgets</span>
+</div>
+<div class="space-y-space-xs">
+<div class="h-8 bg-primary rounded-lg flex items-center px-3 text-on-primary font-label-md text-label-md">Gerakan (Motion)</div>
+<div class="h-8 bg-tertiary-container rounded-lg flex items-center px-3 text-on-tertiary-container font-label-md text-label-md">Kejadian (Events)</div>
+<div class="h-8 bg-secondary-container rounded-lg flex items-center px-3 text-on-secondary-container font-label-md text-label-md">Kontrol (Control)</div>
+<div class="h-8 bg-surface-variant rounded-lg flex items-center px-3 text-on-surface-variant font-label-md text-label-md">Variabel &amp; Skor</div>
+</div>
+<div class="pt-4 space-y-2">
+<div class="h-10 bg-primary-container/20 rounded-lg flex items-center px-3 text-primary font-code-sm text-code-sm">gerak 10 langkah</div>
+<div class="h-10 bg-primary-container/20 rounded-lg flex items-center px-3 text-primary font-code-sm text-code-sm">putar 15 derajat</div>
+<div class="h-10 bg-tertiary-container/20 rounded-lg flex items-center px-3 text-tertiary font-code-sm text-code-sm">ketika bendera hijau diklik</div>
+</div>
+</div>
+<!-- Script Canvas Preview -->
+<div class="col-span-6 bg-surface-container-lowest rounded-xl p-space-lg flex flex-col justify-between shadow-sm relative overflow-hidden">
+<div class="absolute top-4 right-4 flex items-center gap-2">
+<span class="px-2.5 py-1 bg-surface-container rounded-full font-label-sm text-label-sm text-on-surface-variant">Kucing Sprite 1</span>
+</div>
+<div class="space-y-3 pt-6">
+<div class="w-64 h-12 bg-amber-500 rounded-lg shadow-sm flex items-center px-4 text-white font-title-md text-title-md">
+            ketika ⚑ diklik
+          </div>
+<div class="w-72 h-14 bg-blue-500 rounded-lg shadow-sm ml-4 flex items-center px-4 text-white font-title-md text-title-md">
+            selamanya: pergi ke x: 0 y: 0
+          </div>
+<div class="w-60 h-12 bg-blue-400 rounded-lg shadow-sm ml-8 flex items-center px-4 text-white font-title-md text-title-md">
+            tambah skor sebesar 1
+          </div>
+</div>
+<div class="h-8 bg-surface-container-low rounded-lg flex items-center justify-between px-3 text-on-surface-variant font-label-sm text-label-sm">
+<span>Blok Terpasang: 14 Blok Asli</span>
+<span class="text-primary font-semibold">Status: Utuh &amp; Valid</span>
+</div>
+</div>
+<!-- Runtime Stage Preview -->
+<div class="col-span-3 space-y-gutter-desktop">
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm">
+<div class="h-44 bg-inverse-surface rounded-lg relative flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-inverse-primary text-[64px]">pets</span>
+<div class="absolute bottom-2 left-2 text-inverse-on-surface font-label-sm text-label-sm px-2 py-0.5 bg-black/40 rounded">
+              Panggung 480 × 360
+            </div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm">
+<div class="h-28 bg-surface-container-low rounded-lg p-3">
+<div class="font-title-md text-title-md text-on-surface">Ardena Copilot Dock</div>
+<div class="font-body-md text-body-md text-on-surface-variant mt-1">Sesi AI siap dipulihkan</div>
+</div>
+</div>
+</div>
+</div>
+<!-- MAIN ERROR RESOLUTION CENTER MODAL -->
+<div class="absolute inset-0 z-20 flex items-center justify-center p-gutter-desktop overflow-y-auto">
+<div class="w-full max-w-4xl bg-surface-container-lowest rounded-xl shadow-xl flex flex-col max-h-[942px] overflow-hidden my-auto">
+<!-- Header Bar -->
+<div class="px-space-xl py-space-lg bg-surface-bright flex items-start justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-error-container text-on-error-container flex items-center justify-center shadow-sm flex-shrink-0">
+<span class="material-symbols-outlined text-[28px]">healing</span>
+</div>
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface">Penanganan Kendala &amp; Pemulihan Cepat</span>
+<span class="px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold">Mode Aman</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">
+                Sistem isolasi Ardena mencegah perubahan kode tidak valid ke dalam panggung Anda.
+              </p>
+</div>
+</div>
+<button class="w-9 h-9 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-on-surface transition-colors flex items-center justify-center flex-shrink-0" onclick="closeResolutionCenter()" title="Kembali ke Editor">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Scrollable Modal Body -->
+<div class="px-space-xl py-space-lg overflow-y-auto space-y-space-lg flex-1">
+<!-- FEATURED INCIDENT CARD -->
+<div class="p-space-lg rounded-xl bg-surface-container-low shadow-sm space-y-space-md">
+<div class="flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="px-3 py-1 rounded-full bg-error-container text-on-error-container font-label-md text-label-md flex items-center gap-1.5 font-bold">
+<span class="material-symbols-outlined text-[16px]">warning</span>
+                  Kendala AI Provider &amp; Validasi Logika
+                </span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">
+                  Insiden #ERR-AI-VM409
+                </span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+                Baru saja • 14:32:08 WIB
+              </span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight">
+                Rancangan Belum Dapat Disusun
+              </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-1.5 leading-relaxed">
+                AI mencoba merangkai blok Scratch dari instruksi kamu, namun provider utama (<span class="font-semibold text-on-surface">Gemini 1.5</span>) mengalami batas kecepatan (rate limit), dan respon cadangan (<span class="font-semibold text-on-surface">Groq Llama-3</span>) menghasilkan sintaks logika yang belum didukung oleh Scratch VM MVP.
+              </p>
+</div>
+<!-- PROMPT CONTEXT QUOTE & AI SUGGESTION -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md pt-space-xs">
+<div class="p-space-md rounded-lg bg-surface-container-highest/60 space-y-1.5">
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span class="font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">chat</span>
+                    Prompt Terakhir Kamu
+                  </span>
+<span class="text-tertiary font-medium">Terlalu Kompleks</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface italic">
+                  “Buat game MMORPG 3D dengan 100 pemain online dan sistem jual beli kripto”
+                </p>
+</div>
+<div class="p-space-md rounded-lg bg-secondary-container/40 space-y-1.5">
+<div class="flex items-center justify-between text-on-secondary-container font-label-sm text-label-sm">
+<span class="font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">tips_and_updates</span>
+                    Rekomendasi Penyesuaian AI
+                  </span>
+<button class="text-primary font-bold hover:underline" onclick="applySuggestedPrompt()">Gunakan Teks Ini</button>
+</div>
+<p class="font-body-md text-body-md text-on-surface" id="suggested-prompt-text">
+                  “Buat game petualangan 2D dengan 1 karakter kucing mengumpulkan koin dan menghindari musuh”
+                </p>
+</div>
+</div>
+<!-- TECHNICAL DIAGNOSTICS ACCORDION -->
+<div class="pt-space-xs">
+<button class="w-full flex items-center justify-between px-space-md py-2.5 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors font-label-md text-label-md text-on-surface-variant" onclick="toggleDiagnostics()">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">terminal</span>
+<span>Detail Diagnostik Teknis (Untuk Mentor &amp; Tim Pengembang)</span>
+</span>
+<span class="material-symbols-outlined text-[18px] transition-transform" id="diag-chevron">expand_more</span>
+</button>
+<div class="hidden mt-2 p-space-md rounded-lg bg-inverse-surface text-inverse-on-surface space-y-2 font-code-sm text-code-sm overflow-x-auto" id="diagnostics-panel">
+<div class="flex items-center justify-between text-surface-variant border-b border-white/10 pb-1">
+<span>Stack Trace / VM Inspector</span>
+<span>Scratch VM 0.2.0-MVP</span>
+</div>
+<p class="text-rose-300">[14:32:07] ERR_GEMINI_RESOURCE_EXHAUSTED: HTTP 429 Quota exceeded (Tokens per minute)</p>
+<p class="text-amber-300">[14:32:07] RETRY_FALLBACK: Switching agent dispatch to Groq (model: llama3-70b-8192)</p>
+<p class="text-rose-400">[14:32:08] VM_WHITELIST_VALIDATION_FAILED: Opcode 'operator_hyperdimensional_matrix' is not in Scratch Core AST</p>
+<p class="text-emerald-300">[14:32:08] ROLLBACK_TRIGGERED: Rollback snapshot sha: b7e29a9 (IndexedDB preserved, zero dirty writes)</p>
+</div>
+</div>
+</div>
+<!-- MULTI-SCENARIO TAB / SOLUTION MATRIX -->
+<div class="space-y-space-md">
+<div class="flex items-center justify-between">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Panduan Solusi Berdasarkan Skenario</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Pelajari bagaimana Ardena Studio memulihkan berbagai kondisi sistem:</p>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-semibold bg-primary-fixed px-2.5 py-1 rounded-full">
+                Dokumentasi V1.4
+              </span>
+</div>
+<!-- Tab Buttons -->
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-space-xs p-1 bg-surface-container rounded-xl">
+<button class="scenario-tab active-tab px-3 py-2 rounded-lg font-label-md text-label-md text-left transition-all bg-surface-container-lowest text-on-surface shadow-sm font-bold flex items-center gap-2" id="tab-btn-1" onclick="switchTab(1)">
+<span class="material-symbols-outlined text-[16px] text-primary">psychology_alt</span>
+<span class="truncate">Prompt Kompleks</span>
+</button>
+<button class="scenario-tab px-3 py-2 rounded-lg font-label-md text-label-md text-left transition-all text-on-surface-variant hover:text-on-surface flex items-center gap-2" id="tab-btn-2" onclick="switchTab(2)">
+<span class="material-symbols-outlined text-[16px] text-tertiary">swap_calls</span>
+<span class="truncate">Provider Fallback</span>
+</button>
+<button class="scenario-tab px-3 py-2 rounded-lg font-label-md text-label-md text-left transition-all text-on-surface-variant hover:text-on-surface flex items-center gap-2" id="tab-btn-3" onclick="switchTab(3)">
+<span class="material-symbols-outlined text-[16px] text-secondary">checklist</span>
+<span class="truncate">Validasi Blok</span>
+</button>
+<button class="scenario-tab px-3 py-2 rounded-lg font-label-md text-label-md text-left transition-all text-on-surface-variant hover:text-on-surface flex items-center gap-2" id="tab-btn-4" onclick="switchTab(4)">
+<span class="material-symbols-outlined text-[16px] text-primary">save</span>
+<span class="truncate">Penyimpanan Penuh</span>
+</button>
+</div>
+<!-- Tab Contents -->
+<div class="p-space-lg rounded-xl bg-surface-bright space-y-space-md">
+<!-- Content Tab 1 -->
+<div class="scenario-content space-y-space-sm" id="tab-content-1">
+<div class="flex items-center gap-space-sm text-primary font-title-md text-title-md">
+<span class="material-symbols-outlined text-[22px]">lightbulb</span>
+<span>Solusi: Menyusun Instruksi yang Dikenali Blok Scratch</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                  Scratch bekerja optimal dengan logika berbasis 2D, sprite, gerak x/y, sensor tabrakan, variabel angka, dan efek suara. Hindari konsep 3D kompleks, multiplayer online ratusan pemain, atau sistem jaringan eksternal.
+                </p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md pt-space-xs">
+<div class="p-space-md rounded-lg bg-surface-container-low space-y-1">
+<span class="font-label-sm text-label-sm text-error font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">cancel</span>
+                      Hindari Format Seperti Ini
+                    </span>
+<p class="font-body-md text-body-md text-on-surface">"Buat sistem raytracing 3D dan koneksi websocket ke server online"</p>
+</div>
+<div class="p-space-md rounded-lg bg-surface-container-low space-y-1">
+<span class="font-label-sm text-label-sm text-primary font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                      Contoh Format Terbaik
+                    </span>
+<p class="font-body-md text-body-md text-on-surface">"Jika spasi ditekan, buat kucing melompat ke atas lalu turun kembali"</p>
+</div>
+</div>
+</div>
+<!-- Content Tab 2 -->
+<div class="scenario-content hidden space-y-space-sm" id="tab-content-2">
+<div class="flex items-center gap-space-sm text-tertiary font-title-md text-title-md">
+<span class="material-symbols-outlined text-[22px]">published_with_changes</span>
+<span>Solusi: Jalur Cadangan Multi-Model (Gemini ↔ Groq)</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                  Jika Gemini sibuk atau terkena batas kuota per menit, sistem Ardena otomatis mencoba Groq Llama-3 secara transparan. Jika kedua model gagal mencocokkan skema Scratch, Anda dapat mencoba ulang dengan interval jeda otomatis (backoff).
+                </p>
+<div class="p-space-md rounded-lg bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-md">
+<span class="material-symbols-outlined text-primary text-[28px]">speed</span>
+<div>
+<div class="font-title-md text-title-md text-on-surface">Jeda Waktu Backoff AI</div>
+<div class="font-body-md text-body-md text-on-surface-variant">Menunggu kuota pulih: <span class="font-bold text-primary" id="countdown-timer">00:08</span> detik</div>
+</div>
+</div>
+<button class="px-space-md py-1.5 rounded-lg bg-primary-fixed text-on-primary-fixed font-label-md text-label-md font-bold hover:bg-primary hover:text-on-primary transition-all" onclick="instantResetCountdown()">
+                    Reset &amp; Coba Sekarang
+                  </button>
+</div>
+</div>
+<!-- Content Tab 3 -->
+<div class="scenario-content hidden space-y-space-sm" id="tab-content-3">
+<div class="flex items-center gap-space-sm text-secondary font-title-md text-title-md">
+<span class="material-symbols-outlined text-[22px]">verified</span>
+<span>Solusi: Validasi Whitelist AST Scratch VM</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                  Ardena menerapkan gerbang verifikasi ketat sebelum blok apa pun dijatuhkan ke kanvas Anda. Hanya blok Scratch 3.0 resmi yang lolos validasi; blok hasil halusinasi LLM langsung diblokir di memori sementara.
+                </p>
+<div class="flex flex-wrap gap-2 pt-1">
+<span class="px-3 py-1 rounded-full bg-surface-container-high text-on-surface font-code-sm text-code-sm">motion_movesteps ✓</span>
+<span class="px-3 py-1 rounded-full bg-surface-container-high text-on-surface font-code-sm text-code-sm">event_whenflagclicked ✓</span>
+<span class="px-3 py-1 rounded-full bg-surface-container-high text-on-surface font-code-sm text-code-sm">control_forever ✓</span>
+<span class="px-3 py-1 rounded-full bg-error-container text-on-error-container font-code-sm text-code-sm">custom_matrix_ai ✗ Ditolak</span>
+</div>
+</div>
+<!-- Content Tab 4 -->
+<div class="scenario-content hidden space-y-space-sm" id="tab-content-4">
+<div class="flex items-center gap-space-sm text-primary font-title-md text-title-md">
+<span class="material-symbols-outlined text-[22px]">cloud_sync</span>
+<span>Solusi: Ekspor Darurat &amp; Pembersihan IndexedDB</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                  Jika memori penyimpanan lokal browser Anda penuh, proyek Scratch dapat langsung diekspor sebagai file <code class="font-semibold text-primary">.sb3</code> standar yang bisa dibuka di aplikasi Scratch resmi kapan saja.
+                </p>
+<div class="flex items-center gap-space-md pt-2">
+<button class="flex items-center gap-2 px-space-md py-2 rounded-lg bg-surface-container-highest hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors" onclick="exportEmergencySb3()">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                    Unduh Cadangan (.sb3) Sekarang
+                  </button>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Ukuran Proyek: 248 KB • 100% Utuh</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- RECOVERY ACTIONS FOOTER (Primary CTA Bar) -->
+<div class="px-space-xl py-space-md bg-surface-bright flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm w-full sm:w-auto">
+<button class="w-full sm:w-auto px-space-lg py-2.5 rounded-xl bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md text-label-md font-semibold transition-colors flex items-center justify-center gap-1.5" onclick="closeResolutionCenter()">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+              Kembali ke Editor (Batal)
+            </button>
+<button class="hidden md:flex px-space-md py-2.5 rounded-xl hover:bg-surface-container text-on-surface-variant font-label-md text-label-md items-center gap-1.5 transition-colors" onclick="showPromptRecommendations()">
+<span class="material-symbols-outlined text-[18px]">menu_book</span>
+              Rekomendasi Prompt Aman
+            </button>
+</div>
+<div class="flex items-center gap-space-sm w-full sm:w-auto justify-end">
+<button class="w-full sm:w-auto px-space-lg py-2.5 rounded-xl bg-secondary-container text-on-secondary-container hover:bg-secondary-fixed transition-colors font-label-md text-label-md font-bold flex items-center justify-center gap-2 shadow-sm" onclick="editPromptAction()">
+<span class="material-symbols-outlined text-[18px]">edit_note</span>
+              Edit Prompt di Copilot
+            </button>
+<button class="w-full sm:w-auto px-space-xl py-2.5 rounded-xl bg-primary text-on-primary hover:bg-primary-container transition-all font-label-md text-label-md font-bold flex items-center justify-center gap-2 shadow-[0_2px_12px_rgba(0,97,148,0.25)] hover:scale-[1.01] active:scale-[0.99]" id="retry-gemini-btn" onclick="retryWithGemini()">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+<span>Coba Ulang dengan Gemini</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- TOAST NOTIFICATION FOR USER ACTIONS -->
+<div class="fixed bottom-12 right-gutter-desktop z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none" id="recovery-toast">
+<div class="px-space-lg py-3 rounded-xl bg-inverse-surface text-inverse-on-surface shadow-xl flex items-center gap-space-sm font-label-md text-label-md">
+<span class="material-symbols-outlined text-inverse-primary text-[20px]" id="toast-icon">check_circle</span>
+<span id="toast-message">Proyek berhasil diamankan</span>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Simple state handling for diagnostic panel accordion
+  function toggleDiagnostics() {
+    const panel = document.getElementById('diagnostics-panel');
+    const chevron = document.getElementById('diag-chevron');
+    if (panel.classList.contains('hidden')) {
+      panel.classList.remove('hidden');
+      chevron.style.transform = 'rotate(180deg)';
+    } else {
+      panel.classList.add('hidden');
+      chevron.style.transform = 'rotate(0deg)';
+    }
+  }
+
+  // Multi-scenario tab switching
+  function switchTab(tabIndex) {
+    // Hide all contents
+    document.querySelectorAll('.scenario-content').forEach(el => el.classList.add('hidden'));
+    // Reset all tabs
+    document.querySelectorAll('.scenario-tab').forEach(el => {
+      el.classList.remove('bg-surface-container-lowest', 'text-on-surface', 'shadow-sm', 'font-bold');
+      el.classList.add('text-on-surface-variant');
+    });
+
+    // Activate selected
+    const activeContent = document.getElementById('tab-content-' + tabIndex);
+    const activeTab = document.getElementById('tab-btn-' + tabIndex);
+    if (activeContent) activeContent.classList.remove('hidden');
+    if (activeTab) {
+      activeTab.classList.remove('text-on-surface-variant');
+      activeTab.classList.add('bg-surface-container-lowest', 'text-on-surface', 'shadow-sm', 'font-bold');
+    }
+  }
+
+  // Toast feedback helper
+  function showToast(message, iconName = 'check_circle') {
+    const toast = document.getElementById('recovery-toast');
+    const msg = document.getElementById('toast-message');
+    const icon = document.getElementById('toast-icon');
+    if (!toast) return;
+
+    msg.innerText = message;
+    icon.innerText = iconName;
+    toast.classList.remove('translate-y-24', 'opacity-0');
+    toast.classList.add('translate-y-0', 'opacity-100');
+
+    setTimeout(() => {
+      toast.classList.remove('translate-y-0', 'opacity-100');
+      toast.classList.add('translate-y-24', 'opacity-0');
+    }, 3200);
+  }
+
+  // Interactive CTAs
+  function applySuggestedPrompt() {
+    const text = document.getElementById('suggested-prompt-text').innerText.replace(/[“”"]/g, '');
+    showToast('Teks saran disalin ke slot Copilot!');
+  }
+
+  function editPromptAction() {
+    showToast('Membuka bilah Copilot untuk edit...', 'edit');
+    setTimeout(() => {
+      closeResolutionCenter();
+    }, 900);
+  }
+
+  function retryWithGemini() {
+    const btn = document.getElementById('retry-gemini-btn');
+    const originalText = btn.innerHTML;
+    btn.innerHTML = `<span class="material-symbols-outlined text-[18px] animate-spin">refresh</span> Memvalidasi Ulang...`;
+    btn.disabled = true;
+
+    setTimeout(() => {
+      btn.innerHTML = originalText;
+      btn.disabled = false;
+      showToast('Koneksi ulang ke Gemini 1.5 berhasil diajukan!', 'bolt');
+    }, 1800);
+  }
+
+  function exportEmergencySb3() {
+    showToast('Berkas "Petualangan Kucing Antariksa.sb3" diunduh!', 'download');
+  }
+
+  function showPromptRecommendations() {
+    switchTab(1);
+    showToast('Menampilkan tips format prompt aman.');
+  }
+
+  function instantResetCountdown() {
+    const timer = document.getElementById('countdown-timer');
+    if (timer) timer.innerText = '00:00';
+    showToast('Jeda backoff dilewati. Siap mencoba ulang.');
+  }
+
+  function dismissSafetyNotice() {
+    const banner = event.target.closest('.z-30');
+    if (banner) banner.style.display = 'none';
+  }
+
+  function closeResolutionCenter() {
+    const modalWrapper = document.querySelector('.absolute.inset-0.z-20');
+    const ghostBackground = document.querySelector('.filter.blur-\\[2px\\]');
+    if (modalWrapper) {
+      modalWrapper.style.transition = 'opacity 0.2s ease-out';
+      modalWrapper.style.opacity = '0';
+      setTimeout(() => {
+        modalWrapper.classList.add('hidden');
+        if (ghostBackground) {
+          ghostBackground.classList.remove('blur-[2px]', 'opacity-45', 'pointer-events-none');
+          ghostBackground.classList.add('opacity-100');
+        }
+        showToast('Kembali ke workspace asli Scratch.', 'arrow_back');
+      }, 200);
+    }
+  }
+
+  // Backoff countdown simulation
+  let seconds = 8;
+  setInterval(() => {
+    const el = document.getElementById('countdown-timer');
+    if (el && seconds > 0) {
+      seconds--;
+      el.innerText = '00:0' + seconds;
+    }
+  }, 1000);
+</script></main><footer class="w-full bg-surface-container-low"><div class="w-full px-gutter-desktop h-8 flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant"><span>Ardena Studio v2.4.0 • WebGL Accelerated</span><div class="flex items-center gap-space-md"><span>Canvas: 480 × 360</span><span>FPS: 60</span><span class="text-primary font-medium">Cloud Sync Ready</span></div></div></footer></body></html>

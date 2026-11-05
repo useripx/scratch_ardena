@@ -1,0 +1,39 @@
+{
+  "validCatchingGame": {
+    "title": "Kucing Menangkap Apel",
+    "description": "Game di mana kucing digerakkan dengan tombol panah untuk menangkap apel yang jatuh dari atas.",
+    "template": "catching-game",
+    "language": "id",
+    "sprites": [
+      {
+        "name": "Kucing",
+        "role": "player",
+        "costume": "cat-a",
+        "scripts": [
+          {
+            "event": "when_flag_clicked",
+            "blocks": [
+              { "type": "motion_gotoxy", "params": { "x": 0, "y": -120 } },
+              { "type": "variable_set", "params": { "variable": "Skor", "value": 0 } }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Apel",
+        "role": "target",
+        "costume": "apple",
+        "scripts": [
+          {
+            "event": "when_flag_clicked",
+            "blocks": [
+              { "type": "motion_gotoxy", "params": { "x": 0, "y": 150 } }
+            ]
+          }
+        ]
+      }
+    ],
+    "variables": ["Skor"]
+  }
+}
+

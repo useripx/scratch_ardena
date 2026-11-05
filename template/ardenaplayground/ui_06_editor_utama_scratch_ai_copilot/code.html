@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+
+<html lang="id"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface-tint":"#006398","secondary-container":"#d2e0fe","on-primary-fixed-variant":"#004b73","on-primary-fixed":"#001d31","primary-fixed":"#cce5ff","secondary-fixed-dim":"#b9c7e4","on-secondary-fixed-variant":"#39475f","tertiary-container":"#a36700","surface-container-lowest":"#ffffff","on-secondary":"#ffffff","surface-container":"#eceef0","on-tertiary-fixed-variant":"#653e00","surface-bright":"#f7f9fb","on-primary-container":"#fdfcff","on-tertiary":"#ffffff","inverse-primary":"#93ccff","tertiary-fixed":"#ffddb8","inverse-on-surface":"#eff1f3","primary-container":"#007bb9","primary":"#006194","on-tertiary-fixed":"#2a1700","on-surface-variant":"#3f4850","error":"#ba1a1a","on-error-container":"#93000a","on-error":"#ffffff","surface-variant":"#e0e3e5","background":"#f7f9fb","outline":"#707881","on-surface":"#191c1e","tertiary-fixed-dim":"#ffb95f","surface-dim":"#d8dadc","on-primary":"#ffffff","surface":"#f7f9fb","on-secondary-container":"#55637d","outline-variant":"#bfc7d2","surface-container-high":"#e6e8ea","secondary-fixed":"#d6e3ff","on-tertiary-container":"#fffbff","inverse-surface":"#2d3133","error-container":"#ffdad6","on-background":"#191c1e","surface-container-highest":"#e0e3e5","primary-fixed-dim":"#93ccff","surface-container-low":"#f2f4f6","on-secondary-fixed":"#0d1c32","tertiary":"#825100","secondary":"#515f78"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"margin-desktop":"2rem","gutter":"1rem","space-md":"1rem","space-xl":"2rem","space-xs":"0.25rem","space-lg":"1.5rem","margin":"1rem","space-sm":"0.5rem","gutter-desktop":"1.5rem"},fontFamily:{"code-sm":["Inter"],"display-lg":["Plus Jakarta Sans"],"display-lg-mobile":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"label-md":["Inter"],"label-sm":["Inter"],"body-lg":["Plus Jakarta Sans"],"title-md":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"],"headline-sm":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"]},fontSize:{"code-sm":["12px",{"lineHeight":"18px","fontWeight":"500"}],"display-lg":["48px",{"lineHeight":"56px","fontWeight":"800"}],"display-lg-mobile":["34px",{"lineHeight":"42px","fontWeight":"800"}],"headline-xl-mobile":["28px",{"lineHeight":"36px","fontWeight":"700"}],"label-md":["12px",{"lineHeight":"16px","fontWeight":"600"}],"label-sm":["11px",{"lineHeight":"14px","fontWeight":"500"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"title-md":["16px",{"lineHeight":"24px","fontWeight":"600"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"headline-xl":["36px",{"lineHeight":"44px","fontWeight":"700"}],"headline-sm":["20px",{"lineHeight":"28px","fontWeight":"600"}],"headline-lg":["28px",{"lineHeight":"36px","fontWeight":"700"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface"><header class="fixed top-0 left-0 w-full z-50 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-14 w-full px-gutter-desktop flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm select-none"><span class="material-symbols-outlined text-primary text-[24px]">token</span><span class="font-headline-sm text-headline-sm text-primary tracking-tight font-extrabold">ARDENA</span><span class="px-space-xs py-0.5 rounded-full bg-secondary-container font-label-sm text-label-sm text-on-secondary-container font-semibold">Playground</span></div><div class="flex items-center gap-space-xs"><span class="font-title-md text-title-md text-on-surface">Petualangan Kucing Antariksa</span><span class="material-symbols-outlined text-on-surface-variant text-[16px]">lock_open</span></div><nav class="hidden md:flex items-center gap-space-xs" data-active-classes="bg-surface-container text-on-surface font-semibold rounded-lg"><a class="px-space-sm py-1 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors font-label-md text-label-md" data-path="file-menu" href="#">Berkas</a><a class="px-space-sm py-1 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors font-label-md text-label-md" data-path="edit-menu" href="#">Edit</a><a class="px-space-sm py-1 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors font-label-md text-label-md" data-path="view-menu" href="#">Tampilan</a><a class="px-space-sm py-1 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors font-label-md text-label-md" data-path="tutorials" href="#">Tutorial</a></nav></div><div class="flex items-center gap-space-md"><div class="hidden sm:flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-surface-container-low"><span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span><span class="font-label-sm text-label-sm text-on-surface-variant">Tersimpan (IndexedDB)</span></div><button class="flex items-center gap-space-xs px-space-md py-1.5 rounded-xl bg-inverse-surface text-inverse-on-surface hover:bg-on-surface transition-all shadow-[0_2px_8px_rgba(0,97,148,0.15)]" type="button"><span class="material-symbols-outlined text-inverse-primary text-[18px]">auto_awesome</span><span class="font-label-md text-label-md font-semibold">AI Copilot</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-14 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<div class="w-full flex flex-col xl:flex-row gap-space-sm p-space-sm select-none" style="min-height: calc(100vh - 5.5rem);">
+<!-- ========================================== -->
+<!-- KOLOM 1: BLOCK PALETTE & TABS              -->
+<!-- ========================================== -->
+<section class="w-full xl:w-[280px] 2xl:w-[310px] flex-shrink-0 flex flex-col bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<!-- Top Workspace Tabs -->
+<div class="flex items-center bg-surface-container-low px-space-xs pt-space-xs gap-space-xs">
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-t-lg bg-surface-container-lowest text-primary font-title-md text-title-md shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">code</span>
+<span>Kode</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-t-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors font-title-md text-title-md" type="button">
+<span class="material-symbols-outlined text-[18px]">palette</span>
+<span>Kostum</span>
+<span class="px-1.5 py-0.2 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">2</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-t-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors font-title-md text-title-md" type="button">
+<span class="material-symbols-outlined text-[18px]">volume_up</span>
+<span>Suara</span>
+<span class="px-1.5 py-0.2 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">3</span>
+</button>
+</div>
+<!-- Categories & Blocks Split View -->
+<div class="flex flex-1 overflow-hidden">
+<!-- Categories Vertical Pill Bar -->
+<div class="w-16 bg-surface-container-low flex flex-col items-center py-space-sm gap-2 overflow-y-auto">
+<button class="group flex flex-col items-center gap-0.5 p-1 rounded-lg hover:bg-surface-container-high transition-colors" type="button">
+<span class="w-5 h-5 rounded-full" style="background-color: #4C97FF;"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant group-hover:text-on-surface">Gerakan</span>
+</button>
+<button class="group flex flex-col items-center gap-0.5 p-1 rounded-lg hover:bg-surface-container-high transition-colors" type="button">
+<span class="w-5 h-5 rounded-full" style="background-color: #9966FF;"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant group-hover:text-on-surface">Tampilan</span>
+</button>
+<button class="group flex flex-col items-center gap-0.5 p-1 rounded-lg hover:bg-surface-container-high transition-colors" type="button">
+<span class="w-5 h-5 rounded-full" style="background-color: #CF63CF;"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant group-hover:text-on-surface">Suara</span>
+</button>
+<button class="group flex flex-col items-center gap-0.5 p-1 rounded-lg bg-surface-container-high" type="button">
+<span class="w-5 h-5 rounded-full shadow-sm" style="background-color: #FFBF00;"></span>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Kejadian</span>
+</button>
+<button class="group flex flex-col items-center gap-0.5 p-1 rounded-lg hover:bg-surface-container-high transition-colors" type="button">
+<span class="w-5 h-5 rounded-full" style="background-color: #FFAB19;"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant group-hover:text-on-surface">Kontrol</span>
+</button>
+<button class="group flex flex-col items-center gap-0.5 p-1 rounded-lg hover:bg-surface-container-high transition-colors" type="button">
+<span class="w-5 h-5 rounded-full" style="background-color: #5CB1D6;"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant group-hover:text-on-surface">Sensor</span>
+</button>
+<button class="group flex flex-col items-center gap-0.5 p-1 rounded-lg hover:bg-surface-container-high transition-colors" type="button">
+<span class="w-5 h-5 rounded-full" style="background-color: #59C059;"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant group-hover:text-on-surface">Operator</span>
+</button>
+<button class="group flex flex-col items-center gap-0.5 p-1 rounded-lg hover:bg-surface-container-high transition-colors" type="button">
+<span class="w-5 h-5 rounded-full" style="background-color: #FF8C1A;"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant group-hover:text-on-surface">Variabel</span>
+</button>
+<button class="group flex flex-col items-center gap-0.5 p-1 rounded-lg hover:bg-surface-container-high transition-colors" type="button">
+<span class="w-5 h-5 rounded-full" style="background-color: #FF6680;"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant group-hover:text-on-surface">Balok Saya</span>
+</button>
+<div class="w-8 h-px bg-surface-container-highest my-1"></div>
+<button class="w-10 h-10 rounded-xl bg-primary-container text-on-primary-container flex items-center justify-center hover:opacity-90 shadow-sm transition-transform active:scale-95" title="Tambah Ekstensi" type="button">
+<span class="material-symbols-outlined text-[20px]">extension</span>
+</button>
+</div>
+<!-- Draggable Block Palette -->
+<div class="flex-1 p-space-sm bg-surface-container-lowest overflow-y-auto flex flex-col gap-3">
+<div class="flex items-center justify-between pb-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-bold">Palet Balok</span>
+<span class="font-code-sm text-code-sm text-primary">vScratch 3.0</span>
+</div>
+<!-- Kejadian Blocks -->
+<div class="flex flex-col gap-2">
+<span class="font-label-md text-label-md font-bold text-[#D97706] flex items-center gap-1">
+<span class="w-2.5 h-2.5 rounded-full" style="background-color: #FFBF00;"></span>
+              Kejadian
+            </span>
+<!-- Hat Block: Ketika Bendera Hijau Diklik -->
+<div class="cursor-grab active:cursor-grabbing text-white px-3 py-2 rounded-t-xl rounded-b shadow-sm hover:brightness-105 transition-all text-xs font-semibold flex items-center gap-2" style="background-color: #FFBF00;">
+<span>ketika</span>
+<span class="w-3.5 h-3.5 rounded-full bg-emerald-500 inline-flex items-center justify-center text-[10px]">🚩</span>
+<span>diklik</span>
+</div>
+<!-- Hat Block: Ketika tombol spasi ditekan -->
+<div class="cursor-grab active:cursor-grabbing text-white px-3 py-2 rounded-t-xl rounded-b shadow-sm hover:brightness-105 transition-all text-xs font-semibold flex items-center gap-1.5" style="background-color: #FFBF00;">
+<span>ketika tombol</span>
+<span class="bg-amber-600/60 px-1.5 py-0.5 rounded text-[11px]">spasi ▼</span>
+<span>ditekan</span>
+</div>
+<!-- Stack Block: Siarkan pesan -->
+<div class="cursor-grab active:cursor-grabbing text-white px-3 py-2 rounded shadow-sm hover:brightness-105 transition-all text-xs font-semibold flex items-center gap-1.5" style="background-color: #FFBF00;">
+<span>siarkan</span>
+<span class="bg-amber-600/60 px-1.5 py-0.5 rounded text-[11px]">mulai_petualangan ▼</span>
+</div>
+</div>
+<!-- Gerakan Blocks -->
+<div class="flex flex-col gap-2 pt-2">
+<span class="font-label-md text-label-md font-bold text-[#2563EB] flex items-center gap-1">
+<span class="w-2.5 h-2.5 rounded-full" style="background-color: #4C97FF;"></span>
+              Gerakan
+            </span>
+<div class="cursor-grab active:cursor-grabbing text-white px-3 py-2 rounded shadow-sm hover:brightness-105 transition-all text-xs font-semibold flex items-center gap-1.5" style="background-color: #4C97FF;">
+<span>gerak</span>
+<span class="bg-white text-slate-800 px-1.5 py-0.5 rounded text-[11px] font-bold">10</span>
+<span>langkah</span>
+</div>
+<div class="cursor-grab active:cursor-grabbing text-white px-3 py-2 rounded shadow-sm hover:brightness-105 transition-all text-xs font-semibold flex items-center gap-1.5" style="background-color: #4C97FF;">
+<span>ubah x sebesar</span>
+<span class="bg-white text-slate-800 px-1.5 py-0.5 rounded text-[11px] font-bold">10</span>
+</div>
+<div class="cursor-grab active:cursor-grabbing text-white px-3 py-2 rounded shadow-sm hover:brightness-105 transition-all text-xs font-semibold flex items-center gap-1.5" style="background-color: #4C97FF;">
+<span>arah ke</span>
+<span class="bg-blue-600/60 px-1.5 py-0.5 rounded text-[11px]">penunjuk mouse ▼</span>
+</div>
+</div>
+<!-- Kontrol Blocks -->
+<div class="flex flex-col gap-2 pt-2">
+<span class="font-label-md text-label-md font-bold text-[#D97706] flex items-center gap-1">
+<span class="w-2.5 h-2.5 rounded-full" style="background-color: #FFAB19;"></span>
+              Kontrol
+            </span>
+<div class="cursor-grab active:cursor-grabbing text-white p-2.5 rounded shadow-sm hover:brightness-105 transition-all text-xs font-semibold flex flex-col gap-1.5" style="background-color: #FFAB19;">
+<div class="flex items-center gap-1">
+<span>selamanya</span>
+</div>
+<div class="h-4 bg-amber-600/30 rounded-sm ml-3"></div>
+</div>
+<div class="cursor-grab active:cursor-grabbing text-white p-2.5 rounded shadow-sm hover:brightness-105 transition-all text-xs font-semibold flex flex-col gap-1.5" style="background-color: #FFAB19;">
+<div class="flex items-center gap-1">
+<span>jika</span>
+<span class="w-14 h-4 rounded-full bg-amber-700/50 inline-block"></span>
+<span>maka</span>
+</div>
+<div class="h-4 bg-amber-600/30 rounded-sm ml-3"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- KOLOM 2: CENTER SCRATCH WORKSPACE CANVAS   -->
+<!-- ========================================== -->
+<section class="flex-1 min-w-0 bg-surface-container-lowest rounded-xl shadow-sm flex flex-col overflow-hidden relative" style="background-image: radial-gradient(circle, #cbd5e1 1.2px, transparent 1.2px); background-size: 24px 24px;">
+<!-- Canvas Top Control Bar -->
+<div class="h-11 bg-surface-container-lowest/90 backdrop-blur-md px-space-md flex items-center justify-between shadow-sm z-10">
+<div class="flex items-center gap-space-sm">
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-surface-container text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-primary">smart_toy</span>
+<span class="font-title-md text-title-md font-semibold text-xs">Sprite Aktif:</span>
+<span class="font-label-md text-label-md text-primary font-bold">Kucing Astronot</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant hidden md:inline">Skrip ID: #SCR-8092</span>
+</div>
+<!-- Zoom & History Controls -->
+<div class="flex items-center gap-1">
+<button class="w-8 h-8 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container flex items-center justify-center transition-colors" title="Undo" type="button">
+<span class="material-symbols-outlined text-[18px]">undo</span>
+</button>
+<button class="w-8 h-8 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container flex items-center justify-center transition-colors" title="Redo" type="button">
+<span class="material-symbols-outlined text-[18px]">redo</span>
+</button>
+<div class="w-px h-4 bg-surface-container-high mx-1"></div>
+<button class="w-8 h-8 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container flex items-center justify-center transition-colors" title="Perbesar" type="button">
+<span class="material-symbols-outlined text-[18px]">zoom_in</span>
+</button>
+<span class="font-code-sm text-code-sm text-on-surface-variant px-1">100%</span>
+<button class="w-8 h-8 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container flex items-center justify-center transition-colors" title="Perkecil" type="button">
+<span class="material-symbols-outlined text-[18px]">zoom_out</span>
+</button>
+<button class="w-8 h-8 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container flex items-center justify-center transition-colors" title="Ratakan Tampilan" type="button">
+<span class="material-symbols-outlined text-[18px]">center_focus_strong</span>
+</button>
+</div>
+</div>
+<!-- Canvas Script Workspace Area (Live Arranged Scratch Blocks) -->
+<div class="flex-1 p-space-lg overflow-auto relative">
+<!-- Script Cluster 1: Loop Utama Kontrol Kucing Antariksa -->
+<div class="w-[340px] drop-shadow-md transition-all hover:scale-[1.005]">
+<!-- Hat Event Block -->
+<div class="text-white px-4 py-2.5 rounded-t-2xl shadow-sm text-sm font-semibold flex items-center gap-2" style="background-color: #FFBF00;">
+<span>ketika</span>
+<span class="w-4 h-4 rounded-full bg-emerald-500 inline-flex items-center justify-center text-[10px]">🚩</span>
+<span>diklik</span>
+</div>
+<!-- Variable Init Block -->
+<div class="text-white px-4 py-2 text-sm font-semibold flex items-center gap-2 shadow-sm" style="background-color: #FF8C1A;">
+<span>atur</span>
+<span class="bg-amber-800/40 px-2 py-0.5 rounded text-xs">Skor ▼</span>
+<span>ke</span>
+<span class="bg-white text-slate-800 px-2 py-0.5 rounded-full text-xs font-bold">0</span>
+</div>
+<!-- Position Init Block -->
+<div class="text-white px-4 py-2 text-sm font-semibold flex items-center gap-2 shadow-sm" style="background-color: #4C97FF;">
+<span>pergi ke x:</span>
+<span class="bg-white text-slate-800 px-2 py-0.5 rounded-full text-xs font-bold">0</span>
+<span>y:</span>
+<span class="bg-white text-slate-800 px-2 py-0.5 rounded-full text-xs font-bold">-100</span>
+</div>
+<!-- Forever Loop Block -->
+<div class="text-white rounded-b-xl shadow-sm overflow-hidden" style="background-color: #FFAB19;">
+<div class="px-4 py-2 text-sm font-semibold flex items-center gap-2">
+<span>selamanya</span>
+</div>
+<!-- Loop Inner Body -->
+<div class="pl-4 pr-2 pb-2 flex flex-col gap-1.5 border-l-[14px]" style="border-color: #FFAB19;">
+<!-- If Block: Panah Kanan -->
+<div class="rounded-lg p-2 text-xs font-semibold text-white flex flex-col gap-1" style="background-color: #FFAB19;">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span>jika</span>
+<span class="text-white px-2 py-0.5 rounded-full text-[11px] font-medium flex items-center gap-1" style="background-color: #5CB1D6;">
+<span>tombol</span>
+<span class="bg-cyan-700/50 px-1 rounded text-[10px]">panah kanan ▼</span>
+<span>ditekan?</span>
+</span>
+<span>maka</span>
+</div>
+<!-- Action inside If -->
+<div class="ml-2 pl-2 border-l-[8px]" style="border-color: #FFAB19;">
+<div class="text-white px-3 py-1.5 rounded text-xs font-semibold flex items-center gap-1.5 inline-flex" style="background-color: #4C97FF;">
+<span>ubah x sebesar</span>
+<span class="bg-white text-slate-800 px-2 py-0.2 rounded-full text-[11px] font-bold">8</span>
+</div>
+</div>
+</div>
+<!-- If Block: Menyentuh BintangKejora -->
+<div class="rounded-lg p-2 text-xs font-semibold text-white flex flex-col gap-1" style="background-color: #FFAB19;">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span>jika</span>
+<span class="text-white px-2 py-0.5 rounded-full text-[11px] font-medium flex items-center gap-1" style="background-color: #5CB1D6;">
+<span>menyentuh</span>
+<span class="bg-cyan-700/50 px-1 rounded text-[10px]">BintangKejora ▼</span>
+<span>?</span>
+</span>
+<span>maka</span>
+</div>
+<!-- Dual Action inside If -->
+<div class="ml-2 pl-2 border-l-[8px] flex flex-col gap-1" style="border-color: #FFAB19;">
+<div class="text-white px-3 py-1.5 rounded text-xs font-semibold flex items-center gap-1.5 inline-flex" style="background-color: #CF63CF;">
+<span>mainkan suara</span>
+<span class="bg-pink-700/50 px-1.5 py-0.2 rounded text-[11px]">Koin_Chime ▼</span>
+</div>
+<div class="text-white px-3 py-1.5 rounded text-xs font-semibold flex items-center gap-1.5 inline-flex" style="background-color: #FF8C1A;">
+<span>ubah</span>
+<span class="bg-amber-800/40 px-1.5 py-0.2 rounded text-[11px]">Skor ▼</span>
+<span>sebesar</span>
+<span class="bg-white text-slate-800 px-1.5 py-0.2 rounded-full text-[11px] font-bold">10</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom bracket closing -->
+<div class="h-2" style="background-color: #FFAB19;"></div>
+</div>
+</div>
+<!-- Script Cluster 2: Ghost Overlay Suggestion from AI (Interactive Demonstration) -->
+<div class="hidden md:block absolute top-16 right-8 w-[290px] p-2 rounded-xl bg-primary-fixed/20 shadow-lg">
+<div class="flex items-center justify-between pb-1.5 px-1">
+<span class="font-label-sm text-label-sm text-primary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">auto_awesome</span>
+              Usulan Blok Copilot
+            </span>
+<button class="text-xs px-2 py-0.5 rounded bg-primary text-on-primary font-semibold hover:opacity-90 shadow-sm" type="button">Sisipkan</button>
+</div>
+<!-- Ghost Hat Block -->
+<div class="text-white px-3 py-1.5 rounded-t-xl text-xs font-semibold flex items-center gap-1.5 opacity-90" style="background-color: #FFBF00;">
+<span>ketika aku menerima</span>
+<span class="bg-amber-600/70 px-1 rounded text-[10px]">asteroid_hancur ▼</span>
+</div>
+<div class="text-white px-3 py-1.5 rounded-b text-xs font-semibold flex items-center gap-1.5 opacity-90" style="background-color: #9966FF;">
+<span>buat klona dari</span>
+<span class="bg-purple-800/60 px-1 rounded text-[10px]">PartikelLedakan ▼</span>
+</div>
+</div>
+<!-- Watermark Branding Ardena di Sudut Bawah Workspace -->
+<div class="absolute bottom-4 right-4 flex items-center gap-2 bg-surface-container-lowest/80 px-3 py-1.5 rounded-lg shadow-sm backdrop-blur-sm pointer-events-none">
+<img alt="Ardena Technologies Logo" class="h-4 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBv622j-tTq3h3y64uRftD0O2w8G82hEiGvXU9scyQiKhslIS6PDc05q7KGP_WUCZaz1BrpgT4H0UsR0WCfbdQ3MR_Y7PPRo0-LKFEnljjJ1iGtTwbxBvp78y0bekFxfsN-f0AoRXdpTeUal3-f_ZF7iW-nu4dJyxi9SXdrnjhsvotdFYa2avfHlcafV5YzSsixQHT6yvYa0U0HbIgMod2e1o3TgWwIJmBLuOpNdVxGv9J8u-O3_1zTrQ"/>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Visual Node Flow • Ardena Sandbox</span>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- KOLOM 3: STAGE & SPRITE MANAGEMENT (NATIVE) -->
+<!-- ========================================== -->
+<section class="w-full xl:w-[360px] 2xl:w-[390px] flex-shrink-0 flex flex-col gap-space-sm">
+<!-- Native Scratch Stage Frame (Aspect Ratio 4:3 Proportional 480x360) -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col">
+<!-- Stage Controls Bar -->
+<div class="h-10 bg-surface-container-low px-space-sm flex items-center justify-between">
+<div class="flex items-center gap-2">
+<!-- Green Flag (Go) -->
+<button class="w-7 h-7 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white flex items-center justify-center transition-transform active:scale-95 shadow-sm" title="Mulai Proyek (Bendera Hijau)" type="button">
+<span class="text-xs">🚩</span>
+</button>
+<!-- Red Stop Octagon -->
+<button class="w-7 h-7 rounded-lg bg-rose-500 hover:bg-rose-600 text-white flex items-center justify-center transition-transform active:scale-95 shadow-sm" title="Hentikan Proyek" type="button">
+<span class="w-2.5 h-2.5 rounded-sm bg-white"></span>
+</button>
+<div class="w-px h-3 bg-surface-container-high mx-0.5"></div>
+<!-- Turbo mode indicator -->
+<span class="px-2 py-0.5 rounded-full bg-secondary-container font-label-sm text-label-sm text-on-secondary-container font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px] text-primary">bolt</span>
+              Turbo
+            </span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-code-sm text-code-sm text-on-surface-variant font-medium">00:14.2s</span>
+<button class="w-7 h-7 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container flex items-center justify-center transition-colors" title="Layar Penuh" type="button">
+<span class="material-symbols-outlined text-[18px]">fullscreen</span>
+</button>
+</div>
+</div>
+<!-- Stage Viewport (Game Simulation) -->
+<div class="relative w-full aspect-[4/3] bg-slate-950 overflow-hidden select-none">
+<!-- Background Galaxy Canvas Image -->
+<div class="absolute inset-0 bg-cover bg-center opacity-85" data-alt="Deep vibrant galaxy space background filled with glowing neon blue stars, soft cosmic nebula in violet and cyan colors, pixel-perfect clean arcade backdrop for visual Scratch video game" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDpe-1cis9V1FznA3YI7pPukcEwbsHHBqiKwEQYanBaAsPUTo1iYFg_Bs-jrzaghh0I-MjjRKPf4od13SWj3wusiNtvimDwko1zFvBIVQIGFVmbLtp1FiaDuoqtnW0jE56Sc9kltlp9si27qofun8ltXFKHsnOutpH6VI8t_kP-EEfD_XQvf09VoZwGozCW35OLamWyDGXZUEKK0LZxJRbrcjS0Wdk6CIFOu-YQb3zZ')"></div>
+<!-- Score On-Screen Monitor (Standard Scratch Variable Display) -->
+<div class="absolute top-2.5 left-2.5 bg-surface-container-lowest/95 backdrop-blur-sm rounded-md px-2.5 py-1 shadow-md flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold">Skor</span>
+<span class="font-code-sm text-code-sm text-primary font-extrabold bg-primary-fixed px-2 py-0.5 rounded">140</span>
+</div>
+<div class="absolute top-2.5 right-2.5 bg-surface-container-lowest/90 backdrop-blur-sm rounded-md px-2 py-0.5 shadow-md flex items-center gap-1 text-[11px] text-amber-600 font-bold">
+<span>⭐ × 14</span>
+</div>
+<!-- Active Game Actors (Interactive Sprites in Space) -->
+<!-- Sprite: Kucing Astronot (Main Character) -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center group cursor-pointer transition-transform hover:scale-105">
+<div class="w-20 h-20 relative flex items-center justify-center drop-shadow-[0_8px_16px_rgba(0,123,185,0.4)]">
+<div class="w-16 h-16 rounded-full bg-gradient-to-tr from-amber-400 to-amber-200 flex items-center justify-center text-3xl shadow-inner">
+                🐱
+              </div>
+<span class="absolute -bottom-1 -right-1 text-base">🚀</span>
+</div>
+<span class="font-label-sm text-label-sm text-white/80 bg-slate-900/60 px-2 py-0.5 rounded-full mt-1">x: 0, y: -45</span>
+</div>
+<!-- Sprite: Bintang Kejora Collectible -->
+<div class="absolute top-8 right-12 animate-bounce">
+<span class="text-2xl drop-shadow-[0_0_8px_#ffddb8]">⭐</span>
+</div>
+<!-- Sprite: Asteroid Obstacle -->
+<div class="absolute bottom-8 left-10">
+<span class="text-3xl drop-shadow-[0_4px_8px_rgba(0,0,0,0.6)]">🪨</span>
+</div>
+</div>
+</div>
+<!-- Sprite Inspector & Backdrop Management -->
+<div class="bg-surface-container-lowest rounded-xl p-space-sm shadow-sm flex flex-col gap-space-sm">
+<!-- Sprite Attributes Panel -->
+<div class="grid grid-cols-3 sm:grid-cols-6 gap-2 bg-surface-container-low p-2 rounded-lg">
+<div class="col-span-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Sprite</span>
+<input class="w-full bg-surface-container-lowest rounded px-2 py-0.5 font-label-md text-label-md text-on-surface outline-none focus:bg-white shadow-xs" type="text" value="KucingAstronot"/>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">X</span>
+<input class="w-full bg-surface-container-lowest rounded px-1.5 py-0.5 font-code-sm text-code-sm text-on-surface outline-none text-center shadow-xs" type="text" value="120"/>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Y</span>
+<input class="w-full bg-surface-container-lowest rounded px-1.5 py-0.5 font-code-sm text-code-sm text-on-surface outline-none text-center shadow-xs" type="text" value="-45"/>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Ukuran</span>
+<input class="w-full bg-surface-container-lowest rounded px-1.5 py-0.5 font-code-sm text-code-sm text-on-surface outline-none text-center shadow-xs" type="text" value="100"/>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Arah</span>
+<input class="w-full bg-surface-container-lowest rounded px-1.5 py-0.5 font-code-sm text-code-sm text-on-surface outline-none text-center shadow-xs" type="text" value="90"/>
+</div>
+</div>
+<!-- Sprites & Stage Backdrops Grid -->
+<div class="flex gap-2">
+<!-- Sprite List Container -->
+<div class="flex-1 bg-surface-container-low p-2 rounded-lg flex items-center gap-2 overflow-x-auto">
+<!-- Sprite Card 1 (Active) -->
+<div class="flex-shrink-0 w-16 h-20 rounded-lg bg-surface-container-lowest shadow-sm flex flex-col items-center justify-between p-1">
+<span class="w-2 h-2 rounded-full bg-primary self-end"></span>
+<span class="text-2xl">🐱</span>
+<span class="font-label-sm text-label-sm text-primary font-bold truncate w-full text-center">Kucing</span>
+</div>
+<!-- Sprite Card 2 -->
+<div class="flex-shrink-0 w-16 h-20 rounded-lg bg-surface-container-lowest/60 hover:bg-surface-container-lowest transition-colors flex flex-col items-center justify-between p-1 cursor-pointer">
+<span class="w-2 h-2"></span>
+<span class="text-2xl">⭐</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant truncate w-full text-center">Bintang</span>
+</div>
+<!-- Sprite Card 3 -->
+<div class="flex-shrink-0 w-16 h-20 rounded-lg bg-surface-container-lowest/60 hover:bg-surface-container-lowest transition-colors flex flex-col items-center justify-between p-1 cursor-pointer">
+<span class="w-2 h-2"></span>
+<span class="text-2xl">🪨</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant truncate w-full text-center">Asteroid</span>
+</div>
+<!-- Add Sprite Button -->
+<button class="flex-shrink-0 w-14 h-20 rounded-lg bg-primary-container text-on-primary-container flex flex-col items-center justify-center gap-1 hover:opacity-90 shadow-sm transition-transform active:scale-95" title="Pilih Sprite Baru" type="button">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+<span class="font-label-sm text-label-sm font-semibold text-[10px]">Sprite</span>
+</button>
+</div>
+<!-- Backdrop Thumb -->
+<div class="w-20 bg-surface-container-low p-2 rounded-lg flex flex-col items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant text-[10px]">Latar</span>
+<div class="w-14 h-11 rounded bg-slate-900 flex items-center justify-center text-xs overflow-hidden shadow-xs">
+<span class="text-xs">🌌</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface truncate w-full text-center text-[10px]">Galaksi</span>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- KOLOM 4: ARDENA AI COPILOT DOCK SIDEBAR   -->
+<!-- ========================================== -->
+<section class="w-full xl:w-[340px] 2xl:w-[380px] flex-shrink-0 bg-surface-container-lowest rounded-xl shadow-sm flex flex-col overflow-hidden">
+<!-- Copilot Header -->
+<div class="p-space-sm bg-gradient-to-r from-surface-container-lowest via-secondary-container/20 to-surface-container-lowest flex items-center justify-between shadow-xs">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-inverse-surface text-inverse-on-surface flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-inverse-primary text-[20px]">auto_awesome</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-title-md text-title-md font-bold text-on-surface">Ardena Copilot</span>
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+              Gemini 1.5 Flash • Mode Siaga
+            </span>
+</div>
+</div>
+<button class="w-8 h-8 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container flex items-center justify-center transition-colors" title="Sembunyikan Panel Copilot" type="button">
+<span class="material-symbols-outlined text-[20px]">keyboard_double_arrow_right</span>
+</button>
+</div>
+<!-- Mode Switcher Tabs -->
+<div class="grid grid-cols-3 bg-surface-container-low p-1 mx-space-sm mt-space-sm rounded-lg gap-1">
+<button class="py-1.5 rounded-md bg-surface-container-lowest text-primary font-label-md text-label-md font-bold shadow-xs flex items-center justify-center gap-1" type="button">
+<span class="material-symbols-outlined text-[14px]">add_box</span>
+          Buat
+        </button>
+<button class="py-1.5 rounded-md text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors flex items-center justify-center gap-1" type="button">
+<span class="material-symbols-outlined text-[14px]">tune</span>
+          Ubah
+        </button>
+<button class="py-1.5 rounded-md text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors flex items-center justify-center gap-1" type="button">
+<span class="material-symbols-outlined text-[14px]">psychology</span>
+          Jelaskan
+        </button>
+</div>
+<!-- Copilot Interaction Body -->
+<div class="p-space-sm flex-1 flex flex-col gap-space-sm overflow-y-auto">
+<!-- Friendly System Guidance Card -->
+<div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-1">
+<div class="flex items-center gap-1.5 text-primary">
+<span class="material-symbols-outlined text-[18px]">lightbulb</span>
+<span class="font-title-md text-title-md font-bold text-xs">Instruksi AI Natural</span>
+</div>
+<p class="font-body-md text-body-md text-xs text-on-surface-variant leading-relaxed">
+            Tulis ide game dalam bahasa sehari-hari. AI akan menyusun blok logika Scratch dan sprite secara otomatis.
+          </p>
+</div>
+<!-- Quick Idea Preset Chips -->
+<div class="flex flex-col gap-1.5">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Inspirasi Cepat:</span>
+<div class="flex flex-wrap gap-1.5">
+<button class="px-2.5 py-1 rounded-full bg-surface-container hover:bg-secondary-container text-on-surface font-label-sm text-label-sm transition-colors shadow-xs" type="button">
+              🎮 Balapan Mobil
+            </button>
+<button class="px-2.5 py-1 rounded-full bg-surface-container hover:bg-secondary-container text-on-surface font-label-sm text-label-sm transition-colors shadow-xs" type="button">
+              🍎 Tangkap Apel
+            </button>
+<button class="px-2.5 py-1 rounded-full bg-surface-container hover:bg-secondary-container text-on-surface font-label-sm text-label-sm transition-colors shadow-xs" type="button">
+              👾 Space Shooter
+            </button>
+</div>
+</div>
+<!-- Prompt Textarea Container -->
+<div class="flex flex-col gap-1.5 flex-1">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-on-surface font-bold" for="ai-prompt-input">Deskripsi Game Baru</label>
+<span class="font-code-sm text-code-sm text-on-surface-variant">84 / 500</span>
+</div>
+<div class="relative flex-1 min-h-[130px] rounded-xl bg-surface-container-lowest p-2.5 shadow-sm focus-within:ring-2 focus-within:ring-primary/20">
+<textarea class="w-full h-full bg-transparent font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 resize-none outline-none text-xs leading-relaxed" id="ai-prompt-input" placeholder="Contoh: Buat rintangan meteor jatuh dari atas dan pesawat menembak laser..." rows="5">Buat rintangan asteroid jatuh dari atas secara acak. Jika kucing astronot mengenainya, putar suara ledakan dan kurangi nyawa sebanyak 1.</textarea>
+</div>
+</div>
+<!-- Action Callouts -->
+<div class="flex flex-col gap-2 pt-1">
+<button class="w-full py-2.5 rounded-xl bg-primary text-on-primary font-title-md text-title-md font-bold flex items-center justify-center gap-2 shadow-md hover:bg-primary-container transition-all active:scale-[0.99]" type="button">
+<span class="material-symbols-outlined text-[20px]">auto_awesome</span>
+<span>✨ Generate Game dengan AI</span>
+</button>
+<div class="flex gap-2">
+<button class="flex-1 py-1.5 rounded-lg bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors" type="button">
+              Review Blok
+            </button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors" title="Riwayat Permintaan" type="button">
+<span class="material-symbols-outlined text-[16px]">history</span>
+</button>
+</div>
+</div>
+<!-- Transparency & Safety Disclaimer Footnote -->
+<div class="p-2.5 rounded-lg bg-surface-container-low text-on-surface-variant flex items-start gap-2 mt-auto">
+<span class="material-symbols-outlined text-[18px] text-primary flex-shrink-0 mt-0.5">verified_user</span>
+<span class="font-label-sm text-label-sm text-[11px] leading-snug">
+<strong>100% Native Scratch Blocks:</strong> Periksa logika sebelum diterapkan ke editor. Penyimpanan lokal tersinkronisasi via IndexedDB.
+          </span>
+</div>
+</div>
+</section>
+</div>
+<!-- Interactive Client Behavior for Mock Demo State -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const promptInput = document.getElementById('ai-prompt-input');
+      const counter = promptInput?.previousElementSibling?.querySelector('span');
+
+      promptInput?.addEventListener('input', (e) => {
+        if (counter) {
+          counter.textContent = `${e.target.value.length} / 500`;
+        }
+      });
+    });
+  </script>
+</div></main><footer class="w-full bg-surface-container-low"><div class="w-full px-gutter-desktop h-8 flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant"><span>Ardena Studio v2.4.0 • WebGL Accelerated</span><div class="flex items-center gap-space-md"><span>Canvas: 480 × 360</span><span>FPS: 60</span><span class="text-primary font-medium">Cloud Sync Ready</span></div></div></footer></body></html>

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+
+<html lang="id"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-primary-fixed":"#001d31","on-secondary-fixed":"#0d1c32","tertiary-fixed":"#ffddb8","primary-container":"#007bb9","on-tertiary-fixed":"#2a1700","background":"#f7f9fb","on-secondary-container":"#55637d","surface-container-low":"#f2f4f6","surface-variant":"#e0e3e5","surface-container":"#eceef0","surface-container-high":"#e6e8ea","surface":"#f7f9fb","on-primary-container":"#fdfcff","surface-container-lowest":"#ffffff","on-secondary-fixed-variant":"#39475f","inverse-primary":"#93ccff","on-tertiary-fixed-variant":"#653e00","surface-dim":"#d8dadc","tertiary":"#825100","surface-bright":"#f7f9fb","on-tertiary-container":"#fffbff","primary-fixed":"#cce5ff","tertiary-fixed-dim":"#ffb95f","on-primary-fixed-variant":"#004b73","on-secondary":"#ffffff","on-background":"#191c1e","outline":"#707881","primary-fixed-dim":"#93ccff","outline-variant":"#bfc7d2","primary":"#006194","inverse-on-surface":"#eff1f3","on-surface-variant":"#3f4850","surface-container-highest":"#e0e3e5","surface-tint":"#006398","on-error-container":"#93000a","on-tertiary":"#ffffff","on-surface":"#191c1e","tertiary-container":"#a36700","secondary-container":"#d2e0fe","secondary":"#515f78","secondary-fixed-dim":"#b9c7e4","on-primary":"#ffffff","error":"#ba1a1a","inverse-surface":"#2d3133","error-container":"#ffdad6","secondary-fixed":"#d6e3ff","on-error":"#ffffff"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{gutter:"1rem","space-md":"1rem","gutter-desktop":"1.5rem",margin:"1rem","space-sm":"0.5rem","margin-desktop":"2rem","space-lg":"1.5rem","space-xl":"2rem","space-xs":"0.25rem"},fontFamily:{"body-md":["Plus Jakarta Sans"],"display-lg-mobile":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"headline-sm":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"headline-xl":["Plus Jakarta Sans"],"title-md":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"label-md":["Inter"],"label-sm":["Inter"],"code-sm":["Inter"],"display-lg":["Plus Jakarta Sans"]},fontSize:{"body-md":["14px",{lineHeight:"20px",fontWeight:"400"}],"display-lg-mobile":["34px",{lineHeight:"42px",fontWeight:"800"}],"body-lg":["16px",{lineHeight:"24px",fontWeight:"400"}],"headline-sm":["20px",{lineHeight:"28px",fontWeight:"600"}],"headline-lg":["28px",{lineHeight:"36px",fontWeight:"700"}],"headline-xl":["36px",{lineHeight:"44px",fontWeight:"700"}],"title-md":["16px",{lineHeight:"24px",fontWeight:"600"}],"headline-xl-mobile":["28px",{lineHeight:"36px",fontWeight:"700"}],"label-md":["12px",{lineHeight:"16px",fontWeight:"600"}],"label-sm":["11px",{lineHeight:"14px",fontWeight:"500"}],"code-sm":["12px",{lineHeight:"18px",fontWeight:"500"}],"display-lg":["48px",{lineHeight:"56px",fontWeight:"800"}]}}}};</script></head><body class="bg-surface font-body-md text-body-md text-on-surface min-h-screen antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md shrink-0"><img alt="Logo.jpeg" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WQ9SpB4bdgCuRUvRRQZZQBp3VqGHGmbcXafYX_vYmysfJnTqpv_uarqj-cRjioQhPeZ6PFZXLWOFWSL7bT6RQWrBMfFQPUMSOf0pog_HMFKNfwNzAjcSh5rZpBx3S1pczal-nBawNMKyR2eYPuxf3bu89aUYLDjSETWoByFBytfRJIB5SrruLGy_2SNZ_xQOKVgtP-KDIMxykBQiVQfkbH3zEgSqWRBV6xj2dWEZLv90TFYsR6NJAanKvf"/><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight">Ardena Playground</span></div><nav class="hidden lg:flex items-center gap-space-xs" data-active-classes="bg-secondary-container text-on-secondary-fixed font-title-md"><a class="px-space-md py-space-sm rounded-lg text-on-surface-variant font-title-md text-title-md hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="beranda" href="#">Beranda</a><a class="px-space-md py-space-sm rounded-lg text-on-surface-variant font-title-md text-title-md hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="fitur-ai" href="#">Fitur AI</a><a class="px-space-md py-space-sm rounded-lg text-on-surface-variant font-title-md text-title-md hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="template-game" href="#">Template Game</a><a class="px-space-md py-space-sm rounded-lg text-on-surface-variant font-title-md text-title-md hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="tentang" href="#">Tentang</a><a class="px-space-md py-space-sm rounded-lg text-on-surface-variant font-title-md text-title-md hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="panduan" href="#">Panduan</a></nav><div class="flex items-center gap-space-sm shrink-0"><a class="hidden sm:inline-flex items-center justify-center px-space-md py-space-sm rounded-lg text-on-surface font-title-md text-title-md hover:bg-surface-container-high transition-colors" data-path="panduan" href="#">Pelajari Lebih Dulu</a><a class="inline-flex items-center justify-center px-space-lg py-space-sm rounded-lg bg-primary text-on-primary font-title-md text-title-md hover:bg-primary-container transition-all shadow-[0_4px_16px_rgba(0,97,148,0.2)] hover:-translate-y-0.5" data-path="buka-studio" href="#">Buka Studio</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0 ml-space-xs"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-surface"><div class="flex flex-col w-full">
+<div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-6 sm:py-10">
+<!-- TOP ONBOARDING BAR: Step Indicator & Skip Button -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-surface-container-highest">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[22px]">explore</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface tracking-tight">Tur Orientasi Ardena</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed font-label-sm text-label-sm">Interaktif</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Kuasai cara merakit game seru dengan AI dan visual Scratch dalam 3 menit.</p>
+</div>
+</div>
+<div class="flex items-center gap-3 shrink-0 self-end sm:self-center">
+<div class="hidden md:flex items-center gap-2 bg-surface-container-low px-3 py-1.5 rounded-lg text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] text-tertiary">bolt</span>
+<span>Progres: <strong class="text-on-surface" id="step-indicator-label">Langkah 1 dari 4</strong></span>
+</div>
+<a class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all font-title-md text-title-md group" data-path="buka-studio" href="#">
+<span>Lewati Panduan</span>
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-0.5 transition-transform">skip_next</span>
+</a>
+</div>
+</div>
+<!-- MAIN INTERACTIVE WALKTHROUGH CARD -->
+<div class="mt-8 bg-surface-container-lowest rounded-3xl shadow-xl shadow-on-primary-fixed/5 overflow-hidden transition-all duration-500">
+<!-- Top Step Progress Line -->
+<div class="w-full bg-surface-container-high h-1.5 relative overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-primary-container transition-all duration-500 w-1/4" id="top-progress-bar"></div>
+</div>
+<!-- Card Dual Panel Split -->
+<div class="grid grid-cols-1 lg:grid-cols-12 min-h-[580px]">
+<!-- SISI KIRI: Narasi Edukatif & Interaksi Contoh Prompt -->
+<div class="lg:col-span-6 p-6 sm:p-10 lg:p-12 flex flex-col justify-between">
+<div class="space-y-6">
+<!-- Step Badge & Overline -->
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary font-label-md text-label-md font-semibold tracking-wide" id="step-badge">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                Langkah 01 / 04: Mulai Dari Imajinasimu
+              </span>
+<span class="font-label-sm text-label-sm text-outline">• Ramah Pemula</span>
+</div>
+<!-- Dynamic Step Headline & Narrative -->
+<div class="space-y-4" id="step-narrative-container">
+<h1 class="font-display-lg text-[32px] sm:text-headline-xl text-on-surface leading-tight tracking-tight" id="step-title">
+                Tuliskan Ide Game Dalam Bahasa Sehari-hari
+              </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed" id="step-description">
+                Kamu tidak perlu menghafal kode pemrograman yang rumit. Cukup ketik alur yang ingin kamu buat—seperti <span class="text-primary font-semibold">"Kucing menangkap ikan yang jatuh dengan skor bertambah"</span>—dan AI Copilot Ardena akan menganalisis sprite, variabel, serta logika aksinya secara otomatis.
+              </p>
+</div>
+<!-- Interactive Creative Tip Box -->
+<div class="p-4 sm:p-5 rounded-2xl bg-tertiary-fixed/40 transition-colors" id="step-tip-box">
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded-xl bg-tertiary text-on-tertiary flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">lightbulb</span>
+</div>
+<div class="space-y-1">
+<span class="font-title-md text-title-md text-on-tertiary-fixed font-semibold block">Tips Kreatif Ardena:</span>
+<p class="font-body-md text-body-md text-on-tertiary-fixed-variant leading-relaxed" id="step-tip-text">
+                    Sebutkan karakter utama, tantangan, dan kondisi menang/kalah. Semakin spesifik ceritamu, semakin presisi AI merancang logika blok Scratch!
+                  </p>
+</div>
+</div>
+</div>
+<!-- Clickable Fast Prompt Samples -->
+<div class="pt-2">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider block mb-2.5">Coba ide cepat berikut untuk melihat respons AI:</span>
+<div class="flex flex-wrap gap-2" id="prompt-pills">
+<button class="prompt-chip px-3.5 py-2 rounded-xl bg-surface-container hover:bg-secondary-container hover:text-on-secondary-fixed text-on-surface font-title-md text-title-md flex items-center gap-2 transition-all shadow-sm group" onclick="selectPrompt('Game Petualangan Kelinci di Hutan Wortel')" type="button">
+<span class="material-symbols-outlined text-primary text-[18px] group-hover:scale-110 transition-transform">cruelty_free</span>
+<span>Petualangan Kelinci</span>
+</button>
+<button class="prompt-chip px-3.5 py-2 rounded-xl bg-surface-container hover:bg-secondary-container hover:text-on-secondary-fixed text-on-surface font-title-md text-title-md flex items-center gap-2 transition-all shadow-sm group" onclick="selectPrompt('Balapan Mobil Luar Angkasa Hindari Asteroid')" type="button">
+<span class="material-symbols-outlined text-primary text-[18px] group-hover:scale-110 transition-transform">rocket_launch</span>
+<span>Balapan Antariksa</span>
+</button>
+<button class="prompt-chip px-3.5 py-2 rounded-xl bg-surface-container hover:bg-secondary-container hover:text-on-secondary-fixed text-on-surface font-title-md text-title-md flex items-center gap-2 transition-all shadow-sm group" onclick="selectPrompt('Tangkap Apel Merah Jatuh dan Hindari Bom')" type="button">
+<span class="material-symbols-outlined text-primary text-[18px] group-hover:scale-110 transition-transform">sports_esports</span>
+<span>Tangkap Apel Jatuh</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Mini Step Footer Guarantee -->
+<div class="pt-8 mt-6 border-t border-surface-container-high flex items-center gap-2 text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px] text-primary">cloud_off</span>
+<span>Bekerja 100% di peramban secara lokal. Privasi anak terjaga tanpa pendaftaran akun.</span>
+</div>
+</div>
+<!-- SISI KANAN: Interactive Workspace Simulation / Dynamic Mockup -->
+<div class="lg:col-span-6 bg-surface-container-low p-6 sm:p-8 lg:p-10 flex flex-col justify-center relative overflow-hidden">
+<!-- Ambient Glow Circles -->
+<div class="absolute -top-20 -right-20 w-72 h-72 rounded-full bg-primary/10 blur-3xl pointer-events-none"></div>
+<div class="absolute -bottom-20 -left-20 w-72 h-72 rounded-full bg-tertiary/10 blur-3xl pointer-events-none"></div>
+<!-- Studio Mini Mockup Card -->
+<div class="w-full bg-surface-container-lowest rounded-2xl shadow-xl p-5 relative z-10 space-y-4">
+<!-- Mockup Header Bar -->
+<div class="flex items-center justify-between pb-3 border-b border-surface-container-high">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-error inline-block"></span>
+<span class="w-3 h-3 rounded-full bg-tertiary-container inline-block"></span>
+<span class="w-3 h-3 rounded-full bg-primary inline-block"></span>
+<span class="ml-2 font-label-sm text-label-sm text-outline">Simulasi Studio Ardena v1.4</span>
+</div>
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-surface-container text-on-surface font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+<span id="mockup-status-text">AI Copilot Siap</span>
+</div>
+</div>
+<!-- Layer 1: Simulated Copilot Prompt Bar -->
+<div class="bg-surface-container-low p-3.5 rounded-xl space-y-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5 text-primary font-title-md text-title-md">
+<span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+<span class="text-sm font-bold">Prompt AI Ardena</span>
+</div>
+<span class="font-code-sm text-code-sm text-outline">ID: #ARD-802</span>
+</div>
+<div class="relative bg-surface-container-lowest rounded-lg p-3 shadow-inner flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-[18px]">edit_note</span>
+<p class="font-body-md text-body-md text-on-surface truncate" id="live-typing-prompt">
+                  Kucing menangkap apel jatuh dan tambah 10 skor...
+                </p>
+<span class="w-2 h-4 bg-primary inline-block animate-pulse shrink-0"></span>
+</div>
+</div>
+<!-- Transition Visual Bridge: Arrow / AI Synthesis Flow -->
+<div class="flex items-center justify-center py-1">
+<div class="flex items-center gap-2 px-3 py-1 rounded-full bg-primary text-on-primary font-label-sm text-label-sm shadow-md">
+<span class="material-symbols-outlined text-[14px]">psychology</span>
+<span>Copilot merakit blok Scratch otomatis</span>
+<span class="material-symbols-outlined text-[14px]">arrow_downward</span>
+</div>
+</div>
+<!-- Dual Split Preview: Blocks logic + Stage View -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
+<!-- Sub-pane A: Scratch Blocks Generated -->
+<div class="bg-surface-container-low p-3.5 rounded-xl flex flex-col justify-between space-y-2">
+<div class="flex items-center justify-between pb-1">
+<span class="font-title-md text-title-md text-on-surface text-xs font-bold uppercase tracking-wider">Blok Logika</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded bg-surface-container-highest text-on-surface font-label-sm text-[10px]">Scratch 3.0</span>
+</div>
+<!-- Simulated Blocks Stack -->
+<div class="space-y-1.5 font-label-md text-label-md" id="blocks-display">
+<!-- Block 1: Event Yellow/Amber -->
+<div class="bg-tertiary text-on-tertiary px-3 py-1.5 rounded-lg flex items-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-[14px]">flag</span>
+<span class="truncate">ketika 🟢 diklik</span>
+</div>
+<!-- Block 2: Variable -->
+<div class="bg-tertiary-container text-on-tertiary px-3 py-1.5 rounded-lg flex items-center gap-2 shadow-sm ml-2">
+<span class="material-symbols-outlined text-[14px]">calculate</span>
+<span class="truncate">atur [skor] menjadi 0</span>
+</div>
+<!-- Block 3: Control Repeat Forever -->
+<div class="bg-primary-container text-on-primary-container px-3 py-1.5 rounded-lg flex items-center gap-2 shadow-sm ml-2">
+<span class="material-symbols-outlined text-[14px]">repeat</span>
+<span class="truncate">selamanya: jika menyentuh apel</span>
+</div>
+<!-- Block 4: Motion/Sound -->
+<div class="bg-primary text-on-primary px-3 py-1.5 rounded-lg flex items-center gap-2 shadow-sm ml-4">
+<span class="material-symbols-outlined text-[14px]">volume_up</span>
+<span class="truncate">bunyikan "Pop" &amp; ubah skor +1</span>
+</div>
+</div>
+<div class="pt-1 flex items-center gap-1 text-on-surface-variant font-label-sm text-[11px]">
+<span class="material-symbols-outlined text-[14px] text-primary">check_circle</span>
+<span>100% kompatibel Scratch MIT</span>
+</div>
+</div>
+<!-- Sub-pane B: Mini Stage Simulation -->
+<div class="bg-surface-container-low p-3.5 rounded-xl flex flex-col justify-between">
+<div class="flex items-center justify-between pb-1">
+<span class="font-title-md text-title-md text-on-surface text-xs font-bold uppercase tracking-wider">Mini Stage (Layar Game)</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded bg-primary/10 text-primary font-label-sm text-[10px]">60 FPS</span>
+</div>
+<!-- Simulation Canvas Card -->
+<div class="h-28 w-full bg-gradient-to-b from-secondary-container/40 to-surface-container-highest rounded-lg relative overflow-hidden flex items-end justify-center p-2 shadow-inner">
+<!-- Score HUD -->
+<div class="absolute top-2 left-2 px-2 py-0.5 rounded bg-surface-container-lowest/90 font-code-sm text-code-sm text-on-surface shadow-xs">
+                    Skor: <span class="font-bold text-primary" id="mockup-score">20</span>
+</div>
+<!-- Falling Apple -->
+<div class="absolute top-3 right-8 transition-transform duration-700 animate-bounce" id="mock-apple">
+<span class="material-symbols-outlined text-error text-[26px]">nutrition</span>
+</div>
+<!-- Main Mascot / Sprite -->
+<div class="flex flex-col items-center pb-1 transition-transform" id="mock-cat">
+<span class="material-symbols-outlined text-primary text-[36px]">pets</span>
+<span class="font-label-sm text-[10px] text-on-surface-variant font-semibold">Sprite-1 (Kucing)</span>
+</div>
+</div>
+<div class="pt-2 flex items-center justify-between">
+<button class="text-primary hover:text-primary-container font-label-md text-label-md flex items-center gap-1" onclick="testInteractiveBounce()" type="button">
+<span class="material-symbols-outlined text-[14px]">play_circle</span>
+<span>Uji Interaksi</span>
+</button>
+<span class="font-label-sm text-[11px] text-outline">x: 0, y: -45</span>
+</div>
+</div>
+</div>
+<!-- Tooltip Tag -->
+<div class="p-2.5 rounded-xl bg-surface-container text-on-surface-variant font-label-md text-label-md flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">verified</span>
+<span>Transparan &amp; Fleksibel: Kamu bebas menggeser, menghapus, atau menambah blok baru kapan saja!</span>
+</div>
+</div>
+</div>
+</div>
+<!-- BOTTOM CONTROL BAR: Prev, Dots, Next -->
+<div class="p-6 sm:px-10 lg:px-12 bg-surface-container-low border-t border-surface-container flex flex-col sm:flex-row items-center justify-between gap-4">
+<!-- Left: Back Button -->
+<button class="px-5 py-2.5 rounded-xl bg-surface-container text-outline cursor-not-allowed font-title-md text-title-md flex items-center gap-2 transition-all" disabled="" id="btn-prev-step" onclick="changeStep(-1)" type="button">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+<span>Sebelumnya</span>
+</button>
+<!-- Center: Interactive Pagination Dots -->
+<div class="flex items-center gap-3">
+<button class="step-dot w-9 h-2.5 rounded-full bg-primary transition-all duration-300" onclick="goToStep(1)" title="Langkah 1" type="button"></button>
+<button class="step-dot w-2.5 h-2.5 rounded-full bg-surface-container-highest hover:bg-outline-variant transition-all duration-300" onclick="goToStep(2)" title="Langkah 2" type="button"></button>
+<button class="step-dot w-2.5 h-2.5 rounded-full bg-surface-container-highest hover:bg-outline-variant transition-all duration-300" onclick="goToStep(3)" title="Langkah 3" type="button"></button>
+<button class="step-dot w-2.5 h-2.5 rounded-full bg-surface-container-highest hover:bg-outline-variant transition-all duration-300" onclick="goToStep(4)" title="Langkah 4" type="button"></button>
+</div>
+<!-- Right: Primary Forward / Complete Button -->
+<div class="flex items-center gap-3 w-full sm:w-auto">
+<button class="w-full sm:w-auto px-7 py-3 rounded-xl bg-primary text-on-primary font-title-md text-title-md font-bold flex items-center justify-center gap-2 hover:bg-primary-container transition-all shadow-lg shadow-primary/20 hover:-translate-y-0.5" id="btn-next-step" onclick="changeStep(1)" type="button">
+<span id="btn-next-text">Lanjutkan ke Langkah Berikutnya</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- 4 STEP PILLAR OVERVIEW CARDS (Direct Jump Navigator) -->
+<div class="mt-8 space-y-3">
+<div class="flex items-center justify-between">
+<h2 class="font-title-md text-title-md text-on-surface font-bold tracking-tight">4 Pilar Kreasi Ardena Playground</h2>
+<span class="font-label-md text-label-md text-on-surface-variant">Klik kartu untuk melompat langsung</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Pillar 1 -->
+<div class="cursor-pointer p-4 rounded-2xl bg-surface-container-lowest border-2 border-primary shadow-sm hover:shadow-md transition-all group" id="pillar-card-1" onclick="goToStep(1)">
+<div class="flex items-center justify-between mb-2">
+<span class="w-7 h-7 rounded-lg bg-primary text-on-primary flex items-center justify-center font-bold text-xs">1</span>
+<span class="material-symbols-outlined text-primary text-[20px]">edit_note</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface font-semibold group-hover:text-primary transition-colors">Tulis Ide Cerita</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1 text-xs">Ungkapkan ide game dengan kata-kata bebas tanpa beban sintaks kaku.</p>
+</div>
+<!-- Pillar 2 -->
+<div class="cursor-pointer p-4 rounded-2xl bg-surface-container-lowest border-2 border-transparent shadow-sm hover:shadow-md transition-all group" id="pillar-card-2" onclick="goToStep(2)">
+<div class="flex items-center justify-between mb-2">
+<span class="w-7 h-7 rounded-lg bg-surface-container text-on-surface-variant flex items-center justify-center font-bold text-xs">2</span>
+<span class="material-symbols-outlined text-secondary text-[20px]">auto_awesome</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface font-semibold group-hover:text-primary transition-colors">AI Susun Blok</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1 text-xs">Copilot otomatis mengonversi narasi menjadi sprite &amp; struktur Scratch asli.</p>
+</div>
+<!-- Pillar 3 -->
+<div class="cursor-pointer p-4 rounded-2xl bg-surface-container-lowest border-2 border-transparent shadow-sm hover:shadow-md transition-all group" id="pillar-card-3" onclick="goToStep(3)">
+<div class="flex items-center justify-between mb-2">
+<span class="w-7 h-7 rounded-lg bg-surface-container text-on-surface-variant flex items-center justify-center font-bold text-xs">3</span>
+<span class="material-symbols-outlined text-secondary text-[20px]">drag_pan</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface font-semibold group-hover:text-primary transition-colors">Modifikasi Bebas</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1 text-xs">Bongkar pasang blok sesukamu, ganti suara latar, atau ubah kecepatan gerak.</p>
+</div>
+<!-- Pillar 4 -->
+<div class="cursor-pointer p-4 rounded-2xl bg-surface-container-lowest border-2 border-transparent shadow-sm hover:shadow-md transition-all group" id="pillar-card-4" onclick="goToStep(4)">
+<div class="flex items-center justify-between mb-2">
+<span class="w-7 h-7 rounded-lg bg-surface-container text-on-surface-variant flex items-center justify-center font-bold text-xs">4</span>
+<span class="material-symbols-outlined text-secondary text-[20px]">file_download</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface font-semibold group-hover:text-primary transition-colors">Main &amp; Ekspor .sb3</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1 text-xs">Jalankan di layar penuh atau unduh file format .sb3 standar untuk sekolah.</p>
+</div>
+</div>
+</div>
+<!-- QUICK FAQ / ASSURANCE BAR -->
+<div class="mt-8 p-6 rounded-2xl bg-surface-container-low flex flex-col md:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed shrink-0">
+<span class="material-symbols-outlined text-[22px]">family_restroom</span>
+</div>
+<div>
+<h4 class="font-title-md text-title-md text-on-surface font-bold">Dirancang untuk Anak, Guru, &amp; Pembuat Game Semua Usia</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Ardena Playground menggabungkan kurikulum visual computational thinking dengan kemudahan AI masa kini.</p>
+</div>
+</div>
+<div class="flex items-center gap-3 shrink-0">
+<a class="px-5 py-2.5 rounded-xl bg-on-secondary-fixed text-on-primary font-title-md text-title-md hover:bg-on-surface transition-all flex items-center gap-2 shadow-sm" data-path="buka-studio" href="#">
+<span>Langsung Buka Studio</span>
+<span class="material-symbols-outlined text-[18px]">terminal</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<script>
+  let currentStep = 1;
+
+  const stepsData = {
+    1: {
+      badge: "Langkah 01 / 04: Mulai Dari Imajinasimu",
+      title: "Tuliskan Ide Game Dalam Bahasa Sehari-hari",
+      desc: "Kamu tidak perlu menghafal kode yang rumit. Cukup ketik alur yang ingin kamu buat—seperti <strong class='text-primary'>'Kucing menangkap ikan yang jatuh dengan skor bertambah'</strong>—dan AI Copilot Ardena akan menganalisis sprite, variabel, serta aturan permainannya secara otomatis.",
+      tip: "Sebutkan karakter utama, tantangan, dan cara menang/kalah agar AI merancang logika blok yang pas dan seimbang!",
+      promptSample: "Kucing menangkap apel jatuh dan tambah 10 skor...",
+      status: "AI Copilot Siap",
+      nextText: "Lanjutkan ke Langkah Berikutnya",
+      blocks: [
+        { type: "bg-tertiary text-on-tertiary", icon: "flag", text: "ketika 🟢 diklik" },
+        { type: "bg-tertiary-container text-on-tertiary", icon: "calculate", text: "atur [skor] menjadi 0" },
+        { type: "bg-primary-container text-on-primary-container", icon: "repeat", text: "selamanya: jika menyentuh apel" },
+        { type: "bg-primary text-on-primary", icon: "volume_up", text: "bunyikan 'Pop' & ubah skor +1" }
+      ]
+    },
+    2: {
+      badge: "Langkah 02 / 04: AI Merancang Blok Logika",
+      title: "Kecerdasan Buatan Memilih Sprite & Susun Alur",
+      desc: "AI Ardena bukan kotak hitam tersembunyi. Sistem memecah teksmu menjadi komponen visual nyata: Event ketika bendera hijau diklik, perulangan (loop), logika if-else, dan deteksi tabrakan. Semua tersaji terbuka dalam bentuk blok balok.",
+      tip: "Ingin menambahkan musuh baru? Cukup minta 'Tambahkan rintangan batu yang jatuh lebih cepat di level 2' kapan saja melalui chat!",
+      promptSample: "Tambahkan rintangan batu yang jatuh dengan kecepatan acak...",
+      status: "AI Memetakan Struktur Logika",
+      nextText: "Pelajari Modifikasi Blok",
+      blocks: [
+        { type: "bg-tertiary text-on-tertiary", icon: "flag", text: "ketika 🟢 diklik" },
+        { type: "bg-primary-container text-on-primary-container", icon: "alt_route", text: "jika [menyentuh Batu] maka" },
+        { type: "bg-error text-on-error", icon: "heart_broken", text: "kurangi [nyawa] sebesar 1" },
+        { type: "bg-secondary text-on-secondary", icon: "shuffle", text: "atur posisi Y ke acak(180, 200)" }
+      ]
+    },
+    3: {
+      badge: "Langkah 03 / 04: Eksplorasi & Modifikasi",
+      title: "Bongkar Pasang Blok Scratch Sesuka Hatimu",
+      desc: "Kamu memegang kendali penuh atas kode game. Geser blok untuk mengubah kecepatan gerak, edit angka di dalam input variabel, atau tarik blok efek suara favoritmu langsung dari palet alat di sebelah kiri.",
+      tip: "Jangan takut salah! Ardena dilengkapi fitur Riwayat Langkah (Undo/Redo) dan tombol Pulihkan Snapshot jika ada logika yang macet.",
+      promptSample: "Percepat langkah kucing saat tombol spasi ditekan...",
+      status: "Kanvas Siap Diedit",
+      nextText: "Lihat Ekspor & Bermain",
+      blocks: [
+        { type: "bg-primary text-on-primary", icon: "keyboard", text: "ketika tombol [spasi] ditekan" },
+        { type: "bg-primary-container text-on-primary-container", icon: "speed", text: "ubah [kecepatan] sebesar +5" },
+        { type: "bg-tertiary text-on-tertiary", icon: "directions_run", text: "gerak [kecepatan] langkah" },
+        { type: "bg-secondary text-on-secondary", icon: "aspect_ratio", text: "jika di pinggir, pantulkan" }
+      ]
+    },
+    4: {
+      badge: "Langkah 04 / 04: Mainkan & Ekspor .sb3",
+      title: "Mainkan Game-mu Lalu Ekspor Kapan Saja",
+      desc: "Tekan tombol Hijau untuk langsung menguji hasil karyamu di Stage interaktif! Setelah puas, unduh proyek dalam berkas standar <strong>.sb3</strong> untuk dibuka di Scratch Desktop resmi atau diserahkan sebagai tugas sekolah.",
+      tip: "Kamu juga dapat membagikan tautan permainan ke teman sekelas atau menyimpannya di browser untuk dilanjutkan besok.",
+      promptSample: "Simpan & ekspor game: 'Kucing Petualang v1.0.sb3'",
+      status: "Game Siap Dimainkan & Diekspor",
+      nextText: "Masuk ke Studio Sekarang! 🚀",
+      blocks: [
+        { type: "bg-primary text-on-primary", icon: "sports_esports", text: "Stage Mode: Layar Penuh Aktif" },
+        { type: "bg-tertiary text-on-tertiary", icon: "file_download", text: "Ekspor Proyek (.sb3)" },
+        { type: "bg-primary-container text-on-primary-container", icon: "save", text: "Tersimpan di IndexedDB Lokal" },
+        { type: "bg-secondary text-on-secondary", icon: "share", text: "Bagikan Tautan Web Mini" }
+      ]
+    }
+  };
+
+  function updateStepUI() {
+    const data = stepsData[currentStep];
+    
+    // Top Bar Indicators
+    document.getElementById('step-indicator-label').innerText = `Langkah ${currentStep} dari 4`;
+    document.getElementById('top-progress-bar').style.width = `${(currentStep / 4) * 100}%`;
+
+    // Left Panel Narrative
+    document.getElementById('step-badge').innerHTML = `<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span> ${data.badge}`;
+    document.getElementById('step-title').innerHTML = data.title;
+    document.getElementById('step-description').innerHTML = data.desc;
+    document.getElementById('step-tip-text').innerHTML = data.tip;
+
+    // Right Panel Simulation Mockup
+    document.getElementById('mockup-status-text').innerText = data.status;
+    document.getElementById('live-typing-prompt').innerText = data.promptSample;
+
+    // Render Blocks in Mockup
+    const blocksContainer = document.getElementById('blocks-display');
+    blocksContainer.innerHTML = '';
+    data.blocks.forEach((blk, idx) => {
+      const marginClass = idx === 0 ? '' : (idx === 1 ? 'ml-2' : (idx === 2 ? 'ml-2' : 'ml-4'));
+      const blockEl = document.createElement('div');
+      blockEl.className = `${blk.type} px-3 py-1.5 rounded-lg flex items-center gap-2 shadow-sm ${marginClass} transition-all duration-300`;
+      blockEl.innerHTML = `<span class="material-symbols-outlined text-[14px]">${blk.icon}</span><span class="truncate">${blk.text}</span>`;
+      blocksContainer.appendChild(blockEl);
+    });
+
+    // Control Buttons
+    const prevBtn = document.getElementById('btn-prev-step');
+    if (currentStep === 1) {
+      prevBtn.disabled = true;
+      prevBtn.className = "px-5 py-2.5 rounded-xl bg-surface-container text-outline cursor-not-allowed font-title-md text-title-md flex items-center gap-2 transition-all";
+    } else {
+      prevBtn.disabled = false;
+      prevBtn.className = "px-5 py-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-title-md text-title-md flex items-center gap-2 transition-all cursor-pointer";
+    }
+
+    document.getElementById('btn-next-text').innerText = data.nextText;
+
+    // Dots styling
+    const dots = document.querySelectorAll('.step-dot');
+    dots.forEach((dot, index) => {
+      if (index + 1 === currentStep) {
+        dot.className = "step-dot w-9 h-2.5 rounded-full bg-primary transition-all duration-300";
+      } else {
+        dot.className = "step-dot w-2.5 h-2.5 rounded-full bg-surface-container-highest hover:bg-outline-variant transition-all duration-300";
+      }
+    });
+
+    // 4 Mini Pillars Active Border Highlight
+    for (let i = 1; i <= 4; i++) {
+      const pillarCard = document.getElementById(`pillar-card-${i}`);
+      if (i === currentStep) {
+        pillarCard.className = "cursor-pointer p-4 rounded-2xl bg-surface-container-lowest border-2 border-primary shadow-md transition-all group";
+      } else {
+        pillarCard.className = "cursor-pointer p-4 rounded-2xl bg-surface-container-lowest border-2 border-transparent shadow-sm hover:shadow-md transition-all group";
+      }
+    }
+  }
+
+  function changeStep(delta) {
+    if (currentStep === 4 && delta > 0) {
+      // Completed, redirect to studio
+      window.location.href = '#buka-studio';
+      return;
+    }
+    const target = currentStep + delta;
+    if (target >= 1 && target <= 4) {
+      currentStep = target;
+      updateStepUI();
+    }
+  }
+
+  function goToStep(stepNum) {
+    currentStep = stepNum;
+    updateStepUI();
+  }
+
+  function selectPrompt(promptText) {
+    const typingField = document.getElementById('live-typing-prompt');
+    typingField.innerText = promptText;
+    
+    // Animate stage interaction
+    testInteractiveBounce();
+  }
+
+  function testInteractiveBounce() {
+    const cat = document.getElementById('mock-cat');
+    const scoreEl = document.getElementById('mockup-score');
+    
+    cat.style.transform = 'translateY(-14px) scale(1.1)';
+    scoreEl.innerText = parseInt(scoreEl.innerText) + 10;
+    
+    setTimeout(() => {
+      cat.style.transform = 'translateY(0) scale(1)';
+    }, 300);
+  }
+
+  // Initialize view
+  updateStepUI();
+</script></main><footer class="w-full bg-surface-container-low shadow-[0_-1px_8px_rgba(0,0,0,0.02)] mt-space-xl"><div class="max-w-7xl mx-auto px-6 lg:px-12 py-space-xl"><div class="flex flex-col md:flex-row items-center justify-between gap-space-lg"><div class="flex items-center gap-space-md"><img alt="Logo.jpeg" class="h-6 w-auto object-contain opacity-80" src="https://lh3.googleusercontent.com/aida/AEtjO1WQ9SpB4bdgCuRUvRRQZZQBp3VqGHGmbcXafYX_vYmysfJnTqpv_uarqj-cRjioQhPeZ6PFZXLWOFWSL7bT6RQWrBMfFQPUMSOf0pog_HMFKNfwNzAjcSh5rZpBx3S1pczal-nBawNMKyR2eYPuxf3bu89aUYLDjSETWoByFBytfRJIB5SrruLGy_2SNZ_xQOKVgtP-KDIMxykBQiVQfkbH3zEgSqWRBV6xj2dWEZLv90TFYsR6NJAanKvf"/><span class="font-title-md text-title-md text-on-surface-variant">Ardena Technologies • Playground</span><span class="inline-flex items-center px-space-sm py-space-xs rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm">v1.4</span></div><div class="flex items-center gap-space-sm text-center md:text-right"><span class="material-symbols-outlined text-primary text-[18px]">verified_user</span><p class="font-body-md text-body-md text-on-surface-variant">Penyimpanan lokal di browser • Aman, privat, ramah anak &amp; semua usia</p></div></div><div class="mt-space-lg pt-space-lg border-t border-outline-variant/30 flex flex-col sm:flex-row items-center justify-between gap-space-sm font-label-md text-label-md text-on-surface-variant"><p>© 2025 Ardena Technologies. Seluruh hak cipta dilindungi.</p><div class="flex items-center gap-space-lg"><a class="hover:text-on-surface transition-colors" data-path="panduan" href="#">Dokumentasi</a><a class="hover:text-on-surface transition-colors" data-path="tentang" href="#">Privasi &amp; Keamanan</a><a class="hover:text-on-surface transition-colors" data-path="beranda" href="#">Status Sistem</a></div></div></div></footer></body></html>

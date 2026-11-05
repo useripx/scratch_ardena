@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "1.0",
+  "game": {
+    "title": "Kucing Tangkap Apel",
+    "genre": "catching-game",
+    "description": "Tangkap apel yang berjatuhan sebanyak mungkin sebelum waktu habis."
+  },
+  "delta": {
+    "newSpritesCount": 2,
+    "globalVariablesCount": 1,
+    "sfxCount": 1,
+    "logicBlocksCount": 12,
+    "overwrittenBlocksCount": 0
+  },
+  "objects": [
+    {
+      "id": "sprite_cat",
+      "name": "Kucing",
+      "role": "player",
+      "initialPosition": { "x": 0, "y": -120 },
+      "costumes": ["cat_normal", "cat_catch"]
+    },
+    {
+      "id": "sprite_apple",
+      "name": "Apel",
+      "role": "collectible",
+      "initialPosition": { "x": 0, "y": 150 },
+      "costumes": ["apple_red"]
+    }
+  ],
+  "variables": [
+    {
+      "name": "skor",
+      "type": "global",
+      "initialValue": 0
+    }
+  ],
+  "rules": [
+    {
+      "event": "when_flag_clicked",
+      "action": "spawn_repeatedly",
+      "target": "sprite_apple"
+    },
+    {
+      "event": "collision_detected",
+      "actor": "sprite_cat",
+      "target": "sprite_apple",
+      "action": "play_sound_and_increase_score",
+      "sfx": "chomp.wav",
+      "variableChange": {
+        "name": "skor",
+        "amount": 1
+      }
+    }
+  ],
+  "controls": [
+    {
+      "key": "arrow_left",
+      "action": "move_x",
+      "value": -15
+    },
+    {
+      "key": "arrow_right",
+      "action": "move_x",
+      "value": 15
+    }
+  ]
+}
