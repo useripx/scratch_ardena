@@ -224,13 +224,28 @@ Seluruh sub-tahapan backend (**BE-00 s/d BE-07**) telah **100% SELESAI, TERVERIF
 
 ### Sub-Fase FE-04 — Review Hasil AI & Zero Overwrite Review Gate (UI 09, UI 11, UI 19)
 * **Prasyarat:** FE-03 selesai dan disetujui (Disetujui 05/11/2026).
-* **Status:** **PENDING (GERBANG BERIKUTNYA)**
+* **Status:** **DONE (100% PASS — 27 Kasus Uji Lulus, 76.10% Coverage)**
 * **Checklist Tugas FE-04:**
-  - [ ] Implementasi modal bento box `<ReviewGateModal />` (UI 09) menampilkan diff counters detail (+Sprite, +Variabel, +SFX, +Balok, 0 Overwrite).
-  - [ ] Implementasi penampil daftar perubahan terstruktur (daftar nama sprite yang akan ditambahkan vs dipertahankan).
-  - [ ] Implementasi aksi review: "Terapkan ke Editor" vs "Buat Ulang (Regenerate)" vs "Batal / Kembali".
-  - [ ] Implementasi dialog pemulihan error `<ErrorRecoveryDialog />` (UI 11) untuk kode error `INVALID_REQUEST_BODY`, `UNSUPPORTED_TEMPLATE`, `PAYLOAD_TOO_LARGE`.
-  - [ ] Implementasi modal countdown kredit / rate limit `<RateLimitCountdownModal />` (UI 19) saat membaca header `Retry-After: 15`.
+  - [x] Implementasi modal bento box `<ReviewGateModal />` (UI 09) menampilkan diff counters detail (+Sprite, +Variabel, +SFX, +Balok, 0 Overwrite).
+  - [x] Implementasi penampil daftar perubahan terstruktur (daftar nama sprite yang akan ditambahkan vs dipertahankan).
+  - [x] Implementasi aksi review: "Terapkan ke Editor" vs "Buat Ulang (Regenerate)" vs "Batal / Kembali".
+  - [x] Implementasi dialog pemulihan error `<ErrorRecoveryDialog />` (UI 11) untuk kode error `INVALID_REQUEST_BODY`, `UNSUPPORTED_TEMPLATE`, `PAYLOAD_TOO_LARGE`, `NETWORK_ERROR`.
+  - [x] Implementasi modal countdown kredit / rate limit `<RateLimitCountdownModal />` (UI 19) saat membaca header `Retry-After: 15`.
+  - [x] Kompilasi TypeScript sukses (`0 ERROR`) dan automated test suite 100% PASS (27/27 tests di frontend, 65/65 di backend).
+
+---
+
+### Sub-Fase FE-05 — Penyimpanan Lokal IndexedDB, Manajemen Proyek & Ekspor .sb3 (UI 12, UI 13, UI 14, UI 15, UI 17)
+* **Prasyarat:** FE-04 selesai dan disetujui (Disetujui 05/11/2026).
+* **Status:** **PENDING (GERBANG BERIKUTNYA)**
+* **Checklist Tugas FE-05:**
+  - [ ] Implementasi service client-side IndexedDB wrapper (`storage.service.ts`) untuk penyimpanan proyek offline tanpa database server.
+  - [ ] Implementasi modal simpan proyek `<SaveProjectDialog />` (UI 12) dengan validasi nama unik dan metadata tags.
+  - [ ] Implementasi pustaka proyek lokal `<LocalProjectLibrary />` (UI 13) daftar proyek, kartu thumbnail, edit, duplikasi, dan hapus.
+  - [ ] Implementasi modal ekspor file Scratch `<ExportSb3Modal />` (UI 14) untuk unduh file standar `.sb3` dan ringkasan JSON.
+  - [ ] Implementasi modal pengaturan pengguna `<PreferencesModal />` (UI 15) tema tampilan, audio feedback, dan default template.
+  - [ ] Implementasi modal konfirmasi tindakan destruktif `<ConfirmationModal />` (UI 17) sebelum menghapus proyek.
+  - [ ] Integrasi automated test suites IndexedDB & modals di `frontend/tests/storage.test.tsx`.
   - [ ] Kompilasi TypeScript sukses (`0 ERROR`) dan automated test suite 100% PASS.
 
 
