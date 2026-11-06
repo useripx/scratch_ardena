@@ -1,6 +1,6 @@
 {
   "name": "ardena-playground",
-  "version": "1.0.0-rc1",
+  "version": "1.0.0",
   "description": "Ardena Playground — AI-Assisted Scratch 3.0 Game Studio",
   "private": true,
   "scripts": {

@@ -218,7 +218,7 @@ export const PreferencesModal: React.FC<PreferencesModalProps> = ({
               </p>
             </div>
             <div className="p-3 rounded-xl bg-gray-50 border border-gray-200 flex flex-col gap-1 text-[11px]">
-              <div><strong>Aplikasi:</strong> Ardena Playground Web v1.0.0-rc1</div>
+              <div><strong>Aplikasi:</strong> Ardena Playground Web v1.0.0 (MVP Release)</div>
               <div><strong>Arsitektur:</strong> Scratch 3.0 Compatible + Hexa-Cluster AI Cascading</div>
               <div><strong>Pengembang:</strong> Yogi Ario & Tim Pengembang Ardena</div>
             </div>

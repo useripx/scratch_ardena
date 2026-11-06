@@ -1,21 +1,20 @@
 # Task Status — Pelacak Status & Progres Proyek Ardena Playground
 
-> **STATUS PROYEK:** AKTIF (TAHAP 07 LIVE INTEGRATION & TAHAP 08 MVP RELEASE)  
+> **STATUS PROYEK:** SELESAI (TAHAP 01 S/D 08 TUNTAS — MVP RELEASE v1.0.0)  
 > **OTORITAS TERTINGGI:** Yogi Ario (Project Owner / Lead Developer)  
-> **TERAKHIR DIPERBARUI:** 06 November 2026, 11:45 WIB  
+> **TERAKHIR DIPERBARUI:** 06 November 2026, 11:55 WIB  
 
 ---
 
 ## 📊 Ringkasan Progres Keseluruhan
 
 ```mermaid
-pie title Status Penyelesaian Tahapan Utama Proyek
-    "Selesai (Tahap 01 s/d 07, BE-00..07, FE-01..07, INT-01)" : 95
-    "Aktif / Rilis (Tahap 08 Hardening & MVP)" : 5
+pie title Status Penyelesaian Tahapan Utama Proyek Master
+    "Selesai (Tahap 01 s/d 08 MVP Release)" : 100
 ```
 
-* **Tahap Master:** Tahap 07 (Integrasi Penuh Live Runtime & Credit Economy) & Tahap 08 (MVP Release)
-* **Status Pengujian Otomatis:** **137 TESTS PASS (100% LULUS)** across 17 test suites (72 Frontend, 65 Backend)
+* **Tahap Master:** Tahap 08 (Hardening, UAT, dan MVP Release v1.0.0 Resmi)
+* **Status Pengujian Otomatis:** **143 TESTS PASS (100% LULUS MUTLAK)** across 18 test suites (78 Frontend, 65 Backend)
 * **Kepatuhan Tata Kelola:** *No Plan, No Code. No Approval, No Code. No Evidence, No Completion.*
 
 ---
@@ -27,11 +26,11 @@ pie title Status Penyelesaian Tahapan Utama Proyek
 | **Tahap 01** | Repository Audit & Feasibility | Tech Lead | **DONE** | Disetujui | URL repo utama `useripx/scratch_ardena` & upstream ditetapkan. |
 | **Tahap 02** | Desain UI/UX dengan Google Stitch | UI/UX Designer | **DONE** | Disetujui | 19 layar tuntas & tersimpan di `template/ardenaplayground/`. |
 | **Tahap 03** | Persiapan Repository dan Baseline | Tech Lead / BE | **DONE** | Disetujui | Git init, .gitignore anti-secret leakage, remote origin, branch main & develop, initial commit tuntas. |
-| **Tahap 04** | Implementasi Kode Frontend | FE Engineer | **DONE** | Disetujui | 19 layar Stitch tuntas, Scratch compatible, 72 automated tests PASS (Sub-Fase FE-01 s/d FE-07). |
+| **Tahap 04** | Implementasi Kode Frontend | FE Engineer | **DONE** | Disetujui | 19 layar Stitch tuntas, Scratch compatible, 78 automated tests PASS (Sub-Fase FE-01 s/d FE-07). |
 | **Tahap 05** | Backend AI Service (BE-00 s/d BE-07) | Senior BE | **DONE** | Disetujui | 100% PASS (65/65 Tests, 93.49% Coverage, Paket Dokumen BE-07 Tuntas). |
 | **Tahap 06** | AI Game Generator & Block Mapping | Mapper Dev | **DONE** | Disetujui | AST Block Mapping Scratch 3.0, Zero Overwrite Review Gate, Diff Bento Box. |
 | **Tahap 07** | Integrasi Editor, Local Storage & Export | Fullstack | **DONE** | Disetujui | Live Runtime Integration (INT-01), AI Credit Wallet (5500 welcome + 500 daily), IndexedDB, .sb3 Export. |
-| **Tahap 08** | Hardening, UAT, dan MVP Release | QA / All | **ACTIVE** | Menunggu | Persiapan peluncuran MVP v1.0.0-rc1. |
+| **Tahap 08** | Hardening, UAT, dan MVP Release | QA / All | **DONE** | Disetujui | 100% PASS (143/143 tests), Laporan UAT tuntas di `Docs/release/UAT_Release_Report_v1.0.0.md`. |
 
 ---
 
