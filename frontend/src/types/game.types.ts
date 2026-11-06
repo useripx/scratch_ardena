@@ -179,3 +179,56 @@ export class ApiClientError extends Error {
     Object.setPrototypeOf(this, new.target.prototype);
   }
 }
+
+/**
+ * =========================================================================
+ * Sub-Fase FE-05: Entitas & Skema Penyimpanan Lokal IndexedDB
+ * =========================================================================
+ */
+
+export type ProjectCategory = 'arcade' | 'puzzle' | 'shooter' | 'edukasi' | 'lainnya';
+
+export interface ProjectStats {
+  spriteCount: number;
+  blockCount: number;
+  variableCount: number;
+  soundCount: number;
+  estimatedSizeBytes: number;
+}
+
+export interface StoredProject {
+  id: string; // Identifier unik proyek (misal: 'proj-1730800000000-xyz')
+  title: string; // Judul proyek (maks 60 karakter)
+  category: ProjectCategory;
+  tags: string[]; // Contoh: ['Kucing', 'Luar Angkasa', 'AI']
+  createdAt: string; // ISO 8601 string
+  updatedAt: string; // ISO 8601 string
+  version: string; // Skema versi entitas proyek (default: '1.0')
+  gameSpec: ArdenaGameSpec; // Payload spesifikasi game hasil AI
+  scratchPayload?: {
+    // AST Scratch 3.0 project.json
+    targets: unknown[];
+    monitors: unknown[];
+    meta: { semver: string; vm: string; agent: string };
+  };
+  thumbnailDataUrl?: string; // Optional snapshot / visual placeholder
+  stats: ProjectStats;
+}
+
+export interface UserPreferences {
+  theme: 'light' | 'dark' | 'system';
+  soundEffectsEnabled: boolean;
+  autoSaveIntervalSeconds: number; // default: 60
+  defaultTemplate: SupportedTemplateKey;
+  highContrastMode: boolean;
+  aiModelPreference: string;
+}
+
+export const DEFAULT_USER_PREFERENCES: UserPreferences = {
+  theme: 'light',
+  soundEffectsEnabled: true,
+  autoSaveIntervalSeconds: 60,
+  defaultTemplate: 'catching-game',
+  highContrastMode: false,
+  aiModelPreference: 'gemini-1.5-flash',
+};
