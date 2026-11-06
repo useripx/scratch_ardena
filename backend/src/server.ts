@@ -3,7 +3,7 @@ import { config } from './config/env';
 
 const app = createApp();
 
-const server = app.listen(config.port, () => {
+const server = app.listen(config.port, '0.0.0.0', () => {
   console.log(`====================================================`);
   console.log(`🚀 Ardena Playground Backend Service Berjalan`);
   console.log(`📡 URL Server   : http://localhost:${config.port}`);
