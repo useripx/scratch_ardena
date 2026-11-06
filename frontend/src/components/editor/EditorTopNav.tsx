@@ -9,6 +9,9 @@ export interface EditorTopNavProps {
   isPlaying?: boolean;
   onTogglePlay?: () => void;
   onStop?: () => void;
+  onSaveProject?: () => void;
+  onExportSb3?: () => void;
+  onOpenPreferences?: () => void;
 }
 
 export const EditorTopNav: React.FC<EditorTopNavProps> = ({
@@ -20,6 +23,9 @@ export const EditorTopNav: React.FC<EditorTopNavProps> = ({
   isPlaying = false,
   onTogglePlay,
   onStop,
+  onSaveProject,
+  onExportSb3,
+  onOpenPreferences,
 }) => {
   const [isEditingName, setIsEditingName] = useState(false);
   const [nameInput, setNameInput] = useState(projectName);
@@ -122,9 +128,44 @@ export const EditorTopNav: React.FC<EditorTopNavProps> = ({
       </div>
 
       {/* Right: Local Save Status & AI Copilot Toggle */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2">
+        {onSaveProject && (
+          <button
+            type="button"
+            onClick={onSaveProject}
+            title="Simpan Proyek ke Browser"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-[#f0f4f8] hover:bg-[#e1e9f0] text-[#006194] transition-colors"
+          >
+            <span>💾</span>
+            <span className="hidden sm:inline">Simpan</span>
+          </button>
+        )}
+
+        {onExportSb3 && (
+          <button
+            type="button"
+            onClick={onExportSb3}
+            title="Ekspor Proyek ke .sb3"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold border border-gray-200 hover:bg-gray-100 text-gray-700 transition-colors"
+          >
+            <span>📦</span>
+            <span className="hidden sm:inline">Ekspor</span>
+          </button>
+        )}
+
+        {onOpenPreferences && (
+          <button
+            type="button"
+            onClick={onOpenPreferences}
+            title="Pengaturan Studio"
+            className="p-1.5 rounded-lg border border-gray-200 hover:bg-gray-100 text-gray-700 text-xs transition-colors"
+          >
+            ⚙️
+          </button>
+        )}
+
         {/* Saved Status Indicator */}
-        <div className="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#f2f4f6] text-[11px] font-medium text-gray-600">
+        <div className="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#f2f4f6] text-[11px] font-medium text-gray-600">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
           <span>Tersimpan (IndexedDB)</span>
         </div>

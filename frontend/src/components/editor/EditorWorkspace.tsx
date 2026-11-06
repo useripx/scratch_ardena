@@ -6,16 +6,23 @@ import { ReadyPlaytestBanner } from './ReadyPlaytestBanner';
 import { ReviewGateModal } from '../modals/ReviewGateModal';
 import { ErrorRecoveryDialog } from '../modals/ErrorRecoveryDialog';
 import { RateLimitCountdownModal } from '../modals/RateLimitCountdownModal';
+import { SaveProjectDialog } from '../modals/SaveProjectDialog';
+import { ExportSb3Modal } from '../modals/ExportSb3Modal';
+import { PreferencesModal } from '../modals/PreferencesModal';
 import { apiService } from '../../services/api.service';
+import { storageService } from '../../services/storage.service';
 import {
   ArdenaGameSpec,
   DiffCounters,
   SupportedTemplateKey,
+  StoredProject,
+  ProjectCategory,
 } from '../../types/game.types';
 
 export interface EditorWorkspaceProps {
   initialProjectName?: string;
   initialTemplateId?: SupportedTemplateKey;
+  initialProject?: StoredProject;
   onBackToHome: () => void;
   onGameGenerated?: (game: ArdenaGameSpec, diff: DiffCounters) => void;
 }
@@ -23,13 +30,24 @@ export interface EditorWorkspaceProps {
 export const EditorWorkspace: React.FC<EditorWorkspaceProps> = ({
   initialProjectName = 'Game Tanpa Judul',
   initialTemplateId,
+  initialProject,
   onBackToHome,
   onGameGenerated,
 }) => {
-  const [projectName, setProjectName] = useState(initialProjectName);
+  const [projectName, setProjectName] = useState(
+    initialProject ? initialProject.title : initialProjectName
+  );
   const [isCopilotOpen, setIsCopilotOpen] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
+
+  // Storage & Export States (FE-05)
+  const [isSaveModalOpen, setIsSaveModalOpen] = useState(false);
+  const [isExportModalOpen, setIsExportModalOpen] = useState(false);
+  const [isPreferencesModalOpen, setIsPreferencesModalOpen] = useState(false);
+  const [activeProject, setActiveProject] = useState<StoredProject | null>(
+    initialProject || null
+  );
 
   // Error States
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -114,6 +132,60 @@ export const EditorWorkspace: React.FC<EditorWorkspaceProps> = ({
     setIsPlaying(false);
   };
 
+  // FE-05: Storage & Preferences Handlers
+  const handleSaveProject = async (data: {
+    title: string;
+    category: ProjectCategory;
+    tags: string[];
+  }) => {
+    const spec = currentGameSpec || {
+      title: data.title,
+      genre: initialTemplateId || 'catching-game',
+      description: 'Game dibuat dengan Ardena Playground Scratch Editor.',
+      rules: {
+        winCondition: 'Raih 10 poin untuk menang!',
+        loseCondition: 'Waktu habis sebelum mencapai skor.',
+      },
+      sprites: [
+        {
+          name: 'Kucing',
+          role: 'player',
+          costume: 'costume1',
+          initialPosition: { x: 0, y: 0 },
+          scripts: [{ trigger: 'when_flag_clicked', action: 'move_with_keys' }],
+        },
+      ],
+      variables: [{ name: 'Skor', initialValue: 0 }],
+      soundEffects: ['pop'],
+    };
+
+    let targetProject: StoredProject;
+    if (activeProject) {
+      targetProject = {
+        ...activeProject,
+        title: data.title,
+        category: data.category,
+        tags: data.tags,
+        gameSpec: spec,
+      };
+    } else {
+      targetProject = storageService.createProjectFromSpec(spec, data.title, data.tags);
+      targetProject.category = data.category;
+    }
+
+    const saved = await storageService.saveProject(targetProject);
+    setActiveProject(saved);
+    setProjectName(saved.title);
+  };
+
+  const handleOpenExport = () => {
+    if (!activeProject && currentGameSpec) {
+      const proj = storageService.createProjectFromSpec(currentGameSpec, projectName);
+      setActiveProject(proj);
+    }
+    setIsExportModalOpen(true);
+  };
+
   return (
     <div className="w-full min-h-screen flex flex-col bg-[#f7f9fb] text-[#191c1e] overflow-hidden select-none">
       {/* Top Navigation Bar */}
@@ -126,6 +198,9 @@ export const EditorWorkspace: React.FC<EditorWorkspaceProps> = ({
         isPlaying={isPlaying}
         onTogglePlay={handleTogglePlay}
         onStop={handleStop}
+        onSaveProject={() => setIsSaveModalOpen(true)}
+        onExportSb3={handleOpenExport}
+        onOpenPreferences={() => setIsPreferencesModalOpen(true)}
       />
 
       {/* Main Workspace Grid (3 Kolom: Palet Balok, Kanvas Workspace, Stage & Dock AI) */}
@@ -160,9 +235,8 @@ export const EditorWorkspace: React.FC<EditorWorkspaceProps> = ({
               <button
                 type="button"
                 onClick={() => setActiveCategory('kejadian')}
-                className={`flex flex-col items-center gap-0.5 p-1 rounded-lg ${
-                  activeCategory === 'kejadian' ? 'bg-amber-100' : 'hover:bg-gray-200'
-                }`}
+                className={`flex flex-col items-center gap-0.5 p-1 rounded-lg ${activeCategory === 'kejadian' ? 'bg-amber-100' : 'hover:bg-gray-200'
+                  }`}
                 title="Kejadian"
               >
                 <span className="w-4 h-4 rounded-full bg-[#FFBF00]" />
@@ -171,9 +245,8 @@ export const EditorWorkspace: React.FC<EditorWorkspaceProps> = ({
               <button
                 type="button"
                 onClick={() => setActiveCategory('kontrol')}
-                className={`flex flex-col items-center gap-0.5 p-1 rounded-lg ${
-                  activeCategory === 'kontrol' ? 'bg-amber-100' : 'hover:bg-gray-200'
-                }`}
+                className={`flex flex-col items-center gap-0.5 p-1 rounded-lg ${activeCategory === 'kontrol' ? 'bg-amber-100' : 'hover:bg-gray-200'
+                  }`}
                 title="Kontrol"
               >
                 <span className="w-4 h-4 rounded-full bg-[#FFAB19]" />
@@ -182,9 +255,8 @@ export const EditorWorkspace: React.FC<EditorWorkspaceProps> = ({
               <button
                 type="button"
                 onClick={() => setActiveCategory('gerakan')}
-                className={`flex flex-col items-center gap-0.5 p-1 rounded-lg ${
-                  activeCategory === 'gerakan' ? 'bg-blue-100' : 'hover:bg-gray-200'
-                }`}
+                className={`flex flex-col items-center gap-0.5 p-1 rounded-lg ${activeCategory === 'gerakan' ? 'bg-blue-100' : 'hover:bg-gray-200'
+                  }`}
                 title="Gerakan"
               >
                 <span className="w-4 h-4 rounded-full bg-[#4C97FF]" />
@@ -193,9 +265,8 @@ export const EditorWorkspace: React.FC<EditorWorkspaceProps> = ({
               <button
                 type="button"
                 onClick={() => setActiveCategory('variabel')}
-                className={`flex flex-col items-center gap-0.5 p-1 rounded-lg ${
-                  activeCategory === 'variabel' ? 'bg-orange-100' : 'hover:bg-gray-200'
-                }`}
+                className={`flex flex-col items-center gap-0.5 p-1 rounded-lg ${activeCategory === 'variabel' ? 'bg-orange-100' : 'hover:bg-gray-200'
+                  }`}
                 title="Variabel"
               >
                 <span className="w-4 h-4 rounded-full bg-[#FF8C1A]" />
@@ -280,9 +351,8 @@ export const EditorWorkspace: React.FC<EditorWorkspaceProps> = ({
 
         {/* Kolom 3: Stage Preview & Sprite Pane */}
         <section
-          className={`flex flex-col bg-white shrink-0 transition-all ${
-            isCopilotOpen ? 'w-80 2xl:w-96 mr-[380px] 2xl:mr-[420px]' : 'w-96 2xl:w-[480px]'
-          }`}
+          className={`flex flex-col bg-white shrink-0 transition-all ${isCopilotOpen ? 'w-80 2xl:w-96 mr-[380px] 2xl:mr-[420px]' : 'w-96 2xl:w-[480px]'
+            }`}
         >
           {/* Stage Canvas Area */}
           <div className="p-3 border-b border-gray-200 relative">
@@ -310,16 +380,14 @@ export const EditorWorkspace: React.FC<EditorWorkspaceProps> = ({
               {/* Playtest Visual Characters */}
               <div className="flex items-center justify-around py-4 z-10">
                 <div
-                  className={`text-4xl transition-transform ${
-                    isPlaying ? 'animate-bounce' : ''
-                  }`}
+                  className={`text-4xl transition-transform ${isPlaying ? 'animate-bounce' : ''
+                    }`}
                 >
                   🧑‍🚀
                 </div>
                 <div
-                  className={`text-2xl transition-transform ${
-                    isPlaying ? 'animate-pulse' : ''
-                  }`}
+                  className={`text-2xl transition-transform ${isPlaying ? 'animate-pulse' : ''
+                    }`}
                 >
                   ⭐
                 </div>
@@ -413,6 +481,52 @@ export const EditorWorkspace: React.FC<EditorWorkspaceProps> = ({
           if (lastPromptText) handleGenerate(lastPromptText);
         }}
         onClose={() => setIsRateLimitModalOpen(false)}
+      />
+
+      {/* Save Project to IndexedDB Modal (UI 12) */}
+      <SaveProjectDialog
+        isOpen={isSaveModalOpen}
+        initialTitle={projectName}
+        stats={activeProject?.stats}
+        onSave={handleSaveProject}
+        onClose={() => setIsSaveModalOpen(false)}
+      />
+
+      {/* Export .sb3 Modal (UI 14) */}
+      <ExportSb3Modal
+        isOpen={isExportModalOpen}
+        project={
+          activeProject ||
+          (currentGameSpec
+            ? storageService.createProjectFromSpec(currentGameSpec, projectName)
+            : storageService.createProjectFromSpec(
+                {
+                  title: projectName,
+                  genre: initialTemplateId || 'catching-game',
+                  description: 'Game Scratch 3.0 buatan Ardena Playground',
+                  rules: { winCondition: 'Skor 10', loseCondition: 'Waktu habis' },
+                  sprites: [
+                    {
+                      name: 'Kucing',
+                      role: 'player',
+                      costume: 'costume1',
+                      initialPosition: { x: 0, y: 0 },
+                      scripts: [],
+                    },
+                  ],
+                  variables: [{ name: 'Skor', initialValue: 0 }],
+                  soundEffects: ['pop'],
+                },
+                projectName
+              ))
+        }
+        onClose={() => setIsExportModalOpen(false)}
+      />
+
+      {/* Studio Preferences Modal (UI 15) */}
+      <PreferencesModal
+        isOpen={isPreferencesModalOpen}
+        onClose={() => setIsPreferencesModalOpen(false)}
       />
     </div>
   );
