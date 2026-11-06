@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { EditorTopNav } from './EditorTopNav';
-import { AICopilotPanel } from './AICopilotPanel';
+import { AICopilotPanel, CopilotMode } from './AICopilotPanel';
 import { GeneratingOverlay } from './GeneratingOverlay';
 import { ReadyPlaytestBanner } from './ReadyPlaytestBanner';
 import { ReviewGateModal } from '../modals/ReviewGateModal';
@@ -20,6 +20,7 @@ import {
   SupportedTemplateKey,
   StoredProject,
   ProjectCategory,
+  AI_ACTION_CREDIT_COSTS,
 } from '../../types/game.types';
 
 export interface EditorWorkspaceProps {
@@ -53,12 +54,31 @@ export const EditorWorkspace: React.FC<EditorWorkspaceProps> = ({
     initialProject || null
   );
 
-  // Error States
+  // Error & Rate Limit States
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [errorCode, setErrorCode] = useState<string | undefined>(undefined);
   const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
   const [isRateLimitModalOpen, setIsRateLimitModalOpen] = useState(false);
   const [rateLimitSeconds, setRateLimitSeconds] = useState(15);
+  const [rateLimitModalTitle, setRateLimitModalTitle] = useState<string | undefined>(undefined);
+  const [rateLimitModalDesc, setRateLimitModalDesc] = useState<string | undefined>(undefined);
+  const [rateLimitCreditsRemaining, setRateLimitCreditsRemaining] = useState<number | undefined>(undefined);
+
+  // AI Agent Credit Economy State
+  const [creditsBalance, setCreditsBalance] = useState<number>(5500);
+
+  // Initialize credits from storage on mount (with auto +500 daily refresh)
+  useEffect(() => {
+    let isMounted = true;
+    storageService.getCredits().then((credits) => {
+      if (isMounted) {
+        setCreditsBalance(credits.balance);
+      }
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   // Review Gate States (UI 09)
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
@@ -70,13 +90,37 @@ export const EditorWorkspace: React.FC<EditorWorkspaceProps> = ({
   // Active Category in Palette
   const [activeCategory, setActiveCategory] = useState<'gerakan' | 'kejadian' | 'kontrol' | 'variabel'>('kejadian');
 
-  // Handle AI Game Generation
-  const handleGenerate = async (prompt: string, template?: SupportedTemplateKey) => {
+  // Handle AI Game Generation with Credit Deduction
+  const handleGenerate = async (
+    prompt: string,
+    template?: SupportedTemplateKey,
+    mode: CopilotMode = 'buat'
+  ) => {
     setIsGenerating(true);
     setErrorMessage(null);
     setErrorCode(undefined);
     setIsPlaytestBannerVisible(false);
     setLastPromptText(prompt);
+
+    // 1. Credit Economy Check & Deduction
+    const cost = AI_ACTION_CREDIT_COSTS[mode] || 100;
+    const deduction = await storageService.deductCredits(
+      cost,
+      `AI Mode ${mode}: ${prompt.slice(0, 30)}...`
+    );
+    setCreditsBalance(deduction.balance);
+
+    if (!deduction.success) {
+      setIsGenerating(false);
+      setRateLimitModalTitle('Kredit AI Kamu Sedang Habis');
+      setRateLimitModalDesc(
+        `Aksi mode "${mode}" membutuhkan ${cost} poin, sedangkan saldo kreditmu saat ini tersisa ${deduction.balance} poin. Saldo harian akan otomatis terisi +500 poin setiap hari baru! Kamu tetap bebas menyusun dan mengedit balok Scratch secara manual.`
+      );
+      setRateLimitCreditsRemaining(deduction.balance);
+      setRateLimitSeconds(0);
+      setIsRateLimitModalOpen(true);
+      return;
+    }
 
     try {
       const result = await apiService.generateGame({
@@ -100,6 +144,9 @@ export const EditorWorkspace: React.FC<EditorWorkspaceProps> = ({
       setErrorCode(err?.code);
 
       if (err?.retryAfterSeconds) {
+        setRateLimitModalTitle(undefined);
+        setRateLimitModalDesc(undefined);
+        setRateLimitCreditsRemaining(undefined);
         setRateLimitSeconds(err.retryAfterSeconds);
         setIsRateLimitModalOpen(true);
       } else {
@@ -207,6 +254,7 @@ export const EditorWorkspace: React.FC<EditorWorkspaceProps> = ({
         onExportSb3={handleOpenExport}
         onOpenPreferences={() => setIsPreferencesModalOpen(true)}
         onOpenHelp={() => setIsHelpModalOpen(true)}
+        creditsBalance={creditsBalance}
       />
 
       {/* Main Workspace Grid (3 Kolom: Palet Balok, Kanvas Workspace, Stage & Dock AI) */}
@@ -441,6 +489,7 @@ export const EditorWorkspace: React.FC<EditorWorkspaceProps> = ({
           isGenerating={isGenerating}
           errorMessage={errorMessage}
           onClearError={() => setErrorMessage(null)}
+          creditsBalance={creditsBalance}
         />
       </div>
 
@@ -482,6 +531,9 @@ export const EditorWorkspace: React.FC<EditorWorkspaceProps> = ({
       <RateLimitCountdownModal
         isOpen={isRateLimitModalOpen}
         initialSeconds={rateLimitSeconds}
+        title={rateLimitModalTitle}
+        description={rateLimitModalDesc}
+        creditsRemaining={rateLimitCreditsRemaining}
         onRetry={() => {
           setIsRateLimitModalOpen(false);
           if (lastPromptText) handleGenerate(lastPromptText);

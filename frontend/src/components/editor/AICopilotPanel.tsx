@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { SupportedTemplateKey } from '../../types/game.types';
+import { SupportedTemplateKey, AI_ACTION_CREDIT_COSTS } from '../../types/game.types';
 
 export type CopilotMode = 'buat' | 'ubah' | 'jelaskan';
 
 export interface AICopilotPanelProps {
   isOpen: boolean;
   onClose: () => void;
-  onGenerate: (prompt: string, template?: SupportedTemplateKey) => void;
+  onGenerate: (prompt: string, template?: SupportedTemplateKey, mode?: CopilotMode) => void;
   isGenerating?: boolean;
   errorMessage?: string | null;
   onClearError?: () => void;
+  creditsBalance?: number;
 }
 
 const INSPIRATION_PROMPTS = [
@@ -25,6 +26,7 @@ export const AICopilotPanel: React.FC<AICopilotPanelProps> = ({
   isGenerating = false,
   errorMessage,
   onClearError,
+  creditsBalance,
 }) => {
   const [activeMode, setActiveMode] = useState<CopilotMode>('buat');
   const [promptText, setPromptText] = useState('');
@@ -37,7 +39,8 @@ export const AICopilotPanel: React.FC<AICopilotPanelProps> = ({
     if (!promptText.trim() || isGenerating) return;
     onGenerate(
       promptText.trim(),
-      selectedTemplate ? selectedTemplate : undefined
+      selectedTemplate ? selectedTemplate : undefined,
+      activeMode
     );
   };
 
@@ -59,9 +62,18 @@ export const AICopilotPanel: React.FC<AICopilotPanelProps> = ({
           <span className="font-extrabold text-sm text-gray-900">
             Ardena AI Copilot
           </span>
-          <span className="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">
-            6 Cluster
-          </span>
+          {creditsBalance !== undefined ? (
+            <span
+              title="Saldo kredit AI Agen saat ini"
+              className="px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 text-[10px] font-bold border border-amber-300"
+            >
+              🪙 {creditsBalance.toLocaleString('id-ID')} Poin
+            </span>
+          ) : (
+            <span className="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">
+              6 Cluster
+            </span>
+          )}
         </div>
         <button
           type="button"
@@ -87,7 +99,7 @@ export const AICopilotPanel: React.FC<AICopilotPanelProps> = ({
               : 'text-gray-600 hover:text-gray-900'
           }`}
         >
-          ✨ Buat
+          ✨ Buat (-100)
         </button>
         <button
           type="button"
@@ -101,7 +113,7 @@ export const AICopilotPanel: React.FC<AICopilotPanelProps> = ({
               : 'text-gray-600 hover:text-gray-900'
           }`}
         >
-          🛠️ Ubah
+          🛠️ Ubah (-50)
         </button>
         <button
           type="button"
@@ -115,7 +127,7 @@ export const AICopilotPanel: React.FC<AICopilotPanelProps> = ({
               : 'text-gray-600 hover:text-gray-900'
           }`}
         >
-          📖 Jelaskan
+          📖 Jelaskan (-20)
         </button>
       </div>
 
@@ -215,10 +227,10 @@ export const AICopilotPanel: React.FC<AICopilotPanelProps> = ({
               {isGenerating
                 ? 'Sedang Merakit Game...'
                 : activeMode === 'buat'
-                ? 'Generate Game Scratch'
+                ? `Generate Game Scratch (-${AI_ACTION_CREDIT_COSTS.create} Poin)`
                 : activeMode === 'ubah'
-                ? 'Terapkan Modifikasi'
-                : 'Tanya Tutor AI'}
+                ? `Terapkan Modifikasi (-${AI_ACTION_CREDIT_COSTS.modify} Poin)`
+                : `Tanya Tutor AI (-${AI_ACTION_CREDIT_COSTS.explain} Poin)`}
             </span>
           </button>
         </form>

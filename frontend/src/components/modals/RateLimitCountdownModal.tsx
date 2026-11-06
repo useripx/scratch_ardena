@@ -4,6 +4,9 @@ import { Modal } from '../common/Modal';
 export interface RateLimitCountdownModalProps {
   isOpen: boolean;
   initialSeconds?: number;
+  title?: string;
+  description?: string;
+  creditsRemaining?: number;
   onRetry: () => void;
   onClose: () => void;
 }
@@ -11,6 +14,9 @@ export interface RateLimitCountdownModalProps {
 export const RateLimitCountdownModal: React.FC<RateLimitCountdownModalProps> = ({
   isOpen,
   initialSeconds = 15,
+  title,
+  description,
+  creditsRemaining,
   onRetry,
   onClose,
 }) => {
@@ -44,7 +50,7 @@ export const RateLimitCountdownModal: React.FC<RateLimitCountdownModalProps> = (
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      title="Pendinginan Kuota AI (Cascading Cooldown)"
+      title={title || "Pendinginan Kuota AI (Cascading Cooldown)"}
       maxWidth="max-w-md"
     >
       <div className="flex flex-col items-center text-center p-2">
@@ -60,12 +66,23 @@ export const RateLimitCountdownModal: React.FC<RateLimitCountdownModalProps> = (
 
         {/* Title */}
         <h3 className="text-xl font-extrabold text-gray-900 tracking-tight mb-2">
-          Jeda Singkat Permintaan AI
+          {title || "Jeda Singkat Permintaan AI"}
         </h3>
+
+        {/* Balance notification if applicable */}
+        {creditsRemaining !== undefined && (
+          <div className="w-full bg-amber-50 border border-amber-200 rounded-xl p-3 mb-4 text-xs text-amber-900 text-left flex items-center justify-between">
+            <span className="font-semibold">Sisa Kredit Anda:</span>
+            <span className="font-bold text-sm bg-white px-2.5 py-0.5 rounded-lg border border-amber-300">
+              🪙 {creditsRemaining} Poin
+            </span>
+          </div>
+        )}
 
         {/* Explanation */}
         <p className="text-xs text-gray-600 leading-relaxed max-w-sm mb-6">
-          Seluruh 6 cluster AI gratis sedang mengistirahatkan batas pemanggilan (*Fair Usage Policy*). Tombol coba lagi akan aktif otomatis dalam hitungan mundur di bawah:
+          {description ||
+            "Seluruh 6 cluster AI gratis sedang mengistirahatkan batas pemanggilan (*Fair Usage Policy*). Tombol coba lagi akan aktif otomatis dalam hitungan mundur di bawah:"}
         </p>
 
         {/* Big Countdown Timer Display */}

@@ -127,7 +127,8 @@ describe('Frontend Scratch Editor & AI Copilot — Sub-Fase FE-03', () => {
 
       expect(handleGenerate).toHaveBeenCalledWith(
         expect.stringContaining('Buat game astronot menangkap bintang'),
-        undefined
+        undefined,
+        'buat'
       );
     });
   });
