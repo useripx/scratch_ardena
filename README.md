@@ -22,8 +22,9 @@
   [![Express.js](https://img.shields.io/badge/Express.js-v4.19-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
   [![Scratch 3.0](https://img.shields.io/badge/Scratch-3.0_Engine-FFAB19?style=for-the-badge&logo=scratch&logoColor=white)](https://scratch.mit.edu/)
   [![React 18](https://img.shields.io/badge/React-18-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
-  [![Jest Testing](https://img.shields.io/badge/Tests-100%25_PASS-C21325?style=for-the-badge&logo=jest&logoColor=white)](https://jestjs.io/)
-  [![Code Coverage](https://img.shields.io/badge/Coverage-93.5%25-brightgreen?style=for-the-badge&logo=codecov)](https://github.com/useripx/scratch_ardena)
+  [![Tests](https://img.shields.io/badge/Tests-125_Passed_(100%25)-brightgreen?style=for-the-badge&logo=jest&logoColor=white)](https://jestjs.io/)
+  [![Version](https://img.shields.io/badge/Version-v1.0.0--rc1-006194?style=for-the-badge&logo=scratch&logoColor=white)](https://github.com/useripx/scratch_ardena)
+  [![Code Coverage](https://img.shields.io/badge/Coverage-93.5%25_BE_|_72.3%25_FE-brightgreen?style=for-the-badge&logo=codecov)](https://github.com/useripx/scratch_ardena)
 
   <br />
 
@@ -70,9 +71,9 @@ flowchart LR
 | **Tahap 01** | Repository Audit, Upstream Feasibility & Stack Selection | ✅ **DONE** | Dokumen audit & arsitektur baseline disetujui PO. |
 | **Tahap 02** | Desain UI/UX (Google Stitch Prototype — 19 Layar) | ✅ **DONE** | 19 prototipe HTML/PNG di `template/ardenaplayground/`. |
 | **Tahap 03** | Persiapan Repository, Git Branching Strategy & Baseline Setup | ✅ **DONE** | Repositori aktif, branch `main` & `develop`, 0 secret leakage. |
-| **Tahap 04** | Implementasi Frontend React (Scratch GUI & Stitch Adoption) | 🔄 **IN PROGRESS** | Arsitektur frontend `Docs/frontend/` & API client service. |
+| **Tahap 04** | Implementasi Frontend React (Scratch GUI & Stitch Adoption) | ✅ **DONE** | Seluruh 7 sub-fase (FE-01 s/d FE-07) selesai, 19 UI Google Stitch terintegrasi, 60/60 tests lulus (100% PASS). |
 | **Tahap 05** | Backend AI Service (BE-00 s/d BE-07: Hexa-Cluster AI) | ✅ **DONE** | 65/65 tests passed (100%), coverage 93.49%, dokumen handover. |
-| **Tahap 06** | AI Game Generator & Scratch Block Mapping Engine | ⏳ **PENDING** | Penerjemahan JSON spec ke AST / XML balok Scratch. |
+| **Tahap 06** | Integrasi Penuh Live Runtime (Frontend Port 3000 ➔ Backend Port 3001) | 🔄 **IN PROGRESS** | Sambungan live prompt-to-game generasi di antarmuka Scratch Editor. |
 | **Tahap 07** | Integrasi Scratch Editor, Local Storage (IndexedDB) & Export (.sb3) | ⏳ **PENDING** | Penyimpanan proyek offline dan packaging file `.sb3`. |
 | **Tahap 08** | Final Hardening, UAT, dan MVP Release | ⏳ **PENDING** | Audit rilis akhir, pengujian penerimaan pengguna (UAT). |
 
@@ -161,9 +162,12 @@ npm test
 # Melihat Laporan Cakupan Kode Backend (93.49% Statement Coverage)
 npm run test:coverage
 
-# Pengujian API Client Service Frontend (6 Kasus Uji)
+# Pengujian Unit, Komponen & E2E Workflow Frontend (60 Kasus Uji / 7 Test Suites)
 cd ../frontend
 npm test
+
+# Melihat Laporan Cakupan Kode Frontend (72.32% Lines Coverage)
+npm run test:coverage
 ```
 
 ---
