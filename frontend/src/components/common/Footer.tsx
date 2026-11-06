@@ -10,7 +10,7 @@ export const Footer: React.FC = () => {
               Ardena Playground
             </span>
             <span className="text-xs bg-blue-100 text-[#006194] font-semibold px-2 py-0.5 rounded-full">
-              v1.0 MVP
+              v1.0.0-rc1 (Scratch 3.0 Compatible)
             </span>
           </div>
           <p className="text-sm text-gray-500 text-center md:text-left">
