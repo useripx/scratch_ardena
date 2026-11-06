@@ -4,6 +4,7 @@ export interface NavbarProps {
   currentView?: string;
   onNavigate?: (view: string) => void;
   onOpenStudio?: () => void;
+  onOpenPreferences?: () => void;
   isBackendHealthy?: boolean;
 }
 
@@ -11,6 +12,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   currentView = 'landing',
   onNavigate,
   onOpenStudio,
+  onOpenPreferences,
   isBackendHealthy = true,
 }) => {
   return (
@@ -77,10 +79,32 @@ export const Navbar: React.FC<NavbarProps> = ({
           >
             Template Game
           </button>
+          <button
+            type="button"
+            onClick={() => onNavigate?.('library')}
+            className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+              currentView === 'library'
+                ? 'bg-white text-[#006194] shadow-sm'
+                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-200/50'
+            }`}
+          >
+            Pustaka Proyek
+          </button>
         </nav>
 
         {/* Right Actions & Health Status */}
         <div className="flex items-center gap-3">
+          {onOpenPreferences && (
+            <button
+              type="button"
+              onClick={onOpenPreferences}
+              title="Pengaturan Studio"
+              className="p-2 rounded-xl border border-gray-200 hover:bg-white text-gray-700 text-sm transition-colors shadow-xs"
+            >
+              ⚙️
+            </button>
+          )}
+
           {/* AI Status Badge */}
           <div className="hidden lg:flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-xs font-semibold text-[#006194]">
             <span

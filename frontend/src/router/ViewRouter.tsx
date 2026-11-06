@@ -7,10 +7,12 @@ import { ProjectHomeView } from '../components/home/ProjectHomeView';
 import { StartModeSelector, StartMode } from '../components/starter/StartModeSelector';
 import { TemplateCatalogView } from '../components/templates/TemplateCatalogView';
 import { EditorWorkspace } from '../components/editor/EditorWorkspace';
+import { LocalProjectLibrary } from '../components/storage/LocalProjectLibrary';
+import { PreferencesModal } from '../components/modals/PreferencesModal';
 import { apiService } from '../services/api.service';
-import { SupportedTemplateKey } from '../types/game.types';
+import { SupportedTemplateKey, StoredProject } from '../types/game.types';
 
-export type AppView = 'landing' | 'home' | 'templates' | 'editor';
+export type AppView = 'landing' | 'home' | 'templates' | 'editor' | 'library';
 
 export interface ViewRouterProps {
   initialView?: AppView;
@@ -24,9 +26,11 @@ export const ViewRouter: React.FC<ViewRouterProps> = ({
   const [currentView, setCurrentView] = useState<AppView>(initialView);
   const [isOnboardingOpen, setIsOnboardingOpen] = useState(false);
   const [isStartModeOpen, setIsStartModeOpen] = useState(false);
+  const [isPreferencesOpen, setIsPreferencesOpen] = useState(false);
   const [isBackendHealthy, setIsBackendHealthy] = useState(true);
   const [activeTemplateId, setActiveTemplateId] = useState<SupportedTemplateKey | undefined>(undefined);
   const [activeProjectName, setActiveProjectName] = useState('Proyek Game Baru');
+  const [activeProject, setActiveProject] = useState<StoredProject | null>(null);
 
   // Health check on mount
   useEffect(() => {
@@ -101,7 +105,26 @@ export const ViewRouter: React.FC<ViewRouterProps> = ({
       <EditorWorkspace
         initialProjectName={activeProjectName}
         initialTemplateId={activeTemplateId}
+        initialProject={activeProject || undefined}
         onBackToHome={() => setCurrentView('home')}
+      />
+    );
+  }
+
+  // If in library view, render LocalProjectLibrary
+  if (currentView === 'library') {
+    return (
+      <LocalProjectLibrary
+        onOpenProject={(proj) => {
+          setActiveProject(proj);
+          setActiveProjectName(proj.title);
+          setCurrentView('editor');
+        }}
+        onNewProject={() => {
+          setActiveProject(null);
+          setIsStartModeOpen(true);
+        }}
+        onBack={() => setCurrentView('home')}
       />
     );
   }
@@ -113,6 +136,7 @@ export const ViewRouter: React.FC<ViewRouterProps> = ({
         currentView={currentView}
         onNavigate={(view) => setCurrentView(view as AppView)}
         onOpenStudio={() => setCurrentView('home')}
+        onOpenPreferences={() => setIsPreferencesOpen(true)}
         isBackendHealthy={isBackendHealthy}
       />
 
@@ -161,6 +185,12 @@ export const ViewRouter: React.FC<ViewRouterProps> = ({
         isOpen={isStartModeOpen}
         onClose={() => setIsStartModeOpen(false)}
         onSelectMode={handleSelectStartMode}
+      />
+
+      {/* Preferences Modal (UI 15) */}
+      <PreferencesModal
+        isOpen={isPreferencesOpen}
+        onClose={() => setIsPreferencesOpen(false)}
       />
     </div>
   );
