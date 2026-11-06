@@ -9,8 +9,11 @@ import { RateLimitCountdownModal } from '../modals/RateLimitCountdownModal';
 import { SaveProjectDialog } from '../modals/SaveProjectDialog';
 import { ExportSb3Modal } from '../modals/ExportSb3Modal';
 import { PreferencesModal } from '../modals/PreferencesModal';
+import { BlockHelpGuideModal } from '../help/BlockHelpGuideModal';
+import { ToastNotificationContainer } from '../common/ToastNotification';
 import { apiService } from '../../services/api.service';
 import { storageService } from '../../services/storage.service';
+import { toast } from '../../services/toast.service';
 import {
   ArdenaGameSpec,
   DiffCounters,
@@ -45,6 +48,7 @@ export const EditorWorkspace: React.FC<EditorWorkspaceProps> = ({
   const [isSaveModalOpen, setIsSaveModalOpen] = useState(false);
   const [isExportModalOpen, setIsExportModalOpen] = useState(false);
   const [isPreferencesModalOpen, setIsPreferencesModalOpen] = useState(false);
+  const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
   const [activeProject, setActiveProject] = useState<StoredProject | null>(
     initialProject || null
   );
@@ -176,6 +180,7 @@ export const EditorWorkspace: React.FC<EditorWorkspaceProps> = ({
     const saved = await storageService.saveProject(targetProject);
     setActiveProject(saved);
     setProjectName(saved.title);
+    toast.success('Proyek Berhasil Disimpan', `Proyek "${saved.title}" tersimpan aman di IndexedDB lokal.`);
   };
 
   const handleOpenExport = () => {
@@ -201,6 +206,7 @@ export const EditorWorkspace: React.FC<EditorWorkspaceProps> = ({
         onSaveProject={() => setIsSaveModalOpen(true)}
         onExportSb3={handleOpenExport}
         onOpenPreferences={() => setIsPreferencesModalOpen(true)}
+        onOpenHelp={() => setIsHelpModalOpen(true)}
       />
 
       {/* Main Workspace Grid (3 Kolom: Palet Balok, Kanvas Workspace, Stage & Dock AI) */}
@@ -528,6 +534,15 @@ export const EditorWorkspace: React.FC<EditorWorkspaceProps> = ({
         isOpen={isPreferencesModalOpen}
         onClose={() => setIsPreferencesModalOpen(false)}
       />
+
+      {/* Block Help Guide Modal (UI 16) */}
+      <BlockHelpGuideModal
+        isOpen={isHelpModalOpen}
+        onClose={() => setIsHelpModalOpen(false)}
+      />
+
+      {/* Global Floating Toast Notifications (UI 18) */}
+      <ToastNotificationContainer />
     </div>
   );
 };

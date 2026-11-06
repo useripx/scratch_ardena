@@ -12,6 +12,7 @@ export interface EditorTopNavProps {
   onSaveProject?: () => void;
   onExportSb3?: () => void;
   onOpenPreferences?: () => void;
+  onOpenHelp?: () => void;
 }
 
 export const EditorTopNav: React.FC<EditorTopNavProps> = ({
@@ -26,6 +27,7 @@ export const EditorTopNav: React.FC<EditorTopNavProps> = ({
   onSaveProject,
   onExportSb3,
   onOpenPreferences,
+  onOpenHelp,
 }) => {
   const [isEditingName, setIsEditingName] = useState(false);
   const [nameInput, setNameInput] = useState(projectName);
@@ -161,6 +163,17 @@ export const EditorTopNav: React.FC<EditorTopNavProps> = ({
             className="p-1.5 rounded-lg border border-gray-200 hover:bg-gray-100 text-gray-700 text-xs transition-colors"
           >
             ⚙️
+          </button>
+        )}
+
+        {onOpenHelp && (
+          <button
+            type="button"
+            onClick={onOpenHelp}
+            title="Panduan Balok & Bantuan"
+            className="p-1.5 rounded-lg border border-gray-200 hover:bg-gray-100 text-[#006194] text-xs font-bold transition-colors"
+          >
+            ❓
           </button>
         )}
 

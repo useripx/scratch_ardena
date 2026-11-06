@@ -9,6 +9,8 @@ import { TemplateCatalogView } from '../components/templates/TemplateCatalogView
 import { EditorWorkspace } from '../components/editor/EditorWorkspace';
 import { LocalProjectLibrary } from '../components/storage/LocalProjectLibrary';
 import { PreferencesModal } from '../components/modals/PreferencesModal';
+import { BlockHelpGuideModal } from '../components/help/BlockHelpGuideModal';
+import { ToastNotificationContainer } from '../components/common/ToastNotification';
 import { apiService } from '../services/api.service';
 import { SupportedTemplateKey, StoredProject } from '../types/game.types';
 
@@ -27,6 +29,7 @@ export const ViewRouter: React.FC<ViewRouterProps> = ({
   const [isOnboardingOpen, setIsOnboardingOpen] = useState(false);
   const [isStartModeOpen, setIsStartModeOpen] = useState(false);
   const [isPreferencesOpen, setIsPreferencesOpen] = useState(false);
+  const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
   const [isBackendHealthy, setIsBackendHealthy] = useState(true);
   const [activeTemplateId, setActiveTemplateId] = useState<SupportedTemplateKey | undefined>(undefined);
   const [activeProjectName, setActiveProjectName] = useState('Proyek Game Baru');
@@ -137,6 +140,7 @@ export const ViewRouter: React.FC<ViewRouterProps> = ({
         onNavigate={(view) => setCurrentView(view as AppView)}
         onOpenStudio={() => setCurrentView('home')}
         onOpenPreferences={() => setIsPreferencesOpen(true)}
+        onOpenHelp={() => setIsHelpModalOpen(true)}
         isBackendHealthy={isBackendHealthy}
       />
 
@@ -192,6 +196,15 @@ export const ViewRouter: React.FC<ViewRouterProps> = ({
         isOpen={isPreferencesOpen}
         onClose={() => setIsPreferencesOpen(false)}
       />
+
+      {/* Block Help Guide Modal (UI 16) */}
+      <BlockHelpGuideModal
+        isOpen={isHelpModalOpen}
+        onClose={() => setIsHelpModalOpen(false)}
+      />
+
+      {/* Global Floating Toast Notifications (UI 18) */}
+      <ToastNotificationContainer />
     </div>
   );
 };
