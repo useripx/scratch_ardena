@@ -464,7 +464,7 @@ describe('End-to-End User Journey Verification (FE-07: UI 01 s/d UI 19)', () => 
       // Verifikasi tab Privasi & Tentang
       fireEvent.click(screen.getByText(/Privasi & Tentang/i));
       await waitFor(() => {
-        expect(screen.getByText(/Ardena Playground Web v1.0.0-rc1/i)).toBeTruthy();
+        expect(screen.getByText(/Ardena Playground Web v1.0.0/i)).toBeTruthy();
         expect(screen.getByText(/Scratch 3.0 Compatible/i)).toBeTruthy();
       });
 
