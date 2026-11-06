@@ -11,6 +11,7 @@ import { LocalProjectLibrary } from '../components/storage/LocalProjectLibrary';
 import { PreferencesModal } from '../components/modals/PreferencesModal';
 import { BlockHelpGuideModal } from '../components/help/BlockHelpGuideModal';
 import { ToastNotificationContainer } from '../components/common/ToastNotification';
+import { I18nProvider } from '../contexts/I18nContext';
 import { apiService } from '../services/api.service';
 import { SupportedTemplateKey, StoredProject } from '../types/game.types';
 
@@ -21,7 +22,7 @@ export interface ViewRouterProps {
   onEnterEditor?: (mode: StartMode, templateId?: string) => void;
 }
 
-export const ViewRouter: React.FC<ViewRouterProps> = ({
+const ViewRouterInner: React.FC<ViewRouterProps> = ({
   initialView = 'landing',
   onEnterEditor,
 }) => {
@@ -206,5 +207,13 @@ export const ViewRouter: React.FC<ViewRouterProps> = ({
       {/* Global Floating Toast Notifications (UI 18) */}
       <ToastNotificationContainer />
     </div>
+  );
+};
+
+export const ViewRouter: React.FC<ViewRouterProps> = (props) => {
+  return (
+    <I18nProvider>
+      <ViewRouterInner {...props} />
+    </I18nProvider>
   );
 };

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { LanguageToggle } from '../common/LanguageToggle';
 
 export interface EditorTopNavProps {
   projectName: string;
@@ -156,6 +157,8 @@ export const EditorTopNav: React.FC<EditorTopNavProps> = ({
             <span className="hidden sm:inline">Ekspor</span>
           </button>
         )}
+
+        <LanguageToggle compact />
 
         {onOpenPreferences && (
           <button

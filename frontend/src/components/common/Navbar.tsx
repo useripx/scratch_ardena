@@ -1,4 +1,5 @@
 import React from 'react';
+import { LanguageToggle } from './LanguageToggle';
 
 export interface NavbarProps {
   currentView?: string;
@@ -96,6 +97,8 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Right Actions & Health Status */}
         <div className="flex items-center gap-3">
+          <LanguageToggle />
+
           {onOpenHelp && (
             <button
               type="button"

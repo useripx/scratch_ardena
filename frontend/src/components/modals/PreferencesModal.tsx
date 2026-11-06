@@ -182,6 +182,21 @@ export const PreferencesModal: React.FC<PreferencesModalProps> = ({
           <div className="flex flex-col gap-3 py-1">
             <div className="flex items-center justify-between p-3 rounded-xl bg-gray-50 border border-gray-200">
               <div>
+                <span className="text-xs font-bold text-gray-900 block">Bahasa Antarmuka / Language</span>
+                <span className="text-[11px] text-gray-500">Pilih bahasa pengantar studio dan glosarium balok</span>
+              </div>
+              <select
+                value={prefs.language || 'id'}
+                onChange={(e) => handleUpdate({ language: e.target.value as 'id' | 'en' })}
+                className="bg-white border border-gray-300 rounded-lg px-2.5 py-1 text-xs font-bold text-gray-800 outline-none focus:border-[#006194]"
+              >
+                <option value="id">🇮🇩 Bahasa Indonesia</option>
+                <option value="en">🇬🇧 English</option>
+              </select>
+            </div>
+
+            <div className="flex items-center justify-between p-3 rounded-xl bg-gray-50 border border-gray-200">
+              <div>
                 <span className="text-xs font-bold text-gray-900 block">Efek Suara Antarmuka</span>
                 <span className="text-[11px] text-gray-500">Bunyikan efek suara saat aksi balok dan generate AI</span>
               </div>
