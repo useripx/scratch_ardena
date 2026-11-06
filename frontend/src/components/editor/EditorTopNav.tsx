@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { LanguageToggle } from '../common/LanguageToggle';
+import { BrandLogo } from '../common/BrandLogo';
+import { useI18n } from '../../contexts/I18nContext';
 
 export interface EditorTopNavProps {
   projectName: string;
@@ -32,6 +34,7 @@ export const EditorTopNav: React.FC<EditorTopNavProps> = ({
   onOpenHelp,
   creditsBalance,
 }) => {
+  const { t, locale } = useI18n();
   const [isEditingName, setIsEditingName] = useState(false);
   const [nameInput, setNameInput] = useState(projectName);
 
@@ -60,16 +63,17 @@ export const EditorTopNav: React.FC<EditorTopNavProps> = ({
         <button
           type="button"
           onClick={onBackToHome}
-          title="Kembali ke Dashboard Studio"
+          title={t('editor.dashboard')}
           className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-gray-700 hover:bg-gray-100 transition-colors"
         >
           <span>←</span>
-          <span className="hidden sm:inline">Dashboard</span>
+          <span className="hidden sm:inline">{t('editor.dashboard')}</span>
         </button>
 
         <div className="h-5 w-px bg-gray-200" />
 
-        <div className="flex items-center gap-1.5 select-none">
+        <div className="flex items-center gap-2 select-none">
+          <BrandLogo size={28} showText={false} />
           <span className="font-extrabold text-base tracking-tight text-[#006194]">
             ARDENA
           </span>
@@ -128,7 +132,7 @@ export const EditorTopNav: React.FC<EditorTopNavProps> = ({
           🛑
         </button>
         <span className="text-[11px] font-semibold text-gray-500 ml-1 hidden sm:inline">
-          {isPlaying ? 'Sedang Berjalan' : 'Siap'}
+          {isPlaying ? t('editor.running') : t('editor.ready')}
         </span>
       </div>
 
@@ -142,7 +146,7 @@ export const EditorTopNav: React.FC<EditorTopNavProps> = ({
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-[#f0f4f8] hover:bg-[#e1e9f0] text-[#006194] transition-colors"
           >
             <span>💾</span>
-            <span className="hidden sm:inline">Simpan</span>
+            <span className="hidden sm:inline">{t('editor.save')}</span>
           </button>
         )}
 
@@ -154,7 +158,7 @@ export const EditorTopNav: React.FC<EditorTopNavProps> = ({
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold border border-gray-200 hover:bg-gray-100 text-gray-700 transition-colors"
           >
             <span>📦</span>
-            <span className="hidden sm:inline">Ekspor</span>
+            <span className="hidden sm:inline">{t('editor.export')}</span>
           </button>
         )}
 
@@ -185,18 +189,18 @@ export const EditorTopNav: React.FC<EditorTopNavProps> = ({
         {/* Saved Status Indicator */}
         <div className="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#f2f4f6] text-[11px] font-medium text-gray-600">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span>Tersimpan (IndexedDB)</span>
+          <span>{t('editor.savedLocal')}</span>
         </div>
 
         {/* Credit Balance Badge */}
         {creditsBalance !== undefined && (
           <div
-            title="Saldo Kredit AI Agen (5.500 poin awal + 500 harian)"
+            title="Saldo Kredit AI Agen"
             className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-900 text-xs font-bold shadow-xs select-none"
           >
             <span>🪙</span>
-            <span>{creditsBalance.toLocaleString('id-ID')}</span>
-            <span className="text-[10px] text-amber-700 font-semibold hidden md:inline">Poin</span>
+            <span>{creditsBalance.toLocaleString(locale === 'en' ? 'en-US' : 'id-ID')}</span>
+            <span className="text-[10px] text-amber-700 font-semibold hidden md:inline">{t('modes.creditsUnit')}</span>
           </div>
         )}
 
@@ -217,7 +221,7 @@ export const EditorTopNav: React.FC<EditorTopNavProps> = ({
               isCopilotOpen ? 'bg-white/20 text-white' : 'bg-blue-400 text-gray-950 font-bold'
             }`}
           >
-            {isCopilotOpen ? 'Buka' : 'Tutup'}
+            {isCopilotOpen ? (locale === 'en' ? 'Open' : 'Buka') : (locale === 'en' ? 'Closed' : 'Tutup')}
           </span>
         </button>
       </div>

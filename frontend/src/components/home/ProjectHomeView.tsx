@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useI18n } from '../../contexts/I18nContext';
 
 export interface LocalProjectSummary {
   id: string;
@@ -21,6 +22,8 @@ export const ProjectHomeView: React.FC<ProjectHomeViewProps> = ({
   onOpenBlankEditor,
   onOpenProject,
 }) => {
+  const { locale } = useI18n();
+  const isEn = locale === 'en';
   const [projects, setProjects] = useState<LocalProjectSummary[]>([]);
 
   useEffect(() => {
@@ -53,13 +56,19 @@ export const ProjectHomeView: React.FC<ProjectHomeViewProps> = ({
         <div className="relative z-10 max-w-2xl">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold mb-4 border border-white/20">
             <span>✨</span>
-            <span>Studio Kreatif Mandiri • Scratch 3.0 & AI Copilot</span>
+            <span>
+              {isEn
+                ? 'Creative Studio • Scratch 3.0 & AI Copilot'
+                : 'Studio Kreatif Mandiri • Scratch 3.0 & AI Copilot'}
+            </span>
           </div>
           <h1 className="text-3xl sm:text-4xl font-black tracking-tight mb-3">
-            Selamat Datang di Studio Ardena!
+            {isEn ? 'Welcome to Ardena Studio!' : 'Selamat Datang di Studio Ardena!'}
           </h1>
           <p className="text-sm sm:text-base text-blue-100 font-normal leading-relaxed mb-6">
-            Kembangkan imajinasi visualmu. Pilih cara memulai di bawah ini atau lanjutkan game yang pernah kamu simpan secara lokal di browsermu.
+            {isEn
+              ? 'Unleash your visual imagination. Choose a starting path below or resume projects saved locally in your browser.'
+              : 'Kembangkan imajinasi visualmu. Pilih cara memulai di bawah ini atau lanjutkan game yang pernah kamu simpan secara lokal di browsermu.'}
           </p>
 
           <div className="flex flex-wrap items-center gap-3">
@@ -68,14 +77,14 @@ export const ProjectHomeView: React.FC<ProjectHomeViewProps> = ({
               onClick={onCreateFromPrompt}
               className="px-6 py-3 rounded-xl bg-white text-[#006194] text-sm font-extrabold shadow-md hover:bg-blue-50 transition-all flex items-center gap-2"
             >
-              <span>✨ Buat Game dari Ide Baru</span>
+              <span>{isEn ? '✨ Create Game from New Idea' : '✨ Buat Game dari Ide Baru'}</span>
             </button>
             <button
               type="button"
               onClick={onOpenTemplates}
               className="px-6 py-3 rounded-xl bg-blue-800/60 hover:bg-blue-800 text-white text-sm font-bold border border-white/20 transition-all flex items-center gap-2"
             >
-              <span>🎮 Buka Template Resmi</span>
+              <span>{isEn ? '🎮 Open Official Templates' : '🎮 Buka Template Resmi'}</span>
             </button>
           </div>
         </div>
@@ -90,7 +99,7 @@ export const ProjectHomeView: React.FC<ProjectHomeViewProps> = ({
       <div className="mb-12">
         <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
           <span>⚡</span>
-          <span>Aksi Cepat Pembuatan Proyek</span>
+          <span>{isEn ? 'Quick Project Starters' : 'Aksi Cepat Pembuatan Proyek'}</span>
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Card 1 */}
@@ -102,13 +111,15 @@ export const ProjectHomeView: React.FC<ProjectHomeViewProps> = ({
               💬
             </div>
             <h3 className="text-lg font-bold text-gray-900 mb-1">
-              Ide Alami AI Copilot
+              {isEn ? 'AI Copilot Natural Idea' : 'Ide Alami AI Copilot'}
             </h3>
             <p className="text-xs text-gray-600 leading-relaxed mb-4">
-              Jelaskan skenario game dengan bahasamu sendiri. AI akan merancang logika balok Scratch seketika.
+              {isEn
+                ? 'Describe game scenarios in your own words. The AI generates Scratch block logic instantly.'
+                : 'Jelaskan skenario game dengan bahasamu sendiri. AI akan merancang logika balok Scratch seketika.'}
             </p>
             <span className="text-xs font-bold text-[#006194] mt-auto flex items-center gap-1">
-              Mulai dengan Prompt →
+              {isEn ? 'Start with Prompt →' : 'Mulai dengan Prompt →'}
             </span>
           </div>
 
@@ -121,13 +132,15 @@ export const ProjectHomeView: React.FC<ProjectHomeViewProps> = ({
               🕹️
             </div>
             <h3 className="text-lg font-bold text-gray-900 mb-1">
-              Template Teruji
+              {isEn ? 'Verified Templates' : 'Template Teruji'}
             </h3>
             <p className="text-xs text-gray-600 leading-relaxed mb-4">
-              Gunakan fondasi game siap pakai (Catching, Maze, Space) yang sudah terkalibrasi secara mekanis.
+              {isEn
+                ? 'Use mechanically balanced game blueprints (Catching, Maze, Space) ready to customize.'
+                : 'Gunakan fondasi game siap pakai (Catching, Maze, Space) yang sudah terkalibrasi secara mekanis.'}
             </p>
             <span className="text-xs font-bold text-amber-700 mt-auto flex items-center gap-1">
-              Pilih Template →
+              {isEn ? 'Choose Template →' : 'Pilih Template →'}
             </span>
           </div>
 
@@ -140,13 +153,15 @@ export const ProjectHomeView: React.FC<ProjectHomeViewProps> = ({
               🎨
             </div>
             <h3 className="text-lg font-bold text-gray-900 mb-1">
-              Editor Scratch Kosong
+              {isEn ? 'Blank Scratch Editor' : 'Editor Scratch Kosong'}
             </h3>
             <p className="text-xs text-gray-600 leading-relaxed mb-4">
-              Mulai dari kanvas murni Scratch 3.0 tanpa bantuan AI untuk kebebasan eksperimen mandiri.
+              {isEn
+                ? 'Start from an authentic Scratch 3.0 blank canvas without AI for independent experimentation.'
+                : 'Mulai dari kanvas murni Scratch 3.0 tanpa bantuan AI untuk kebebasan eksperimen mandiri.'}
             </p>
             <span className="text-xs font-bold text-gray-800 mt-auto flex items-center gap-1">
-              Buka Kanvas Murni →
+              {isEn ? 'Open Blank Canvas →' : 'Buka Kanvas Murni →'}
             </span>
           </div>
         </div>
@@ -157,10 +172,10 @@ export const ProjectHomeView: React.FC<ProjectHomeViewProps> = ({
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
             <span>📁</span>
-            <span>Game Lokal Tersimpan (IndexedDB)</span>
+            <span>{isEn ? 'Saved Local Games (IndexedDB)' : 'Game Lokal Tersimpan (IndexedDB)'}</span>
           </h2>
           <span className="text-xs text-gray-500 font-semibold">
-            Tersimpan Otomatis di Browser Ini
+            {isEn ? 'Auto-saved in this browser' : 'Tersimpan Otomatis di Browser Ini'}
           </span>
         </div>
 
@@ -171,17 +186,19 @@ export const ProjectHomeView: React.FC<ProjectHomeViewProps> = ({
               📂
             </div>
             <h3 className="text-base font-bold text-gray-900 mb-1">
-              Belum Ada Game yang Disimpan
+              {isEn ? 'No Saved Games Yet' : 'Belum Ada Game yang Disimpan'}
             </h3>
             <p className="text-xs text-gray-500 max-w-sm mb-6 leading-relaxed">
-              Semua proyek yang kamu buat dan simpan akan muncul di sini secara lokal tanpa memerlukan akun pengguna.
+              {isEn
+                ? 'All projects you create and save will appear here locally without needing a user account.'
+                : 'Semua proyek yang kamu buat dan simpan akan muncul di sini secara lokal tanpa memerlukan akun pengguna.'}
             </p>
             <button
               type="button"
               onClick={onCreateFromPrompt}
               className="px-5 py-2.5 rounded-xl bg-[#006194] text-white text-xs font-bold shadow-md hover:bg-[#007bb9] transition-all"
             >
-              🚀 Buat Game Pertamamu Sekarang
+              <span>{isEn ? '🚀 Create Your First Game Now' : '🚀 Buat Game Pertamamu Sekarang'}</span>
             </button>
           </div>
         ) : (
@@ -210,7 +227,7 @@ export const ProjectHomeView: React.FC<ProjectHomeViewProps> = ({
                 </h4>
                 <div className="flex items-center justify-between text-xs text-gray-500 mt-auto pt-3 border-t border-gray-100">
                   <span>{proj.spriteCount} Sprite</span>
-                  <span>Diubah: {proj.lastModified}</span>
+                  <span>{isEn ? 'Modified: ' : 'Diubah: '}{proj.lastModified}</span>
                 </div>
               </div>
             ))}
