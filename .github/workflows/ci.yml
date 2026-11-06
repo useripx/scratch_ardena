@@ -1,0 +1,51 @@
+name: Ardena Playground CI - Automated Testing & Build Gate
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - 'feature/**'
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  verify:
+    name: 100% Automated Testing & Strict TypeScript Build Gate
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js LTS (v20)
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: 📦 Install Root Dependencies
+        run: npm install
+
+      - name: 📦 Install Backend Dependencies
+        run: |
+          cd backend
+          npm install
+
+      - name: 📦 Install Frontend Dependencies
+        run: |
+          cd frontend
+          npm install
+
+      - name: 🧪 Execute 100% Automated Test Suites (Jest)
+        run: npm test
+
+      - name: 🏗️ Verify TypeScript Compilation (Backend & Frontend)
+        run: npm run build
+
+      - name: ⚡ Verify Frontend Vite Production Bundle
+        run: |
+          cd frontend
+          npx vite build

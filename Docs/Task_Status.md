@@ -13,8 +13,8 @@ pie title Status Penyelesaian Tahapan Utama Proyek Master
     "Selesai (Tahap 01 s/d 08 MVP Release)" : 100
 ```
 
-* **Tahap Master:** Tahap 08 (Hardening, UAT, dan MVP Release v1.0.0 Resmi)
-* **Status Pengujian Otomatis:** **143 TESTS PASS (100% LULUS MUTLAK)** across 18 test suites (78 Frontend, 65 Backend)
+* **Tahap Master:** Tahap 09 (Local Laptop Tester Suite, i18n ID/EN, .sb3 Importer, & CI Gate)
+* **Status Pengujian Otomatis:** **156 TESTS PASS (100% LULUS MUTLAK)** across 20 test suites (91 Frontend, 65 Backend)
 * **Kepatuhan Tata Kelola:** *No Plan, No Code. No Approval, No Code. No Evidence, No Completion.*
 
 ---
@@ -321,18 +321,55 @@ Seluruh sub-tahapan backend (**BE-00 s/d BE-07**) telah **100% SELESAI, TERVERIF
   - [x] Konfigurasi frontend Vite dev server (port 3000) dengan proxy balik `/api` ke Express (port 3001) di `frontend/vite.config.mts`.
   - [x] Pembuatan berkas entri HTML `frontend/index.html` dan titik pasang React `frontend/src/main.tsx`.
   - [x] Konfigurasi root runner `concurrently` di `package.json` (`npm run dev`).
-  - [x] Pembuatan skrip peluncur sekali klik `startlocal.bat` dan alias `start-local.bat`:
+  - [x] Pembuatan skrip tunggal peluncur sekali klik `startlocal.bat`:
     - Pengecekan otomatis kelengkapan Node.js dan instalasi dependensi jika belum ada.
     - Penampilan banner studio interaktif dengan panduan port.
     - Peluncuran otomatis peramban lokal ke `http://localhost:3000` setelah penundaan 3 detik.
     - Penghentian proses ganda (backend + frontend) secara bersih hanya dengan menekan `CTRL + C` lalu `Y`.
+  - [x] Pembersihan duplikasi: Menghapus `start-local.bat` sehingga hanya `startlocal.bat` sebagai peluncur tunggal resmi.
   - [x] Pembaruan panduan pengoperasian lokal di `README.md`.
   - [x] Verifikasi pengujian 100% PASS (143/143 tests) dan kompilasi `npm run build` bebas error.
 
 ---
 
-## 🏆 KESIMPULAN FASE BESAR: TAHAP 01 S/D 08 & LOCAL RUNNER TUNTAS 100%
-Ardena Playground kini telah siap 100% untuk digunakan dan diuji langsung di laptop lokal oleh Yogi Ario hanya dengan **sekali klik pada `startlocal.bat`** tanpa memerlukan server atau hosting cloud berbayar!
+### Tahap 09-B — Lokalisasi Dwibahasa (i18n: Bahasa Indonesia & English)
+* **Prasyarat:** Tahap 09-A selesai dan disetujui (Disetujui 06/11/2026).
+* **Status:** **DONE (100% PASS — 8 Kasus Uji Baru Lulus, 100% Simetris)**
+* **Checklist Tugas Tahap 09-B:**
+  - [x] Pembuatan kamus terjemahan Bahasa Indonesia (`frontend/src/i18n/id.ts`) sebagai default bawaan.
+  - [x] Pembuatan kamus terjemahan English (`frontend/src/i18n/en.ts`) selaras 100% dengan terminologi resmi Scratch Foundation MIT (*Motion, Looks, Sound, Events, Control, Sensing, Operators, Variables*).
+  - [x] Implementasi mesin terjemahan `getTranslation()` dengan dukungan parameter dinamis dan fallback cerdas.
+  - [x] Implementasi `I18nProvider` dan hook `useI18n()` dengan persistensi preferensi bahasa ke `storageService` (IndexedDB).
+  - [x] Implementasi komponen pemilih bahasa interaktif `<LanguageToggle />` (`🇮🇩 ID | 🇬🇧 EN`) pada `<Navbar />`, `<EditorTopNav />`, dan `<PreferencesModal />`.
+  - [x] Automated test suite di `frontend/tests/i18n.test.tsx` (100% PASS).
+
+---
+
+### Tahap 09-C — Drag-and-Drop .sb3 Inspector & Importer (Opsi A)
+* **Prasyarat:** Tahap 09-B disetujui PO (Opsi A: Dialog Konfirmasi Proyek Aktif) (Disetujui 06/11/2026).
+* **Status:** **DONE (100% PASS — 5 Kasus Uji Baru Lulus)**
+* **Checklist Tugas Tahap 09-C:**
+  - [x] Implementasi metode `storageService.importProjectFromSb3()` membaca arsip ZIP `.sb3`, mengurai `project.json` Scratch 3.0 AST (Stage, Sprites, Variables, Blocks), dan memetakannya ke `StoredProject`.
+  - [x] Implementasi event listener drag-and-drop (`onDragOver`, `onDragLeave`, `onDrop`) pada kanvas `<EditorWorkspace />`.
+  - [x] Desain visual overlay dropzone saat file Scratch dijatuhkan ke kanvas studio.
+  - [x] Implementasi modal dialog konfirmasi `<ImportSb3ConfirmModal />` (Opsi A): Memberikan pilihan aman untuk menyimpan proyek lama ke pustaka atau langsung membuka proyek baru.
+  - [x] Notifikasi toast sukses menguraikan rincian judul game, jumlah sprite, dan total balok Scratch yang diimpor.
+  - [x] Automated test suite di `frontend/tests/sb3-importer.test.tsx` (100% PASS).
+
+---
+
+### Tahap 09-D — Otomatisasi GitHub Actions CI Pipeline
+* **Prasyarat:** Tahap 09-C selesai (06/11/2026).
+* **Status:** **DONE (100% PASS)**
+* **Checklist Tugas Tahap 09-D:**
+  - [x] Pembuatan konfigurasi pipeline `.github/workflows/ci.yml`.
+  - [x] Pipeline mengotomatiskan checkout, instalasi dependensi, eksekusi 156 automated tests (`npm test`), kompilasi TypeScript ganda (`npm run build`), dan Vite production bundle (`npx vite build`).
+  - [x] Penambahan badge CI pada `README.md`.
+
+---
+
+## 🏆 KESIMPULAN FASE BESAR: TAHAP 09 SELESAI PENUH (156 TESTS PASS — 100% LULUS MUTLAK)
+Ardena Playground kini telah diperkaya dengan lokalisasi dwibahasa (Bahasa Indonesia & English Scratch MIT), kemampuan impor dan inspeksi berkas game Scratch (.sb3) secara offline, peluncur mandiri satu klik `startlocal.bat`, dan pipeline CI berkesinambungan di GitHub!
 
 
 

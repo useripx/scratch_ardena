@@ -11,6 +11,8 @@ import { ExportSb3Modal } from '../modals/ExportSb3Modal';
 import { PreferencesModal } from '../modals/PreferencesModal';
 import { BlockHelpGuideModal } from '../help/BlockHelpGuideModal';
 import { ToastNotificationContainer } from '../common/ToastNotification';
+import { ImportSb3ConfirmModal } from '../modals/ImportSb3ConfirmModal';
+import { useI18n } from '../../contexts/I18nContext';
 import { apiService } from '../../services/api.service';
 import { storageService } from '../../services/storage.service';
 import { toast } from '../../services/toast.service';
@@ -79,6 +81,13 @@ export const EditorWorkspace: React.FC<EditorWorkspaceProps> = ({
       isMounted = false;
     };
   }, []);
+
+  const { t } = useI18n();
+
+  // Drag-and-Drop .sb3 Inspector & Importer States
+  const [isDraggingFile, setIsDraggingFile] = useState(false);
+  const [pendingSb3File, setPendingSb3File] = useState<File | null>(null);
+  const [isImportConfirmOpen, setIsImportConfirmOpen] = useState(false);
 
   // Review Gate States (UI 09)
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
@@ -238,8 +247,99 @@ export const EditorWorkspace: React.FC<EditorWorkspaceProps> = ({
     setIsExportModalOpen(true);
   };
 
+  // Drag-and-Drop .sb3 Handlers
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.dataTransfer.types.includes('Files')) {
+      setIsDraggingFile(true);
+    }
+  };
+
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.currentTarget.contains(e.relatedTarget as Node)) return;
+    setIsDraggingFile(false);
+  };
+
+  const executeImportSb3 = async (file: File) => {
+    try {
+      const res = await storageService.importProjectFromSb3(file);
+      const saved = await storageService.saveProject(res.project);
+      setActiveProject(saved);
+      setProjectName(saved.title);
+      setCurrentGameSpec(saved.gameSpec);
+      toast.success(
+        'Proyek Scratch Berhasil Diimpor',
+        `"${saved.title}" berhasil dimuat dengan ${res.spriteCount} sprite dan ${res.blockCount} balok kode Scratch.`
+      );
+    } catch (err: any) {
+      console.error('[EditorWorkspace] Gagal impor berkas .sb3:', err);
+      toast.error(
+        'Gagal Membaca Berkas .sb3',
+        err?.message || 'Pastikan arsip berkas .sb3 tidak rusak dan berstandar Scratch 3.0.'
+      );
+    } finally {
+      setPendingSb3File(null);
+      setIsImportConfirmOpen(false);
+    }
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDraggingFile(false);
+
+    const files = e.dataTransfer.files;
+    if (!files || files.length === 0) return;
+
+    const file = files[0];
+    if (!file.name.toLowerCase().endsWith('.sb3')) {
+      toast.error(
+        'Format Berkas Tidak Didukung',
+        'Hanya berkas berformat resmi Scratch 3.0 (.sb3) yang dapat diimpor ke studio.'
+      );
+      return;
+    }
+
+    const hasActiveContent =
+      (activeProject !== null && activeProject.title !== '') ||
+      (currentGameSpec !== null) ||
+      (projectName !== 'Game Tanpa Judul' && projectName !== 'Editor Scratch Kosong');
+
+    if (hasActiveContent) {
+      setPendingSb3File(file);
+      setIsImportConfirmOpen(true);
+    } else {
+      executeImportSb3(file);
+    }
+  };
+
+  const handleSaveAndOpenNew = async () => {
+    if (pendingSb3File) {
+      await handleSaveProject({
+        title: projectName,
+        category: 'arcade',
+        tags: ['autosaved'],
+      });
+      await executeImportSb3(pendingSb3File);
+    }
+  };
+
+  const handleOpenWithoutSave = async () => {
+    if (pendingSb3File) {
+      await executeImportSb3(pendingSb3File);
+    }
+  };
+
   return (
-    <div className="w-full min-h-screen flex flex-col bg-[#f7f9fb] text-[#191c1e] overflow-hidden select-none">
+    <div
+      onDragOver={handleDragOver}
+      onDragLeave={handleDragLeave}
+      onDrop={handleDrop}
+      className="w-full min-h-screen flex flex-col bg-[#f7f9fb] text-[#191c1e] overflow-hidden select-none relative"
+    >
       {/* Top Navigation Bar */}
       <EditorTopNav
         projectName={projectName}
@@ -592,6 +692,36 @@ export const EditorWorkspace: React.FC<EditorWorkspaceProps> = ({
         isOpen={isHelpModalOpen}
         onClose={() => setIsHelpModalOpen(false)}
       />
+
+      {/* Import .sb3 Confirmation Dialog Modal (Opsi A) */}
+      <ImportSb3ConfirmModal
+        isOpen={isImportConfirmOpen}
+        fileName={pendingSb3File?.name || ''}
+        fileSize={pendingSb3File?.size || 0}
+        currentProjectTitle={projectName}
+        onSaveAndOpen={handleSaveAndOpenNew}
+        onOpenWithoutSave={handleOpenWithoutSave}
+        onClose={() => {
+          setIsImportConfirmOpen(false);
+          setPendingSb3File(null);
+        }}
+      />
+
+      {/* Drag & Drop Visual Dropzone Overlay */}
+      {isDraggingFile && (
+        <div className="absolute inset-0 z-50 bg-[#006194]/90 backdrop-blur-sm flex flex-col items-center justify-center border-4 border-dashed border-white text-white pointer-events-none transition-all">
+          <span className="text-6xl mb-4 animate-bounce">📦</span>
+          <h3 className="text-2xl font-extrabold tracking-tight mb-2">
+            Lepaskan Berkas .sb3 di Sini
+          </h3>
+          <p className="text-sm text-blue-100 font-medium max-w-md text-center">
+            Tarik & lepaskan file Scratch (.sb3) dari laptop Anda untuk langsung membedah dan memainkannya.
+          </p>
+          <span className="mt-4 px-3 py-1 rounded-full bg-white/20 text-xs font-bold">
+            Format Scratch 3.0 (.sb3) Didukung
+          </span>
+        </div>
+      )}
 
       {/* Global Floating Toast Notifications (UI 18) */}
       <ToastNotificationContainer />

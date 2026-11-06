@@ -512,6 +512,109 @@ class StorageService {
   }
 
   /**
+   * Mengimpor dan membedah arsip ZIP berkas Scratch 3.0 (.sb3) menjadi StoredProject lokal.
+   */
+  async importProjectFromSb3(fileOrBlob: Blob | File): Promise<{
+    project: StoredProject;
+    spriteCount: number;
+    blockCount: number;
+  }> {
+    const zip = await JSZip.loadAsync(fileOrBlob);
+    const projectFile = zip.file('project.json');
+    if (!projectFile) {
+      throw new Error('Format berkas .sb3 tidak valid: berkas "project.json" tidak ditemukan di dalam paket.');
+    }
+
+    const jsonText = await projectFile.async('string');
+    let ast: any;
+    try {
+      ast = JSON.parse(jsonText);
+    } catch {
+      throw new Error('Gagal mengurai project.json di dalam berkas .sb3.');
+    }
+
+    if (!ast.targets || !Array.isArray(ast.targets)) {
+      throw new Error('Struktur berkas .sb3 tidak kompatibel: properti "targets" tidak ditemukan.');
+    }
+
+    const stageTarget = ast.targets.find((t: any) => t.isStage) || ast.targets[0];
+    const spriteTargets = ast.targets.filter((t: any) => !t.isStage);
+
+    // Variabel
+    const variables: any[] = [];
+    if (stageTarget && stageTarget.variables) {
+      for (const [key, val] of Object.entries(stageTarget.variables)) {
+        const item = val as [string, any];
+        variables.push({
+          name: item?.[0] || key,
+          initialValue: typeof item?.[1] === 'number' ? item[1] : (Number(item?.[1]) || 0),
+        });
+      }
+    }
+
+    // Sprites & Blok
+    let totalBlocks = 0;
+    interface ExtractedSprite {
+      name: string;
+      costume: string;
+      initialPosition: { x: number; y: number };
+      behavior: string;
+    }
+    const sprites: ExtractedSprite[] = spriteTargets.map((st: any, idx: number) => {
+      const blockKeys = Object.keys(st.blocks || {});
+      totalBlocks += blockKeys.length;
+      return {
+        name: st.name || `Sprite${idx + 1}`,
+        costume: st.costumes?.[st.currentCostume || 0]?.name || 'costume1',
+        initialPosition: {
+          x: typeof st.x === 'number' ? st.x : 0,
+          y: typeof st.y === 'number' ? st.y : 0,
+        },
+        behavior: `Diimpor dari Scratch 3.0 (${blockKeys.length} balok)`,
+      };
+    });
+
+    const fileName = (fileOrBlob as File).name;
+    const baseTitle = fileName ? fileName.replace(/\.sb3$/i, '') : 'Proyek Impor Scratch 3.0';
+
+    const gameSpec: ArdenaGameSpec = {
+      title: baseTitle || 'Proyek Scratch 3.0',
+      genre: 'catching-game',
+      description: `Proyek diimpor dari Scratch 3.0 (.sb3) dengan ${sprites.length} sprite dan ${totalBlocks} balok kode Scratch.`,
+      rules: {
+        winCondition: 'Selesaikan misi proyek Scratch',
+        loseCondition: 'Waktu habis atau gagal misi',
+      },
+      sprites: sprites.map((s: ExtractedSprite, idx: number) => ({
+        name: s.name,
+        role: idx === 0 ? 'player' : 'collectible',
+        costume: s.costume,
+        initialPosition: s.initialPosition,
+        scripts: [
+          {
+            trigger: 'when_flag_clicked',
+            action: s.behavior,
+          },
+        ],
+      })),
+      variables,
+      soundEffects: ['pop'],
+    };
+
+    const project = this.createProjectFromSpec(
+      gameSpec,
+      baseTitle,
+      ['scratch3', 'imported', 'sb3']
+    );
+
+    return {
+      project,
+      spriteCount: sprites.length,
+      blockCount: totalBlocks,
+    };
+  }
+
+  /**
    * Helper internal untuk mengonversi ArdenaGameSpec menjadi AST Scratch 3.0 kompatibel.
    */
   private buildScratchAst(project: StoredProject): Record<string, unknown> {
