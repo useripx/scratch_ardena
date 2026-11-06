@@ -5,6 +5,7 @@ export interface NavbarProps {
   onNavigate?: (view: string) => void;
   onOpenStudio?: () => void;
   onOpenPreferences?: () => void;
+  onOpenHelp?: () => void;
   isBackendHealthy?: boolean;
 }
 
@@ -13,6 +14,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onNavigate,
   onOpenStudio,
   onOpenPreferences,
+  onOpenHelp,
   isBackendHealthy = true,
 }) => {
   return (
@@ -94,6 +96,17 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Right Actions & Health Status */}
         <div className="flex items-center gap-3">
+          {onOpenHelp && (
+            <button
+              type="button"
+              onClick={onOpenHelp}
+              title="Panduan Balok Scratch & Bantuan"
+              className="p-2 rounded-xl border border-gray-200 hover:bg-white text-[#006194] text-sm font-bold transition-colors shadow-xs"
+            >
+              ❓
+            </button>
+          )}
+
           {onOpenPreferences && (
             <button
               type="button"

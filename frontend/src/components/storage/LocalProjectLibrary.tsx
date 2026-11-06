@@ -3,6 +3,8 @@ import { StoredProject, ProjectCategory } from '../../types/game.types';
 import { storageService } from '../../services/storage.service';
 import { ConfirmationModal } from '../modals/ConfirmationModal';
 import { ExportSb3Modal } from '../modals/ExportSb3Modal';
+import { ToastNotificationContainer } from '../common/ToastNotification';
+import { toast } from '../../services/toast.service';
 
 export interface LocalProjectLibraryProps {
   onOpenProject: (project: StoredProject) => void;
@@ -56,10 +58,26 @@ export const LocalProjectLibrary: React.FC<LocalProjectLibraryProps> = ({
 
   const handleDeleteConfirm = async () => {
     if (!projectToDelete) return;
+    const deletedProject = projectToDelete;
     try {
-      await storageService.deleteProject(projectToDelete.id);
+      await storageService.deleteProject(deletedProject.id);
       setProjectToDelete(null);
       await loadProjects();
+
+      // Show Undo Toast for 6 seconds
+      toast.undo(
+        'Proyek Dihapus',
+        `Proyek "${deletedProject.title}" telah dihapus.`,
+        async () => {
+          await storageService.saveProject(deletedProject);
+          await loadProjects();
+          toast.success(
+            'Proyek Dipulihkan',
+            `Proyek "${deletedProject.title}" berhasil dikembalikan.`
+          );
+        },
+        { durationMs: 6000, undoLabel: 'Batal / Undo' }
+      );
     } catch (err) {
       console.error('[LocalProjectLibrary] Gagal menghapus proyek:', err);
     }
@@ -394,6 +412,9 @@ export const LocalProjectLibrary: React.FC<LocalProjectLibraryProps> = ({
         project={projectToExport}
         onClose={() => setProjectToExport(null)}
       />
+
+      {/* Floating Global Toasts */}
+      <ToastNotificationContainer />
     </div>
   );
 };

@@ -4,11 +4,13 @@
 export * from './types/game.types';
 export * from './services/api.service';
 export * from './services/storage.service';
+export * from './services/toast.service';
 
 // Common Components
 export * from './components/common/Navbar';
 export * from './components/common/Footer';
 export * from './components/common/Modal';
+export * from './components/common/ToastNotification';
 
 // Feature Views (Google Stitch 19 Layar)
 export * from './components/landing/WelcomeLandingView';
@@ -17,6 +19,10 @@ export * from './components/home/ProjectHomeView';
 export * from './components/starter/StartModeSelector';
 export * from './components/templates/TemplateCatalogView';
 export * from './components/storage/LocalProjectLibrary';
+
+// Help Guide & Scratch Blocks (UI 16)
+export * from './components/help/ScratchBlockSnippet';
+export * from './components/help/BlockHelpGuideModal';
 
 // Editor Components (UI 06, UI 08, UI 10)
 export * from './components/editor/EditorTopNav';
