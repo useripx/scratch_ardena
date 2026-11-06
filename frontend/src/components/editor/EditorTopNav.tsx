@@ -13,6 +13,7 @@ export interface EditorTopNavProps {
   onExportSb3?: () => void;
   onOpenPreferences?: () => void;
   onOpenHelp?: () => void;
+  creditsBalance?: number;
 }
 
 export const EditorTopNav: React.FC<EditorTopNavProps> = ({
@@ -28,6 +29,7 @@ export const EditorTopNav: React.FC<EditorTopNavProps> = ({
   onExportSb3,
   onOpenPreferences,
   onOpenHelp,
+  creditsBalance,
 }) => {
   const [isEditingName, setIsEditingName] = useState(false);
   const [nameInput, setNameInput] = useState(projectName);
@@ -182,6 +184,18 @@ export const EditorTopNav: React.FC<EditorTopNavProps> = ({
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
           <span>Tersimpan (IndexedDB)</span>
         </div>
+
+        {/* Credit Balance Badge */}
+        {creditsBalance !== undefined && (
+          <div
+            title="Saldo Kredit AI Agen (5.500 poin awal + 500 harian)"
+            className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-900 text-xs font-bold shadow-xs select-none"
+          >
+            <span>🪙</span>
+            <span>{creditsBalance.toLocaleString('id-ID')}</span>
+            <span className="text-[10px] text-amber-700 font-semibold hidden md:inline">Poin</span>
+          </div>
+        )}
 
         {/* AI Copilot Toggle Button */}
         <button

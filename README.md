@@ -22,7 +22,7 @@
   [![Express.js](https://img.shields.io/badge/Express.js-v4.19-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
   [![Scratch 3.0](https://img.shields.io/badge/Scratch-3.0_Engine-FFAB19?style=for-the-badge&logo=scratch&logoColor=white)](https://scratch.mit.edu/)
   [![React 18](https://img.shields.io/badge/React-18-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
-  [![Tests](https://img.shields.io/badge/Tests-125_Passed_(100%25)-brightgreen?style=for-the-badge&logo=jest&logoColor=white)](https://jestjs.io/)
+  [![Tests](https://img.shields.io/badge/Tests-137_Passed_(100%25)-brightgreen?style=for-the-badge&logo=jest&logoColor=white)](https://jestjs.io/)
   [![Version](https://img.shields.io/badge/Version-v1.0.0--rc1-006194?style=for-the-badge&logo=scratch&logoColor=white)](https://github.com/useripx/scratch_ardena)
   [![Code Coverage](https://img.shields.io/badge/Coverage-93.5%25_BE_|_72.3%25_FE-brightgreen?style=for-the-badge&logo=codecov)](https://github.com/useripx/scratch_ardena)
 
