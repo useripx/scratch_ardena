@@ -71,11 +71,11 @@ flowchart LR
 | **Tahap 01** | Repository Audit, Upstream Feasibility & Stack Selection | ✅ **DONE** | Dokumen audit & arsitektur baseline disetujui PO. |
 | **Tahap 02** | Desain UI/UX (Google Stitch Prototype — 19 Layar) | ✅ **DONE** | 19 prototipe HTML/PNG di `template/ardenaplayground/`. |
 | **Tahap 03** | Persiapan Repository, Git Branching Strategy & Baseline Setup | ✅ **DONE** | Repositori aktif, branch `main` & `develop`, 0 secret leakage. |
-| **Tahap 04** | Implementasi Frontend React (Scratch GUI & Stitch Adoption) | ✅ **DONE** | Seluruh 7 sub-fase (FE-01 s/d FE-07) selesai, 19 UI Google Stitch terintegrasi, 60/60 tests lulus (100% PASS). |
+| **Tahap 04** | Implementasi Frontend React (Scratch GUI & Stitch Adoption) | ✅ **DONE** | Seluruh 7 sub-fase (FE-01 s/d FE-07) selesai, 19 UI Google Stitch terintegrasi, 78 tests lulus (100% PASS). |
 | **Tahap 05** | Backend AI Service (BE-00 s/d BE-07: Hexa-Cluster AI) | ✅ **DONE** | 65/65 tests passed (100%), coverage 93.49%, dokumen handover. |
-| **Tahap 06** | Integrasi Penuh Live Runtime (Frontend Port 3000 ➔ Backend Port 3001) | 🔄 **IN PROGRESS** | Sambungan live prompt-to-game generasi di antarmuka Scratch Editor. |
-| **Tahap 07** | Integrasi Scratch Editor, Local Storage (IndexedDB) & Export (.sb3) | ⏳ **PENDING** | Penyimpanan proyek offline dan packaging file `.sb3`. |
-| **Tahap 08** | Final Hardening, UAT, dan MVP Release | ⏳ **PENDING** | Audit rilis akhir, pengujian penerimaan pengguna (UAT). |
+| **Tahap 06** | AI Game Generator & Block Mapping (AST Scratch 3.0 Engine) | ✅ **DONE** | AST Block Mapping Scratch 3.0, Zero Overwrite Review Gate, Diff Bento Box. |
+| **Tahap 07** | Integrasi Scratch Editor, Local Storage (IndexedDB) & Export (.sb3) | ✅ **DONE** | AI Credit Wallet (5500 welcome + 500 daily), IndexedDB offline storage, & .sb3 export. |
+| **Tahap 08** | Hardening, UAT Komprehensif, dan MVP Release Resmi (v1.0.0) | ✅ **DONE** | 100% PASS (143/143 tests), Laporan UAT tuntas di `Docs/release/UAT_Release_Report_v1.0.0.md`. |
 
 ---
 
@@ -88,6 +88,29 @@ Sebelum memulai instalasi, pastikan komputer/laptop Anda telah terpasang:
 - **NPM:** Bawaan Node.js (v10.x atau lebih baru)
 - **Browser Modern:** Google Chrome, Microsoft Edge, Mozilla Firefox, atau Brave.
 - 🛑 **CATATAN PENTING (BEBAS DATABASE SERVER):** Proyek ini **TIDAK MEMBUTUHKAN** instalasi Laragon, XAMPP, MySQL, MariaDB, PostgreSQL, PHP, maupun Docker! Seluruh penyimpanan data game disimpan di sisi peramban pengguna (*browser client storage via IndexedDB*) sesuai prinsip arsitektur **ADR-005**.
+
+---
+
+### ⚡ Cara Instan: Sekali Klik Menjalankan Proyek di Laptop (`startlocal.bat`)
+
+Untuk kemudahan pengujian lokal tanpa perlu membuka banyak terminal atau mengetik perintah panjang:
+
+1. **Cukup klik ganda (*double-click*) berkas `startlocal.bat`** (atau `start-local.bat`) pada direktori utama proyek.
+2. Skrip otomatis akan:
+   - Memeriksa kelengkapan Node.js & NPM di laptop Anda.
+   - Memverifikasi dan menginstal dependensi otomatis jika belum ada.
+   - Menyalakan backend Express API di `http://localhost:3001`.
+   - Menyalakan antarmuka frontend Vite React di `http://localhost:3000`.
+   - Membuka peramban (*browser*) utama Anda secara otomatis langsung ke `http://localhost:3000`.
+3. **Cara Menghentikan (*Stop Server*):**
+   - Cukup kembali ke jendela terminal runner, tekan tombol **`CTRL + C`**, lalu ketik **`Y`**. Kedua server (backend & frontend) akan berhenti secara aman dan bersih!
+
+> 💻 **Alternatif Perintah Terminal:**
+> Anda juga dapat menjalankan perintah berikut dari direktori utama:
+> ```bash
+> npm run dev
+> ```
+> Perintah ini memanfaatkan `concurrently` untuk menyalakan backend dan frontend secara bersamaan dalam satu jendela terminal.
 
 ---
 
