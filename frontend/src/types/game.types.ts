@@ -232,3 +232,54 @@ export const DEFAULT_USER_PREFERENCES: UserPreferences = {
   highContrastMode: false,
   aiModelPreference: 'gemini-1.5-flash',
 };
+
+/**
+ * Aturan Dompet Kredit AI Agen (Fair Usage Policy).
+ * Akun baru: 5.500 Poin.
+ * Hadiah harian otomatis: +500 Poin setiap pergantian hari.
+ */
+export interface CreditTransaction {
+  id: string;
+  timestamp: string;
+  amount: number;
+  type: 'welcome' | 'daily_refresh' | 'action_cost' | 'bonus';
+  description?: string;
+}
+
+export interface UserCredits {
+  balance: number;
+  lastDailyCreditDate: string; // Format YYYY-MM-DD
+  totalCreditsEarned: number;
+  totalCreditsSpent: number;
+  history?: CreditTransaction[];
+}
+
+export const INITIAL_WELCOME_CREDITS = 5500;
+export const DAILY_REFRESH_CREDITS = 500;
+
+export const AI_ACTION_CREDIT_COSTS = {
+  buat: 100,
+  ubah: 50,
+  jelaskan: 20,
+  create: 100, // Alias bahasa Inggris
+  modify: 50,  // Alias bahasa Inggris
+  explain: 20, // Alias bahasa Inggris
+} as const;
+
+export type AiActionCostType = keyof typeof AI_ACTION_CREDIT_COSTS;
+
+export const DEFAULT_USER_CREDITS: UserCredits = {
+  balance: INITIAL_WELCOME_CREDITS,
+  lastDailyCreditDate: '',
+  totalCreditsEarned: INITIAL_WELCOME_CREDITS,
+  totalCreditsSpent: 0,
+  history: [
+    {
+      id: 'tx-welcome',
+      timestamp: new Date().toISOString(),
+      amount: INITIAL_WELCOME_CREDITS,
+      type: 'welcome',
+      description: 'Bonus Poin Selamat Datang Pengguna Baru',
+    },
+  ],
+};

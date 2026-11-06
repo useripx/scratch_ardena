@@ -11,7 +11,12 @@ import {
   DEFAULT_USER_PREFERENCES,
   ArdenaGameSpec,
   calculateDiffCounters,
+  UserCredits,
+  DEFAULT_USER_CREDITS,
+  INITIAL_WELCOME_CREDITS,
+  DAILY_REFRESH_CREDITS,
 } from '../types/game.types';
+import { toast } from './toast.service';
 
 const DB_NAME = 'ardena_playground_db';
 const DB_VERSION = 1;
@@ -23,6 +28,10 @@ class StorageService {
   // Fallback in-memory map untuk lingkungan tanpa IndexedDB (misal: Unit Test atau Private Window ketat)
   private memoryProjects: Map<string, StoredProject> = new Map();
   private memoryPreferences: UserPreferences = { ...DEFAULT_USER_PREFERENCES };
+  private memoryCredits: UserCredits = {
+    ...DEFAULT_USER_CREDITS,
+    lastDailyCreditDate: new Date().toISOString().split('T')[0],
+  };
 
   private isIndexedDBAvailable(): boolean {
     return typeof window !== 'undefined' && typeof window.indexedDB !== 'undefined';
@@ -260,11 +269,188 @@ class StorageService {
   }
 
   /**
+   * Mengambil saldo kredit pengguna saat ini dan otomatis menambahkan +500 poin jika hari baru.
+   */
+  async getCredits(): Promise<UserCredits> {
+    const today = new Date().toISOString().split('T')[0];
+    const db = await this.openDB();
+
+    let rawCredits: UserCredits;
+    if (!db) {
+      rawCredits = { ...this.memoryCredits };
+    } else {
+      rawCredits = await new Promise((resolve) => {
+        try {
+          const tx = db.transaction(STORE_PREFERENCES, 'readonly');
+          const store = tx.objectStore(STORE_PREFERENCES);
+          const request = store.get('user_credits');
+
+          request.onsuccess = () => {
+            if (request.result && request.result.value) {
+              resolve(request.result.value);
+            } else {
+              resolve({
+                ...DEFAULT_USER_CREDITS,
+                lastDailyCreditDate: today,
+              });
+            }
+          };
+          request.onerror = () =>
+            resolve({ ...DEFAULT_USER_CREDITS, lastDailyCreditDate: today });
+        } catch {
+          resolve({ ...DEFAULT_USER_CREDITS, lastDailyCreditDate: today });
+        }
+      });
+    }
+
+    if (!rawCredits.history) {
+      rawCredits.history = [
+        {
+          id: 'tx-welcome',
+          timestamp: new Date().toISOString(),
+          amount: INITIAL_WELCOME_CREDITS,
+          type: 'welcome',
+          description: 'Bonus Saldo Selamat Datang',
+        },
+      ];
+    }
+
+    // Jika belum ada tanggal atau berganti hari -> Berikan +500 Poin Gratis Harian
+    if (!rawCredits.lastDailyCreditDate) {
+      rawCredits.lastDailyCreditDate = today;
+      await this.saveCredits(rawCredits);
+    } else if (rawCredits.lastDailyCreditDate !== today) {
+      rawCredits.balance += DAILY_REFRESH_CREDITS;
+      rawCredits.totalCreditsEarned += DAILY_REFRESH_CREDITS;
+      rawCredits.lastDailyCreditDate = today;
+      rawCredits.history.unshift({
+        id: `tx-daily-${Date.now()}`,
+        timestamp: new Date().toISOString(),
+        amount: DAILY_REFRESH_CREDITS,
+        type: 'daily_refresh',
+        description: 'Bonus Hadiah Harian AI',
+      });
+      await this.saveCredits(rawCredits);
+      toast.info(
+        '🎁 Kredit Harian Masuk!',
+        `+${DAILY_REFRESH_CREDITS} Poin AI gratis telah otomatis ditambahkan ke saldo Anda.`
+      );
+    }
+
+    return rawCredits;
+  }
+
+  /**
+   * Menyimpan saldo kredit pengguna.
+   */
+  async saveCredits(credits: UserCredits): Promise<UserCredits> {
+    const db = await this.openDB();
+    if (!db) {
+      this.memoryCredits = { ...credits };
+      return credits;
+    }
+
+    return new Promise((resolve, reject) => {
+      try {
+        const tx = db.transaction(STORE_PREFERENCES, 'readwrite');
+        const store = tx.objectStore(STORE_PREFERENCES);
+        const request = store.put({ key: 'user_credits', value: credits });
+
+        request.onsuccess = () => resolve(credits);
+        request.onerror = () => reject(request.error);
+      } catch (err) {
+        reject(err);
+      }
+    });
+  }
+
+  /**
+   * Memotong kredit untuk aksi AI. Mengembalikan status sukses dan sisa saldo.
+   */
+  async deductCredits(
+    cost: number,
+    reason?: string
+  ): Promise<{ success: boolean; remaining: number; balance: number }> {
+    const credits = await this.getCredits();
+    if (credits.balance < cost) {
+      return { success: false, remaining: credits.balance, balance: credits.balance };
+    }
+
+    credits.balance -= cost;
+    credits.totalCreditsSpent += cost;
+    if (!credits.history) credits.history = [];
+    credits.history.unshift({
+      id: `tx-cost-${Date.now()}`,
+      timestamp: new Date().toISOString(),
+      amount: -cost,
+      type: 'action_cost',
+      description: reason || 'Pemakaian AI Copilot',
+    });
+    await this.saveCredits(credits);
+    return { success: true, remaining: credits.balance, balance: credits.balance };
+  }
+
+  /**
+   * Menambahkan kredit (misal dari bonus / voucher).
+   */
+  async addCredits(amount: number, reason?: string): Promise<UserCredits> {
+    const credits = await this.getCredits();
+    credits.balance += amount;
+    credits.totalCreditsEarned += amount;
+    if (!credits.history) credits.history = [];
+    credits.history.unshift({
+      id: `tx-add-${Date.now()}`,
+      timestamp: new Date().toISOString(),
+      amount,
+      type: 'bonus',
+      description: reason || 'Penambahan Kredit Manual',
+    });
+    return this.saveCredits(credits);
+  }
+
+  /**
+   * Reset kredit ke saldo awal sambutan (5500 poin).
+   */
+  async resetCredits(): Promise<UserCredits> {
+    const today = new Date().toISOString().split('T')[0];
+    const initial: UserCredits = {
+      balance: INITIAL_WELCOME_CREDITS,
+      lastDailyCreditDate: today,
+      totalCreditsEarned: INITIAL_WELCOME_CREDITS,
+      totalCreditsSpent: 0,
+      history: [
+        {
+          id: 'tx-welcome',
+          timestamp: new Date().toISOString(),
+          amount: INITIAL_WELCOME_CREDITS,
+          type: 'welcome',
+          description: 'Bonus Saldo Selamat Datang',
+        },
+      ],
+    };
+    return this.saveCredits(initial);
+  }
+
+  /**
    * Menghapus semua proyek dan preferensi lokal (Reset).
    */
   async clearAllData(): Promise<void> {
+    const today = new Date().toISOString().split('T')[0];
     this.memoryProjects.clear();
     this.memoryPreferences = { ...DEFAULT_USER_PREFERENCES };
+    this.memoryCredits = {
+      ...DEFAULT_USER_CREDITS,
+      lastDailyCreditDate: today,
+      history: [
+        {
+          id: 'tx-welcome',
+          timestamp: new Date().toISOString(),
+          amount: INITIAL_WELCOME_CREDITS,
+          type: 'welcome',
+          description: 'Bonus Saldo Selamat Datang',
+        },
+      ],
+    };
 
     const db = await this.openDB();
     if (!db) return;
