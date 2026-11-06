@@ -280,8 +280,59 @@ Seluruh sub-tahapan backend (**BE-00 s/d BE-07**) telah **100% SELESAI, TERVERIF
 
 ---
 
-## 🏆 KESIMPULAN FASE BESAR: TAHAP 04 (FRONTEND IMPLEMENTATION) SELESAI PENUH (100% PASS)
-Seluruh 7 sub-fase frontend (FE-01 s/d FE-07) dan 19 prototipe tampilan antarmuka Google Stitch telah terpasang, teruji secara otomatis, terisolasi aman di peramban lokal (IndexedDB), dan siap melangkah ke **Tahap 05 / 06 / 07: Integrasi Penuh Live Runtime Frontend-Backend**!
+### Sub-Fase INT-01 — Integrasi Penuh Live Runtime Frontend-Backend & AI Credit Wallet
+* **Prasyarat:** Tahap 04 (FE-07) dan Tahap 05 (BE-07) disetujui (Disetujui 06/11/2026).
+* **Status:** **DONE (100% PASS — 73 Frontend + 65 Backend = 138 Tests Lulus, 0 Error)**
+* **Checklist Tugas INT-01:**
+  - [x] Implementasi sistem AI Credit Wallet di `storage.service.ts`:
+    - Bonus selamat datang pengguna baru: **5.500 poin**.
+    - Bonus harian otomatis saat pergantian tanggal: **+500 poin**.
+    - Pemotongan biaya token transparan: Mode Buat (100 poin), Mode Ubah (50 poin), Mode Jelaskan (20 poin).
+    - Blokade pemanggilan AI jika saldo kredit tidak mencukupi dengan notifikasi ramah.
+  - [x] Integrasi antarmuka dompet kredit `<CreditWalletModal />` dengan riwayat transaksi dan tombol klaim harian.
+  - [x] Sambungan live port 3000 (Frontend) ke port 3001 (Backend API `/api/v1/games/generate`).
+  - [x] Implementasi unit & integration tests di `frontend/tests/credit-wallet.test.tsx` (13 kasus uji baru).
+  - [x] Kompilasi TypeScript sukses (`0 ERROR`) dan automated test suite 100% PASS.
+
+---
+
+### Tahap 08 — Hardening, UAT Komprehensif, dan MVP Release Resmi (v1.0.0)
+* **Prasyarat:** INT-01 selesai dan disetujui (Disetujui 06/11/2026).
+* **Status:** **DONE (100% PASS — 78 Frontend + 65 Backend = 143 Tests Lulus, 0 Error)**
+* **Checklist Tugas Tahap 08:**
+  - [x] Pembuatan test suite UAT otomatis di `frontend/tests/uat-release.test.tsx` mencakup 5 skenario penerimaan utama:
+    - Skenario 1: First-Time User Experience (FTUX) & Inisialisasi 5.500 Kredit Gratis.
+    - Skenario 2: Alur AI Tri-Mode, Review Gate Zero Overwrite, & Pengurangan Kredit.
+    - Skenario 3: Ketahanan Offline (IndexedDB) & Integritas Paket Ekspor `.sb3` ZIP.
+    - Skenario 4: Penanganan Resiliensi Error, Rate Limit, & Klaim Kredit Harian (+500).
+    - Skenario 5: Kepatuhan Standar AST Scratch 3.0 (Target, Blocks, Inputs, Fields).
+  - [x] Pembaruan penanda versi produksi menjadi `v1.0.0 (MVP Release)` pada `package.json`, `<Footer />`, dan `<PreferencesModal />`.
+  - [x] Pembuatan Laporan UAT formal di `Docs/release/UAT_Release_Report_v1.0.0.md`.
+  - [x] Pembuatan changelog rilis di `changelog/changelog01pm06112026.md`.
+  - [x] Pembuatan Git release tag `v1.0.0` dan push ke repositori GitHub upstream.
+  - [x] Pembersihan cabang `main` khusus berkas produksi murni (tanpa direktori internal).
+
+---
+
+### Tahap 09-A — One-Click Local Laptop Studio Runner (`startlocal.bat`)
+* **Prasyarat:** Tahap 08 disahkan dan persetujuan PO Yogi Ario (Disetujui 06/11/2026).
+* **Status:** **DONE (100% PASS — 143 Tests Lulus, 0 Error)**
+* **Checklist Tugas Tahap 09-A:**
+  - [x] Konfigurasi frontend Vite dev server (port 3000) dengan proxy balik `/api` ke Express (port 3001) di `frontend/vite.config.mts`.
+  - [x] Pembuatan berkas entri HTML `frontend/index.html` dan titik pasang React `frontend/src/main.tsx`.
+  - [x] Konfigurasi root runner `concurrently` di `package.json` (`npm run dev`).
+  - [x] Pembuatan skrip peluncur sekali klik `startlocal.bat` dan alias `start-local.bat`:
+    - Pengecekan otomatis kelengkapan Node.js dan instalasi dependensi jika belum ada.
+    - Penampilan banner studio interaktif dengan panduan port.
+    - Peluncuran otomatis peramban lokal ke `http://localhost:3000` setelah penundaan 3 detik.
+    - Penghentian proses ganda (backend + frontend) secara bersih hanya dengan menekan `CTRL + C` lalu `Y`.
+  - [x] Pembaruan panduan pengoperasian lokal di `README.md`.
+  - [x] Verifikasi pengujian 100% PASS (143/143 tests) dan kompilasi `npm run build` bebas error.
+
+---
+
+## 🏆 KESIMPULAN FASE BESAR: TAHAP 01 S/D 08 & LOCAL RUNNER TUNTAS 100%
+Ardena Playground kini telah siap 100% untuk digunakan dan diuji langsung di laptop lokal oleh Yogi Ario hanya dengan **sekali klik pada `startlocal.bat`** tanpa memerlukan server atau hosting cloud berbayar!
 
 
 
