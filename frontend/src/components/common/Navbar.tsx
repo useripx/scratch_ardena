@@ -1,5 +1,7 @@
 import React from 'react';
 import { LanguageToggle } from './LanguageToggle';
+import { BrandLogo } from './BrandLogo';
+import { useI18n } from '../../contexts/I18nContext';
 
 export interface NavbarProps {
   currentView?: string;
@@ -18,6 +20,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenHelp,
   isBackendHealthy = true,
 }) => {
+  const { t } = useI18n();
+
   return (
     <header className="fixed top-0 left-0 right-0 z-40 bg-[#f7f9fb]/90 backdrop-blur-md border-b border-gray-200/60 shadow-sm transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
@@ -26,17 +30,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           className="flex items-center gap-3 cursor-pointer select-none"
           onClick={() => onNavigate?.('landing')}
         >
-          <div className="w-10 h-10 rounded-xl overflow-hidden bg-white shadow-sm border border-gray-200 flex items-center justify-center p-1">
-            <img
-              src="assets/logo.png"
-              alt="Ardena Playground Logo"
-              className="w-full h-full object-contain"
-              onError={(e) => {
-                // Fallback SVG if image not found
-                (e.target as HTMLElement).style.display = 'none';
-              }}
-            />
-          </div>
+          <BrandLogo size={42} showText={false} />
           <div className="flex flex-col">
             <span className="font-extrabold text-xl tracking-tight text-[#191c1e] flex items-center gap-1.5">
               Ardena <span className="text-[#006194]">Playground</span>
@@ -58,7 +52,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 : 'text-gray-600 hover:text-gray-900 hover:bg-gray-200/50'
             }`}
           >
-            Beranda
+            {t('nav.home')}
           </button>
           <button
             type="button"
@@ -69,7 +63,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 : 'text-gray-600 hover:text-gray-900 hover:bg-gray-200/50'
             }`}
           >
-            Dashboard Studio
+            {t('nav.dashboard')}
           </button>
           <button
             type="button"
@@ -80,7 +74,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 : 'text-gray-600 hover:text-gray-900 hover:bg-gray-200/50'
             }`}
           >
-            Template Game
+            {t('nav.templates')}
           </button>
           <button
             type="button"
@@ -91,7 +85,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 : 'text-gray-600 hover:text-gray-900 hover:bg-gray-200/50'
             }`}
           >
-            Pustaka Proyek
+            {t('nav.library')}
           </button>
         </nav>
 
@@ -114,7 +108,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               type="button"
               onClick={onOpenPreferences}
-              title="Pengaturan Studio"
+              title={t('common.preferences')}
               className="p-2 rounded-xl border border-gray-200 hover:bg-white text-gray-700 text-sm transition-colors shadow-xs"
             >
               ⚙️
@@ -130,7 +124,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   : 'bg-amber-500'
               }`}
             />
-            <span>{isBackendHealthy ? 'Hexa-Cluster AI Siap' : 'AI Offline'}</span>
+            <span>{isBackendHealthy ? t('nav.aiOnline') : t('nav.aiOffline')}</span>
           </div>
 
           <button
@@ -138,7 +132,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             onClick={onOpenStudio || (() => onNavigate?.('home'))}
             className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[#006194] text-white text-sm font-bold shadow-md hover:bg-[#007bb9] hover:shadow-lg transition-all transform hover:-translate-y-0.5"
           >
-            <span>🚀 Buka Studio</span>
+            <span>{t('nav.openStudio')}</span>
           </button>
         </div>
       </div>

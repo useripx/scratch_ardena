@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { SupportedTemplateKey, AI_ACTION_CREDIT_COSTS } from '../../types/game.types';
+import { useI18n } from '../../contexts/I18nContext';
 
 export type CopilotMode = 'buat' | 'ubah' | 'jelaskan';
 
@@ -13,10 +14,16 @@ export interface AICopilotPanelProps {
   creditsBalance?: number;
 }
 
-const INSPIRATION_PROMPTS = [
+const INSPIRATION_PROMPTS_ID = [
   'Buat game astronot menangkap bintang di luar angkasa dengan rintangan meteor berkecepatan acak.',
   'Kucing mengejar keju di labirin dinding dan hindari tikus penjaga.',
   'Pesawat tempur menembak asteroid dengan laser dan pertahankan 3 nyawa.',
+];
+
+const INSPIRATION_PROMPTS_EN = [
+  'Create an astronaut game catching stars in outer space with random speed meteor obstacles.',
+  'A cat chases cheese through a maze of walls while avoiding guard mice.',
+  'A space fighter shoots asteroids with lasers and defends 3 player lives.',
 ];
 
 export const AICopilotPanel: React.FC<AICopilotPanelProps> = ({
@@ -28,6 +35,10 @@ export const AICopilotPanel: React.FC<AICopilotPanelProps> = ({
   onClearError,
   creditsBalance,
 }) => {
+  const { t, locale } = useI18n();
+  const isEn = locale === 'en';
+  const inspirations = isEn ? INSPIRATION_PROMPTS_EN : INSPIRATION_PROMPTS_ID;
+
   const [activeMode, setActiveMode] = useState<CopilotMode>('buat');
   const [promptText, setPromptText] = useState('');
   const [selectedTemplate, setSelectedTemplate] = useState<SupportedTemplateKey | ''>('');
@@ -60,14 +71,14 @@ export const AICopilotPanel: React.FC<AICopilotPanelProps> = ({
             ✨
           </div>
           <span className="font-extrabold text-sm text-gray-900">
-            Ardena AI Copilot
+            {t('editor.copilotTitle')}
           </span>
           {creditsBalance !== undefined ? (
             <span
               title="Saldo kredit AI Agen saat ini"
               className="px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 text-[10px] font-bold border border-amber-300"
             >
-              🪙 {creditsBalance.toLocaleString('id-ID')} Poin
+              🪙 {creditsBalance.toLocaleString(isEn ? 'en-US' : 'id-ID')} {t('modes.creditsUnit')}
             </span>
           ) : (
             <span className="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">
@@ -78,7 +89,7 @@ export const AICopilotPanel: React.FC<AICopilotPanelProps> = ({
         <button
           type="button"
           onClick={onClose}
-          title="Tutup Panel AI Copilot"
+          title={t('common.close')}
           className="w-7 h-7 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-gray-200/60 flex items-center justify-center text-xs transition-colors"
         >
           ✕
@@ -99,7 +110,7 @@ export const AICopilotPanel: React.FC<AICopilotPanelProps> = ({
               : 'text-gray-600 hover:text-gray-900'
           }`}
         >
-          ✨ Buat (-100)
+          ✨ {isEn ? 'Create' : 'Buat'} (-100)
         </button>
         <button
           type="button"
@@ -113,7 +124,7 @@ export const AICopilotPanel: React.FC<AICopilotPanelProps> = ({
               : 'text-gray-600 hover:text-gray-900'
           }`}
         >
-          🛠️ Ubah (-50)
+          🛠️ {isEn ? 'Modify' : 'Ubah'} (-50)
         </button>
         <button
           type="button"
@@ -127,7 +138,7 @@ export const AICopilotPanel: React.FC<AICopilotPanelProps> = ({
               : 'text-gray-600 hover:text-gray-900'
           }`}
         >
-          📖 Jelaskan (-20)
+          📖 {isEn ? 'Explain' : 'Jelaskan'} (-20)
         </button>
       </div>
 
@@ -160,10 +171,10 @@ export const AICopilotPanel: React.FC<AICopilotPanelProps> = ({
               className="text-xs font-bold text-gray-700 uppercase tracking-wider"
             >
               {activeMode === 'buat'
-                ? 'Ide Permainan Baru'
+                ? (isEn ? 'New Game Idea' : 'Ide Permainan Baru')
                 : activeMode === 'ubah'
-                ? 'Instruksi Modifikasi'
-                : 'Pertanyaan Logika Balok'}
+                ? (isEn ? 'Modification Instruction' : 'Instruksi Modifikasi')
+                : (isEn ? 'Block Logic Question' : 'Pertanyaan Logika Balok')}
             </label>
             <span className="text-[11px] font-mono text-gray-400">
               {promptText.length}/2000
@@ -179,10 +190,16 @@ export const AICopilotPanel: React.FC<AICopilotPanelProps> = ({
             onChange={(e) => setPromptText(e.target.value)}
             placeholder={
               activeMode === 'buat'
-                ? 'Jelaskan ceritamu (contoh: Buat game astronot menangkap bintang...)'
+                ? (isEn
+                    ? 'Describe your story (e.g., Create an astronaut game catching stars...)'
+                    : 'Jelaskan ceritamu (contoh: Buat game astronot menangkap bintang...)')
                 : activeMode === 'ubah'
-                ? 'Contoh: Tambah kecepatan meteor saat skor mencapai 50...'
-                : 'Contoh: Jelaskan apa fungsi balok "ketika bendera hijau diklik"...'
+                ? (isEn
+                    ? 'Example: Increase meteor speed when score reaches 50...'
+                    : 'Contoh: Tambah kecepatan meteor saat skor mencapai 50...')
+                : (isEn
+                    ? 'Example: Explain the purpose of "when green flag clicked" block...'
+                    : 'Contoh: Jelaskan apa fungsi balok "ketika bendera hijau diklik"...')
             }
             className="w-full p-3 text-xs text-gray-900 border border-gray-300 rounded-xl bg-[#f7f9fb] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#006194] leading-relaxed resize-none transition-all"
           />
@@ -194,7 +211,7 @@ export const AICopilotPanel: React.FC<AICopilotPanelProps> = ({
                 htmlFor="template-select"
                 className="text-[11px] font-bold text-gray-500 uppercase"
               >
-                Gunakan Kerangka Template (Opsional):
+                {t('editor.templateLabel')}
               </label>
               <select
                 id="template-select"
@@ -204,10 +221,10 @@ export const AICopilotPanel: React.FC<AICopilotPanelProps> = ({
                 }
                 className="p-2 text-xs border border-gray-300 rounded-xl bg-white text-gray-800 focus:outline-none focus:ring-1 focus:ring-[#006194]"
               >
-                <option value="">Otomatis / Kreasi Bebas</option>
-                <option value="catching-game">Catching Game (Tangkap Apel)</option>
-                <option value="maze-adventure">Maze Adventure (Labirin)</option>
-                <option value="space-shooter">Space Shooter (Antariksa)</option>
+                <option value="">{t('editor.templateAuto')}</option>
+                <option value="catching-game">{isEn ? 'Catching Game (Catch Apples)' : 'Catching Game (Tangkap Apel)'}</option>
+                <option value="maze-adventure">{isEn ? 'Maze Adventure' : 'Maze Adventure (Labirin)'}</option>
+                <option value="space-shooter">{isEn ? 'Space Shooter' : 'Space Shooter (Antariksa)'}</option>
               </select>
             </div>
           )}
@@ -225,12 +242,18 @@ export const AICopilotPanel: React.FC<AICopilotPanelProps> = ({
             <span>{isGenerating ? '⏳' : '⚡'}</span>
             <span>
               {isGenerating
-                ? 'Sedang Merakit Game...'
+                ? (isEn ? 'Assembling Game Logic...' : 'Sedang Merakit Game...')
                 : activeMode === 'buat'
-                ? `Generate Game Scratch (-${AI_ACTION_CREDIT_COSTS.create} Poin)`
+                ? (isEn
+                    ? `Generate Scratch Game (-${AI_ACTION_CREDIT_COSTS.create} Pts)`
+                    : `Generate Game Scratch (-${AI_ACTION_CREDIT_COSTS.create} Poin)`)
                 : activeMode === 'ubah'
-                ? `Terapkan Modifikasi (-${AI_ACTION_CREDIT_COSTS.modify} Poin)`
-                : `Tanya Tutor AI (-${AI_ACTION_CREDIT_COSTS.explain} Poin)`}
+                ? (isEn
+                    ? `Apply Modifications (-${AI_ACTION_CREDIT_COSTS.modify} Pts)`
+                    : `Terapkan Modifikasi (-${AI_ACTION_CREDIT_COSTS.modify} Poin)`)
+                : (isEn
+                    ? `Ask AI Tutor (-${AI_ACTION_CREDIT_COSTS.explain} Pts)`
+                    : `Tanya Tutor AI (-${AI_ACTION_CREDIT_COSTS.explain} Poin)`)}
             </span>
           </button>
         </form>
@@ -238,10 +261,10 @@ export const AICopilotPanel: React.FC<AICopilotPanelProps> = ({
         {/* Quick Inspiration Chips */}
         <div className="flex flex-col gap-2 pt-2 border-t border-gray-100">
           <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">
-            Inspirasi Cepat:
+            {t('editor.quickInspirations')}
           </span>
           <div className="flex flex-col gap-1.5">
-            {INSPIRATION_PROMPTS.map((prompt, idx) => (
+            {inspirations.map((prompt, idx) => (
               <button
                 key={idx}
                 type="button"

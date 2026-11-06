@@ -27,12 +27,13 @@ export class ApiService {
   protected readonly fetchFn: typeof fetch;
 
   constructor(options?: ApiServiceOptions) {
+    const isBrowser = typeof window !== 'undefined';
     const defaultUrl =
       (typeof process !== 'undefined' &&
         (process.env?.REACT_APP_API_URL ||
           process.env?.VITE_API_BASE_URL ||
           process.env?.API_BASE_URL)) ||
-      'http://localhost:3001/api/v1';
+      (isBrowser ? '/api/v1' : 'http://localhost:3001/api/v1');
 
     this.baseUrl = (options?.baseUrl || defaultUrl).replace(/\/+$/, '');
     this.timeoutMs = options?.timeoutMs ?? 45000;

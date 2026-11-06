@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { apiService } from '../../services/api.service';
+import { useI18n } from '../../contexts/I18nContext';
 
 export interface TemplateCatalogViewProps {
   onSelectTemplate: (templateId: string) => void;
@@ -8,48 +9,71 @@ export interface TemplateCatalogViewProps {
 
 export interface TemplateItem {
   id: string;
-  name: string;
-  genre: string;
-  difficulty: 'Pemula' | 'Menengah' | 'Lanjutan';
+  nameId: string;
+  nameEn: string;
+  genreId: string;
+  genreEn: string;
+  difficultyId: 'Pemula' | 'Menengah' | 'Lanjutan';
+  difficultyEn: 'Beginner' | 'Intermediate' | 'Advanced';
   difficultyColor: string;
   icon: string;
-  description: string;
-  features: string[];
+  descriptionId: string;
+  descriptionEn: string;
+  featuresId: string[];
+  featuresEn: string[];
 }
 
 export const OFFICIAL_TEMPLATES: TemplateItem[] = [
   {
     id: 'catching-game',
-    name: 'Catching Game (Tangkap Apel)',
-    genre: 'Arcade • Refleks',
-    difficulty: 'Pemula',
+    nameId: 'Catching Game (Tangkap Apel)',
+    nameEn: 'Catching Game (Apple Catcher)',
+    genreId: 'Arcade • Refleks',
+    genreEn: 'Arcade • Reflex',
+    difficultyId: 'Pemula',
+    difficultyEn: 'Beginner',
     difficultyColor: 'bg-emerald-100 text-emerald-800 border-emerald-200',
     icon: '🍎',
-    description:
+    descriptionId:
       'Pemain menggerakkan keranjang ke kiri dan kanan untuk menangkap apel yang jatuh dari langit. Skor bertambah setiap apel tertangkap.',
-    features: ['Keranjang pemain dengan kontrol panah', 'Apel jatuh dengan kecepatan konstan', 'Variabel Skor dinamis', 'Efek suara tangkap'],
+    descriptionEn:
+      'Player moves a basket left and right to catch falling apples. Score increases with every apple caught.',
+    featuresId: ['Keranjang pemain dengan kontrol panah', 'Apel jatuh dengan kecepatan konstan', 'Variabel Skor dinamis', 'Efek suara tangkap'],
+    featuresEn: ['Player basket with arrow controls', 'Apples fall with constant speed', 'Dynamic Score variable', 'Catch sound effect'],
   },
   {
     id: 'maze-adventure',
-    name: 'Maze Adventure (Labirin Mistis)',
-    genre: 'Petualangan • Puzzle',
-    difficulty: 'Menengah',
+    nameId: 'Maze Adventure (Labirin Mistis)',
+    nameEn: 'Maze Adventure (Mystic Maze)',
+    genreId: 'Petualangan • Puzzle',
+    genreEn: 'Adventure • Puzzle',
+    difficultyId: 'Menengah',
+    difficultyEn: 'Intermediate',
     difficultyColor: 'bg-amber-100 text-amber-800 border-amber-200',
     icon: '🧭',
-    description:
+    descriptionId:
       'Jelajahi labirin penuh tantangan, hindari jebakan dan dinding, kumpulkan kunci misterius untuk membuka gerbang kemenangan.',
-    features: ['Kontrol 4 arah (WASD / Panah)', 'Deteksi tabrakan dinding sensor', 'Sistem Kunci & Pintu Keluar', 'Timer hitung mundur'],
+    descriptionEn:
+      'Navigate a challenging maze, avoid traps and wall collisions, collect keys to unlock the exit portal.',
+    featuresId: ['Kontrol 4 arah (WASD / Panah)', 'Deteksi tabrakan dinding sensor', 'Sistem Kunci & Pintu Keluar', 'Timer hitung mundur'],
+    featuresEn: ['4-way controls (WASD / Arrows)', 'Wall collision sensor detection', 'Key & Exit Door system', 'Countdown timer'],
   },
   {
     id: 'space-shooter',
-    name: 'Space Shooter (Pertahanan Bintang)',
-    genre: 'Aksi • Antariksa',
-    difficulty: 'Lanjutan',
+    nameId: 'Space Shooter (Pertahanan Bintang)',
+    nameEn: 'Space Shooter (Star Defense)',
+    genreId: 'Aksi • Antariksa',
+    genreEn: 'Action • Sci-Fi',
+    difficultyId: 'Lanjutan',
+    difficultyEn: 'Advanced',
     difficultyColor: 'bg-purple-100 text-purple-800 border-purple-200',
     icon: '🚀',
-    description:
+    descriptionId:
       'Kendalikan pesawat tempur luar angkasa, tembakkan laser untuk menghancurkan asteroid dan armada musuh sebelum menabrak Bumi.',
-    features: ['Pesawat dengan peluru laser kloning', 'Musuh asteroid berkecepatan acak', 'Sistem Nyawa (3 Lives) & Game Over', 'Efek suara ledakan'],
+    descriptionEn:
+      'Pilot a spaceship, fire laser blasts to destroy asteroids and enemy waves before they collide with Earth.',
+    featuresId: ['Pesawat dengan peluru laser kloning', 'Musuh asteroid berkecepatan acak', 'Sistem Nyawa (3 Lives) & Game Over', 'Efek suara ledakan'],
+    featuresEn: ['Spaceship with cloned laser projectiles', 'Random speed asteroid obstacles', 'Lives system (3 Lives) & Game Over', 'Explosion sound effects'],
   },
 ];
 
@@ -57,8 +81,11 @@ export const TemplateCatalogView: React.FC<TemplateCatalogViewProps> = ({
   onSelectTemplate,
   onBackToHome,
 }) => {
+  const { locale } = useI18n();
+  const isEn = locale === 'en';
+
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedDifficulty, setSelectedDifficulty] = useState<string>('Semua');
+  const [selectedDifficulty, setSelectedDifficulty] = useState<string>('all');
   const [supportedBackendTemplates, setSupportedBackendTemplates] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -88,13 +115,29 @@ export const TemplateCatalogView: React.FC<TemplateCatalogViewProps> = ({
     };
   }, []);
 
+  const difficultyFilters = [
+    { key: 'all', label: isEn ? 'All' : 'Semua' },
+    { key: 'beginner', label: isEn ? 'Beginner' : 'Pemula' },
+    { key: 'intermediate', label: isEn ? 'Intermediate' : 'Menengah' },
+    { key: 'advanced', label: isEn ? 'Advanced' : 'Lanjutan' },
+  ];
+
   const filteredTemplates = OFFICIAL_TEMPLATES.filter((tpl) => {
+    const name = isEn ? tpl.nameEn : tpl.nameId;
+    const desc = isEn ? tpl.descriptionEn : tpl.descriptionId;
+    const genre = isEn ? tpl.genreEn : tpl.genreId;
+
     const matchesSearch =
-      tpl.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      tpl.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      tpl.genre.toLowerCase().includes(searchQuery.toLowerCase());
+      name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      desc.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      genre.toLowerCase().includes(searchQuery.toLowerCase());
+
     const matchesDifficulty =
-      selectedDifficulty === 'Semua' || tpl.difficulty === selectedDifficulty;
+      selectedDifficulty === 'all' ||
+      (selectedDifficulty === 'beginner' && tpl.difficultyId === 'Pemula') ||
+      (selectedDifficulty === 'intermediate' && tpl.difficultyId === 'Menengah') ||
+      (selectedDifficulty === 'advanced' && tpl.difficultyId === 'Lanjutan');
+
     return matchesSearch && matchesDifficulty;
   });
 
@@ -109,14 +152,16 @@ export const TemplateCatalogView: React.FC<TemplateCatalogViewProps> = ({
               onClick={onBackToHome}
               className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#006194] hover:underline mb-2"
             >
-              ← Kembali ke Dashboard
+              {isEn ? '← Back to Dashboard' : '← Kembali ke Dashboard'}
             </button>
           )}
           <h1 className="text-3xl font-extrabold text-[#191c1e] tracking-tight">
-            Katalog Template Game Resmi
+            {isEn ? 'Official Game Template Blueprints' : 'Katalog Template Game Resmi'}
           </h1>
           <p className="text-sm text-gray-600 mt-1">
-            Pilih kerangka game yang telah divalidasi dan seimbang untuk langsung diuji atau dikembangkan bersama AI.
+            {isEn
+              ? 'Select verified and balanced game blueprints ready to playtest or develop together with AI.'
+              : 'Pilih kerangka game yang telah divalidasi dan seimbang untuk langsung diuji atau dikembangkan bersama AI.'}
           </p>
         </div>
 
@@ -124,7 +169,7 @@ export const TemplateCatalogView: React.FC<TemplateCatalogViewProps> = ({
         <div className="flex items-center gap-2">
           <input
             type="text"
-            placeholder="Cari template game..."
+            placeholder={isEn ? 'Search game templates...' : 'Cari template game...'}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="px-4 py-2.5 rounded-xl border border-gray-300 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#006194] w-full sm:w-64"
@@ -134,18 +179,18 @@ export const TemplateCatalogView: React.FC<TemplateCatalogViewProps> = ({
 
       {/* Filter Tabs */}
       <div className="flex items-center gap-2 mb-8 overflow-x-auto pb-2">
-        {['Semua', 'Pemula', 'Menengah', 'Lanjutan'].map((diff) => (
+        {difficultyFilters.map((diff) => (
           <button
-            key={diff}
+            key={diff.key}
             type="button"
-            onClick={() => setSelectedDifficulty(diff)}
+            onClick={() => setSelectedDifficulty(diff.key)}
             className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all ${
-              selectedDifficulty === diff
+              selectedDifficulty === diff.key
                 ? 'bg-[#006194] text-white shadow-sm'
                 : 'bg-gray-200/70 text-gray-700 hover:bg-gray-300'
             }`}
           >
-            {diff}
+            {diff.label}
           </button>
         ))}
       </div>
@@ -155,20 +200,22 @@ export const TemplateCatalogView: React.FC<TemplateCatalogViewProps> = ({
         <div className="flex flex-col items-center justify-center p-12 bg-white rounded-2xl border border-gray-200 text-center">
           <span className="text-4xl mb-3">🔍</span>
           <h3 className="text-lg font-bold text-gray-900 mb-1">
-            Tidak ada template yang cocok
+            {isEn ? 'No matching templates found' : 'Tidak ada template yang cocok'}
           </h3>
           <p className="text-xs text-gray-500 mb-4">
-            Coba kata kunci lain atau ubah filter tingkat kesulitan.
+            {isEn
+              ? 'Try different keywords or adjust the difficulty filter.'
+              : 'Coba kata kunci lain atau ubah filter tingkat kesulitan.'}
           </p>
           <button
             type="button"
             onClick={() => {
               setSearchQuery('');
-              setSelectedDifficulty('Semua');
+              setSelectedDifficulty('all');
             }}
             className="px-4 py-2 rounded-xl bg-gray-100 text-xs font-bold text-gray-700 hover:bg-gray-200"
           >
-            Reset Pencarian
+            {isEn ? 'Reset Search' : 'Reset Pencarian'}
           </button>
         </div>
       ) : (
@@ -191,29 +238,29 @@ export const TemplateCatalogView: React.FC<TemplateCatalogViewProps> = ({
                   <span
                     className={`px-3 py-1 rounded-full text-xs font-bold border ${tpl.difficultyColor}`}
                   >
-                    {tpl.difficulty}
+                    {isEn ? tpl.difficultyEn : tpl.difficultyId}
                   </span>
                 </div>
 
                 {/* Genre & Title */}
                 <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">
-                  {tpl.genre}
+                  {isEn ? tpl.genreEn : tpl.genreId}
                 </span>
                 <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#006194] transition-colors">
-                  {tpl.name}
+                  {isEn ? tpl.nameEn : tpl.nameId}
                 </h3>
 
                 {/* Description */}
                 <p className="text-xs text-gray-600 leading-relaxed mb-4">
-                  {tpl.description}
+                  {isEn ? tpl.descriptionEn : tpl.descriptionId}
                 </p>
 
                 {/* Feature List */}
                 <div className="flex flex-col gap-1.5 pt-3 border-t border-gray-100 mb-6 flex-grow">
                   <span className="text-[11px] font-bold text-gray-500 uppercase">
-                    Komponen Utama:
+                    {isEn ? 'Core Components:' : 'Komponen Utama:'}
                   </span>
-                  {tpl.features.map((feat, idx) => (
+                  {(isEn ? tpl.featuresEn : tpl.featuresId).map((feat, idx) => (
                     <div
                       key={idx}
                       className="flex items-center gap-1.5 text-xs text-gray-700"
@@ -235,7 +282,7 @@ export const TemplateCatalogView: React.FC<TemplateCatalogViewProps> = ({
                       : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                   }`}
                 >
-                  <span>🚀 Gunakan Template Ini</span>
+                  <span>{isEn ? '🚀 Use This Template' : '🚀 Gunakan Template Ini'}</span>
                 </button>
               </div>
             );
