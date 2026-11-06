@@ -54,3 +54,4 @@ export function getTranslation(
 
   return result;
 }
+
