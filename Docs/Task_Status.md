@@ -252,13 +252,27 @@ Seluruh sub-tahapan backend (**BE-00 s/d BE-07**) telah **100% SELESAI, TERVERIF
 
 ### Sub-Fase FE-06 — Pusat Bantuan Balok Scratch & Sistem Notifikasi Global Toast (UI 16, UI 18)
 * **Prasyarat:** FE-05 selesai dan disetujui (Disetujui 06/11/2026).
-* **Status:** **PENDING (GERBANG BERIKUTNYA)**
+* **Status:** **DONE (100% PASS — 54 Kasus Uji Lulus di Frontend, 65 di Backend, 0 Error)**
 * **Checklist Tugas FE-06:**
-  - [ ] Implementasi panduan interaktif balok Scratch `<BlockHelpGuideModal />` (UI 16) menguraikan kategori balok (Gerakan, Tampilan, Suara, Kejadian, Kontrol, Sensor, Operator, Variabel) dengan contoh pemakaian ramah anak.
-  - [ ] Implementasi sistem notifikasi global toast `<ToastNotificationContainer />` & `<Toast />` (UI 18) mendukung 4 tipe alert: sukses, peringatan, error, dan informasi.
-  - [ ] Implementasi provider / event-emitter notifikasi client-side (`toast.service.ts`).
-  - [ ] Implementasi banner status koneksi offline/online global (`OfflineIndicatorBanner`).
-  - [ ] Integrasi automated test suites di `frontend/tests/help-toast.test.tsx`.
+  - [x] Implementasi panduan interaktif balok Scratch `<BlockHelpGuideModal />` (UI 16) menguraikan 8 kategori balok resmi Scratch Foundation (Gerakan, Tampilan, Suara, Kejadian, Kontrol, Sensor, Operator, Variabel) dengan contoh pemakaian ramah pemula.
+  - [x] Implementasi komponen visual balok asli `<ScratchBlockSnippet />` mencakup 5 siluet bentuk balok Scratch 3.0 (Hat, Stack, C-Block, Reporter, Boolean) dengan palet warna hex resmi (`#4C97FF`, `#9966FF`, `#D65CD6`, `#FFD500`, `#FFAB19`, `#5CB1D6`, `#59C059`, `#FF8C1A`).
+  - [x] Implementasi sistem notifikasi global toast `<ToastNotificationContainer />` & `<ToastNotificationItem />` (UI 18) mendukung 5 tipe alert: sukses, peringatan, error, informasi, dan aksi pembatalan (*Undo*).
+  - [x] Implementasi provider singleton notifikasi client-side (`toast.service.ts`) dengan timeout adaptif dan aksesibilitas WAI-ARIA `aria-live="polite"`.
+  - [x] Integrasi tombol pintas Bantuan (❓) pada topbar editor `<EditorTopNav />` dan navbar utama `<Navbar />`.
+  - [x] Integrasi aksi balik (*Undo Toast*) berdurasi 6 detik saat penghapusan proyek lokal di `<LocalProjectLibrary />`.
+  - [x] Integrasi automated test suites di `frontend/tests/help-toast.test.tsx` (13 kasus uji baru lulus 100%).
+  - [x] Kompilasi TypeScript sukses (`0 ERROR`) dan seluruh automated test suite lulus 100% PASS (54/54 tests di frontend, 65/65 di backend, total 119 tests).
+
+---
+
+### Sub-Fase FE-07 — Hardening, E2E User Journey Verification, & Polish Final Frontend (UI 01 s/d UI 19)
+* **Prasyarat:** FE-06 selesai dan disetujui (Disetujui 06/11/2026).
+* **Status:** **PENDING (GERBANG BERIKUTNYA)**
+* **Checklist Tugas FE-07:**
+  - [ ] Implementasi pengujian End-to-End (E2E) integrasi antarmuka dari alur masuk (Landing/Home) hingga ekspor file Scratch (.sb3).
+  - [ ] Verifikasi audit keselarasan seluruh 19 prototipe tampilan Google Stitch di `template/ardenaplayground/`.
+  - [ ] Audit aksesibilitas audio-visual (kontras warna Material 3, pembaca layar ARIA, responsivitas breakpoint desktop).
+  - [ ] Verifikasi integrasi menyeluruh frontend dengan backend live service port 3001.
   - [ ] Kompilasi TypeScript sukses (`0 ERROR`) dan automated test suite 100% PASS.
 
 
