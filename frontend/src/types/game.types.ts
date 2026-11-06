@@ -217,6 +217,7 @@ export interface StoredProject {
 
 export interface UserPreferences {
   theme: 'light' | 'dark' | 'system';
+  language?: 'id' | 'en';
   soundEffectsEnabled: boolean;
   autoSaveIntervalSeconds: number; // default: 60
   defaultTemplate: SupportedTemplateKey;
@@ -226,6 +227,7 @@ export interface UserPreferences {
 
 export const DEFAULT_USER_PREFERENCES: UserPreferences = {
   theme: 'light',
+  language: 'id',
   soundEffectsEnabled: true,
   autoSaveIntervalSeconds: 60,
   defaultTemplate: 'catching-game',

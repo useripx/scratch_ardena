@@ -22,7 +22,8 @@
   [![Express.js](https://img.shields.io/badge/Express.js-v4.19-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
   [![Scratch 3.0](https://img.shields.io/badge/Scratch-3.0_Engine-FFAB19?style=for-the-badge&logo=scratch&logoColor=white)](https://scratch.mit.edu/)
   [![React 18](https://img.shields.io/badge/React-18-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
-  [![Tests](https://img.shields.io/badge/Tests-143_Passed_(100%25)-brightgreen?style=for-the-badge&logo=jest&logoColor=white)](https://jestjs.io/)
+  [![Tests](https://img.shields.io/badge/Tests-156_Passed_(100%25)-brightgreen?style=for-the-badge&logo=jest&logoColor=white)](https://jestjs.io/)
+  [![CI](https://img.shields.io/badge/CI-GitHub_Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)](https://github.com/useripx/scratch_ardena/actions)
   [![Version](https://img.shields.io/badge/Version-v1.0.0_MVP-006194?style=for-the-badge&logo=scratch&logoColor=white)](https://github.com/useripx/scratch_ardena)
   [![Code Coverage](https://img.shields.io/badge/Coverage-93.5%25_BE_|_72.3%25_FE-brightgreen?style=for-the-badge&logo=codecov)](https://github.com/useripx/scratch_ardena)
 
@@ -95,7 +96,7 @@ Sebelum memulai instalasi, pastikan komputer/laptop Anda telah terpasang:
 
 Untuk kemudahan pengujian lokal tanpa perlu membuka banyak terminal atau mengetik perintah panjang:
 
-1. **Cukup klik ganda (*double-click*) berkas `startlocal.bat`** (atau `start-local.bat`) pada direktori utama proyek.
+1. **Cukup klik ganda (*double-click*) berkas `startlocal.bat`** pada direktori utama proyek.
 2. Skrip otomatis akan:
    - Memeriksa kelengkapan Node.js & NPM di laptop Anda.
    - Memverifikasi dan menginstal dependensi otomatis jika belum ada.
