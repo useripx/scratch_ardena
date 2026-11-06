@@ -237,15 +237,28 @@ Seluruh sub-tahapan backend (**BE-00 s/d BE-07**) telah **100% SELESAI, TERVERIF
 
 ### Sub-Fase FE-05 — Penyimpanan Lokal IndexedDB, Manajemen Proyek & Ekspor .sb3 (UI 12, UI 13, UI 14, UI 15, UI 17)
 * **Prasyarat:** FE-04 selesai dan disetujui (Disetujui 05/11/2026).
-* **Status:** **PENDING (GERBANG BERIKUTNYA)**
+* **Status:** **DONE (100% PASS — 41 Kasus Uji Lulus, 0 Error)**
 * **Checklist Tugas FE-05:**
-  - [ ] Implementasi service client-side IndexedDB wrapper (`storage.service.ts`) untuk penyimpanan proyek offline tanpa database server.
-  - [ ] Implementasi modal simpan proyek `<SaveProjectDialog />` (UI 12) dengan validasi nama unik dan metadata tags.
-  - [ ] Implementasi pustaka proyek lokal `<LocalProjectLibrary />` (UI 13) daftar proyek, kartu thumbnail, edit, duplikasi, dan hapus.
-  - [ ] Implementasi modal ekspor file Scratch `<ExportSb3Modal />` (UI 14) untuk unduh file standar `.sb3` dan ringkasan JSON.
-  - [ ] Implementasi modal pengaturan pengguna `<PreferencesModal />` (UI 15) tema tampilan, audio feedback, dan default template.
-  - [ ] Implementasi modal konfirmasi tindakan destruktif `<ConfirmationModal />` (UI 17) sebelum menghapus proyek.
-  - [ ] Integrasi automated test suites IndexedDB & modals di `frontend/tests/storage.test.tsx`.
+  - [x] Implementasi service client-side IndexedDB wrapper (`storage.service.ts`) untuk penyimpanan proyek offline tanpa database server.
+  - [x] Implementasi modal simpan proyek `<SaveProjectDialog />` (UI 12) dengan validasi nama unik dan metadata tags.
+  - [x] Implementasi pustaka proyek lokal `<LocalProjectLibrary />` (UI 13) daftar proyek, kartu thumbnail, edit, duplikasi, dan hapus.
+  - [x] Implementasi modal ekspor file Scratch `<ExportSb3Modal />` (UI 14) untuk unduh file standar `.sb3` via JSZip dan ringkasan JSON.
+  - [x] Implementasi modal pengaturan pengguna `<PreferencesModal />` (UI 15) tema tampilan, audio feedback, dan default template.
+  - [x] Implementasi modal konfirmasi tindakan destruktif `<ConfirmationModal />` (UI 17) sebelum menghapus proyek.
+  - [x] Integrasi automated test suites IndexedDB & modals di `frontend/tests/storage.test.tsx` (14 kasus uji baru).
+  - [x] Kompilasi TypeScript sukses (`0 ERROR`) dan automated test suite 100% PASS (41/41 tests di frontend, 65/65 di backend).
+
+---
+
+### Sub-Fase FE-06 — Pusat Bantuan Balok Scratch & Sistem Notifikasi Global Toast (UI 16, UI 18)
+* **Prasyarat:** FE-05 selesai dan disetujui (Disetujui 06/11/2026).
+* **Status:** **PENDING (GERBANG BERIKUTNYA)**
+* **Checklist Tugas FE-06:**
+  - [ ] Implementasi panduan interaktif balok Scratch `<BlockHelpGuideModal />` (UI 16) menguraikan kategori balok (Gerakan, Tampilan, Suara, Kejadian, Kontrol, Sensor, Operator, Variabel) dengan contoh pemakaian ramah anak.
+  - [ ] Implementasi sistem notifikasi global toast `<ToastNotificationContainer />` & `<Toast />` (UI 18) mendukung 4 tipe alert: sukses, peringatan, error, dan informasi.
+  - [ ] Implementasi provider / event-emitter notifikasi client-side (`toast.service.ts`).
+  - [ ] Implementasi banner status koneksi offline/online global (`OfflineIndicatorBanner`).
+  - [ ] Integrasi automated test suites di `frontend/tests/help-toast.test.tsx`.
   - [ ] Kompilasi TypeScript sukses (`0 ERROR`) dan automated test suite 100% PASS.
 
 
