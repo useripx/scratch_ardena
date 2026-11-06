@@ -49,3 +49,4 @@ jobs:
         run: |
           cd frontend
           npx vite build
+

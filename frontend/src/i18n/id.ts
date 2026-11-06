@@ -113,3 +113,4 @@ export const id = {
 };
 
 export type Translations = typeof id;
+
