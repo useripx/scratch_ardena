@@ -40,3 +40,4 @@
 - `A` `Docs/release/UAT_Release_Report_v1.0.0.md` (Berita acara dan laporan formal UAT)
 - `M` `Docs/Task_Status.md` (Pembaruan status Tahap 08 menjadi DONE 100%)
 - `A` `changelog/changelog01pm06112026.md` (Changelog rilis resmi MVP v1.0.0)
+
